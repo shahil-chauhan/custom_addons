@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="action_doc_version" model="ir.action.act_window">
+		<field name="name">Version</field>
+		<field name="type">ir.action.act_window</field>
+		<field name="res_model">doc.version</field>
+		<field name="domain">[]</field>
+		<field name="view_type">form</field>
+		<field name="view_model">tree,form</field>
+		<field name="view_id" ref="yash.yash_list_view"/>
+		<field name="binding_model_id" ref="doc.item"/>
+	</record>
+
+	<record id="docu_item_tree_view" model="ir.ui.view">
+		<field name="name">docu.item.tree.view</field>
+		<field name="model">docu.item</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="item_type"/>
+				<field name="tags" widget="many2many_tags"/>
+				<field name="version_id"/>
+				<field name="description_short"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="docu_item_form_view" model="ir.ui.view">
+		<field name="name">docu.item.form.view</field>
+		<field name="model">docu.item</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<field name="active" invisible="1"/>
+					<widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+					<div class="oe_title">
+						<h1>
+							<field name="name" class="col-6" default_focus="1" placeholder="Title"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="item_type"/>
+							<field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+							<field name="version_id"/>
+							<!--                            <field name="apps" widget="many2many_tags" options="{'no_create': True}"/>-->
+							<!--                            <field name="models" widget="many2many_tags" options="{'no_create': True}"/>-->
+							<!--                            <field name="views" widget="many2many_tags" options="{'no_create': True}"/>-->
+						</group>
+						<group>
+							<field name="active_lang_count" invisible="1"/>
+							<field name="language" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
+						</group>
+						<group>
+							<field name="video_url" placeholder="https://www.youtube.com/" widget="url"/>
+							<field name="google_document_url" placeholder="https://docs.google.com/" widget="url"/>
+						</group>
+					</group>
+					<notebook>
+						<page string='Description'>
+							<group>
+								<field name="description_short" placeholder="description"/>
+								<field name="description_long" placeholder="description"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+				<div class="oe_chatter">
+					<field name="message_follower_ids"/>
+					<field name="activity_ids"/>
+					<field name="message_ids"/>
+				</div>
+			</form>
+		</field>
+	</record>
+
+	<record id="docu_item_kanban_view" model="ir.ui.view">
+		<field name="name">docu.item.kanban.view</field>
+		<field name="model">docu.item</field>
+		<field name="arch" type="xml">
+			<kanban>
+				<templates>
+					<t t-name="kanban-box">
+						<div class="oe_kanban_global_click">
+							<div class="oe_kanban_details">
+								<strong class="o_kanban_record_title">
+									<field name="name"/>
+								</strong>
+								<div class="o_kanban_tags_section">
+									<field name="tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+								</div>
+								<ul>
+									<li>
+										Type :
+										<field name="item_type"/>
+									</li>
+									<li>
+										Version :
+										<field name="version_id"/>
+									</li>
+									<li t-if="record.description_short.raw_value" class="o_text_overflow">Description :
+										<field name="description_short"/>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</t>
+				</templates>
+			</kanban>
+		</field>
+	</record>
+
+	<record id="docu_item_search_view" model="ir.ui.view">
+		<field name="name">docu.item.search.view</field>
+		<field name="model">docu.item</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name"/>
+				<field name="tags"/>
+				<field name="version_id"/>
+				<field name="video_url"/>
+				<field name="google_document_url"/>
+				<separator/>
+				<filter name="documentation" string="Documentation" domain="[('item_type', '=', 'documentation')]"/>
+				<filter name="tipp" string="Tipp" domain="[('item_type', '=', 'tipp')]"/>
+				<filter name="customer" string="Customer" domain="[('item_type', '=', 'customer')]"/>
+				<filter name="automation" string="Automation" domain="[('item_type', '=', 'automation')]"/>
+				<filter name="technical" string="Technical" domain="[('item_type', '=', 'technical')]"/>
+				<filter name="configuration" string="Configuration" domain="[('item_type', '=', 'configuration')]"/>
+				<separator/>
+				<filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+				<group expand="1" string="Group By">
+					<filter string="Version" name="version" context="{'group_by':'version_id'}"/>
+					<filter string="Type" name="item_type" context="{'group_by':'item_type'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="docu_item_action" model="ir.actions.act_window">
+		<field name="name">Items</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">docu.item</field>
+		<field name="view_mode">kanban,tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Let's create your first document item.
+			</p>
+		</field>
+	</record>
+</odoo>

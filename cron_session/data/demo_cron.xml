@@ -1,0 +1,14 @@
+<odoo>
+    <record id="demo_cron" model="ir.cron">
+        <field name="name">Demo Cron Job</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">model.demo_cron()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+        <!-- <field name="nextcall" eval="(datetime.now().replace(hour=8, minute=0, second=0, microsecond=0) + timedelta(days=2))"/> -->
+        <field name="doall" eval="False"/>
+   </record>
+</odoo>

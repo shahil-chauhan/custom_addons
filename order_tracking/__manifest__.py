@@ -1,0 +1,15 @@
+{
+    "name": "Order Tracking",
+    "summary": """Generate report with tracking column.""",
+    "description": """Generate report with tracking column from the sales module""",
+    "author": "Shahil Chauhan",
+    "website": "https://www.aktivsoftware.com/",
+    "category": "sales",
+    "version": "14.0.1.0.0",
+    "depends": [],
+    "data": [],
+    "application": True,
+    "installable": True,
+    "auto_install": False,
+    "sequence": 10,
+}

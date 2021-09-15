@@ -1,0 +1,78 @@
+<odoo>
+
+    <record id="student_profile_report" model="ir.actions.report">
+        <field name="name">Profile Report</field>
+        <field name="model">student.profile</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_student_profile</field>
+        <field name="report_file">college.report_student_profile</field>
+        <field name="binding_model_id" ref="model_student_profile"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_student_profile">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <h1>Students Data</h1>
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:auto">
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p style="text-align:center;">
+                                                    <h2>
+                                                        <strong t-field="doc.name"></strong>
+                                                    </h2>
+                                                </p>
+                                            </td>
+                                            <td width="60%">
+                                                <table class="table table-condensed" style="border: 3px solid black !important;">
+                                                    <tr>
+                                                        <td>
+                                                            <p style="text-align:right;">
+                                                                <strong>Enroll No. :</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:left;" t-field="doc.enroll"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p style="text-align:right;">
+                                                                <strong>Department :</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:left;" t-field="doc.department"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p style="text-align:right;">
+                                                                <strong>Semester :</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:left;" t-field="doc.semester"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

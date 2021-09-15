@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_referral_app_tree_view" model="ir.ui.view">
+        <field name="name">hr referral tree</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" decoration-bf="name"/>
+                <field name="email"/>
+                <field name="referral_id"/>
+                <field name="department_id"/>
+                <field name="expected_doj"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="expected_salary" widget="monetary" />
+                <field name="state" decoration-danger="state =='cancel'" decoration-success="state == 'approved'"
+                decoration-info="state == 'draft'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+    <record id="hr_referral_app_form_view" model="ir.ui.view">
+        <field name="name">hr referral form</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_approve" name="action_approvel" string="Approve" class="btn btn-primary" type="object" states="draft"/>
+                    <button string="Create Application" class="btn btn-primary" states="approved"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" class="btn btn-primary" type="object" states="draft,approved"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="referral_id" options="{'no_open':True}"/>
+                            <field name="department_id" options="{'no_open':True}"/>
+                            <field name="degree_id" options="{'no_open':True}"/>
+                        </group>
+                        <group>
+                            <field name="currency_id"/>
+                            <field name="expected_salary" widget="monetary"/>
+                            <field name="expected_doj"/>
+                        </group>
+                        <group>
+                            <field name="summary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="hr_referral_app_search_view" model="ir.ui.view">
+        <field name="name">hr referral search</field>
+        <field name="model">hr.referral.application</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="referral_id"/>
+                <separator/>
+                <filter name="State" string="Status Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="State" string="Status Approved" domain="[('state', '=', 'approved')]"/>
+                <filter name="State" string="Status Canceled" domain="[('state', '=', 'cancel')]"/>
+                <separator/>
+                <group string="Group By">
+                    <filter string="Group by Degree" name="degree_id" context="{'group_by':'degree_id'}"/>
+                    <filter string="Group by Expected Joining Date" name="expected_doj" context="{'group_by':'expected_doj'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_hr_referral_app" model="ir.actions.act_window">
+        <field name="name">HR Referrals</field>
+        <field name="res_model">hr.referral.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="hr_referral_root_menu" name="HR Referrals"/>
+    <menuitem id="hr_referral_menu" action="action_hr_referral_app" parent="hr_referral_root_menu"/>
+</odoo>

@@ -1,0 +1,70 @@
+<odoo>
+    <record model="ir.ui.view" id="docu_item_list">
+        <field name="name">docu.item.list.view</field>
+        <field name="model">docu.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="lang_id"/>
+                <field name="version_id"/>
+                <field name="types"/>
+                <field name="tag_ids"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="docu_item_form">
+        <field name="name">docu.item.form.view</field>
+        <field name="model">docu.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="lang_id" attrs="{' ':[()]}"/>
+                        <field name="module_id" options="{'no_create':True, 'no_open':True}"/>
+                        <field name="model_id" options="{'no_create':True, 'no_open':True}"/>
+                        <field name="view_id" options="{'no_create':True, 'no_open':True}"/>
+                        <field name="desc_short"/>
+                        <field name="version_id" options="{'no_create':True, 'no_open':True}"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        <field name="types" widget="radio"/>
+                        <field name="video_url" widget="url"/>
+                        <field name="google_doc_url" widget="url"/>
+                        <field name="desc_long"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="docu_item_search_view" model="ir.ui.view">
+        <field name="name">docu.item.search.view</field>
+        <field name="model">docu.item</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="version_id"/>
+                <field name="types"/>
+                <separator/>
+                <filter name="version_id" string="ver 12" domain="[('version_id', '=', '12')]"/>
+                <filter name="version_id" string="ver 13" domain="[('version_id', '=', '13')]"/>
+                <filter name="version_id" string="ver 14" domain="[('version_id', '=', '14')]"/>
+                <filter name="version_id" string="ver 15" domain="[('version_id', '=', '15')]"/>
+                <separator/>
+                <group string="Group By">
+                    <filter string="Group by types" name="types" context="{'group_by':'types'}"/>
+                    <filter string="Group by versions" name="version_id" context="{'group_by':'version_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="docu_item_action_window">
+        <field name="name">Documentation</field>
+        <field name="res_model">docu.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Top menu item -->
+    <menuitem name="Document" id="docu_item_menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Document item" id="docu_item_menu" parent="docu_item_menu_root" action="docu_item_action_window"/>
+</odoo>

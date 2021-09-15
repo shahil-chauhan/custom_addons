@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Documentation"
+        id="menu_documenter_root"
+        web_icon="documentation,static/description/icon.png">
+        <menuitem id="menu_documenter_items" name="Items" action="docu_item_action"/>
+        <menuitem id="menu_documenter_configuration" name="Configuration" sequence="35">
+            <menuitem id="menu_docu_tags" name="Tags" action="documentation.docu_tags_action"/>
+            <menuitem id="menu_docu_version" name="Versions" action="documentation.docu_version_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>
