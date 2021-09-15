@@ -1,0 +1,25 @@
+<odoo>
+    <template id="demo_page" name="Demo page">
+        <t t-call="website.layout">
+            <t t-set="title">Demo Page</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <table id="partners_list">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="partners" t-as="partner">
+                                <td><t t-esc="partner.id"/></td>
+                                <td><t t-esc="partner.name"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

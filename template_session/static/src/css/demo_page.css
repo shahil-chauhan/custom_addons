@@ -1,0 +1,7 @@
+#partners_list{
+    width: 100%;
+}
+#partners_list th, #partners_list td{
+    padding: 10px 15px;
+    border: 1px solid #000;
+}
