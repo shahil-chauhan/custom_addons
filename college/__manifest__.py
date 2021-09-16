@@ -14,7 +14,7 @@
         "views/student_view.xml",
         "views/sales_inherited.xml",
         "report/student_report.xml",
-        "report/sale_order_inherit.xml",
+        "report/sale_order_inherit_report.xml",
     ],
     "application": True,
     "installable": True,

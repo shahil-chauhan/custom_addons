@@ -23,7 +23,7 @@ class Student(models.Model):
     )
     dob = fields.Date("Date of Birth")
     phone = fields.Char("Mobile No.", size=10)
-
+    image = fields.Binary(string="image")
     college_id = fields.Many2one("college.profile", string="College")
     hobby_list = fields.Many2many(
         "hobby", "student_hobby_rel", "student_id", "hobby_id", string="Hobbies"

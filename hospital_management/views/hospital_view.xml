@@ -65,14 +65,14 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="photo" widget="image" class="oe_avater"/>
                         <group>
-                            <field name="patient_name" />
-                            <field name="reference_id"/>
+                            <field name="photo" widget="image" class="oe_avatar float-left" nolabel="1"/>
+                            <field name="patient_name"/>
                             <field name="gender" />
+                            <field name="patient_age" />
                         </group>
                         <group>
-                            <field name="patient_age" />
+                            <field name="reference_id"/>
                             <field name="note" />
                         </group>
                     </group>

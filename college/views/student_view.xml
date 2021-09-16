@@ -24,6 +24,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="image" widget="image" class="oe_avatar float-left" nolabel="1"/>
                             <field name="name" />
                             <field name="enroll" />
                             <field name="department" />

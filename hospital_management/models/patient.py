@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class HospitalPatient(models.Model):
@@ -6,7 +6,7 @@ class HospitalPatient(models.Model):
     _description = "patient records"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _rec_name = "patient_name"
-
+    
     patient_name = fields.Char(string="Patient Name", required=True, tracking=True)
     patient_age = fields.Integer(string="Patient Age", tracking=True)
     gender = fields.Selection(
@@ -41,5 +41,14 @@ class HospitalPatient(models.Model):
     def action_draft(self):
         self.state = "draft"
 
+    @api.model
     def create(self, values):
-        return 
+        if not values.get('note'):
+            values['note']='New Patient'
+        print("\n\n\n Create Override----",)
+        rtn = super(HospitalPatient, self).create(values)
+        print("\n\n\n values---", values)
+        print("\n\n\n Return---", rtn)
+        return rtn
+
+    
