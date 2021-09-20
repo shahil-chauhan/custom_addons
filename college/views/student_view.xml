@@ -12,7 +12,10 @@
                 <field name="is_virtual" />
                 <field name="dob" />
                 <field name="phone" />
-                <field name="college_id" domain="[('is_virtual_class', '=', True)]"/>
+                <field name="currency_id" widget="selection" invisible="1"/>
+                <field name="student_fees" />
+                <field name="college_id"/>
+                <!-- <field name="college_id" domain="[('is_virtual_class', '=', True)]"/> -->
             </tree>
         </field>
     </record>
@@ -39,7 +42,7 @@
                     <notebook>
                         <page name="College">
                             <group>
-                                <field name="college_id" options="{'no_create':True}" domain="[('is_virtual_class','=', True)]" />
+                                <field name="college_id" options="{'no_create':True}"/>
                                 <field name="hobby_list" widget="many2many_tags" />
                             </group>
                         </page>

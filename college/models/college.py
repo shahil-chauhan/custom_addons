@@ -18,10 +18,10 @@ class CollegeProfile(models.Model):
         [("public", "Public College"), ("private", "Private College")],
         string="Type of College",
     )
-    college_image = fields.Binary(string="College Image")
+    image = fields.Binary(string="College Image")
 
     student_ids = fields.One2many(
-        "student.profile", "college_id", string="College List"
+        "student.profile", "college_id", string="Students List"
     )
 
     auto_rank = fields.Integer(

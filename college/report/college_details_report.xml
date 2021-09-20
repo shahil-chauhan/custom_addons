@@ -1,0 +1,125 @@
+<odoo>
+
+    <record id="college_profile_report" model="ir.actions.report">
+        <field name="name">College details</field>
+        <field name="model">college.profile</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_college_profile</field>
+        <field name="report_file">college.report_college_profile</field>
+        <field name="binding_model_id" ref="model_college_profile"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="report_college_profile">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <h1 style="text-align:center;">College Details</h1>
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-8" style="margin:auto">
+                                <table>
+                                    <tr>
+                                        <td width="40%">
+                                            <p style="text-align:center;padding-top:10px;">
+                                                <img t-if="not o.image" t-att-src="'/web/static/src/img/placeholder.png'" height="140" width="120" border="1"/>
+                                                <img t-if="o.image" t-att-src="'data:image/jpeg;base64,%s' % to_text(o.image)" height="140" width="120" border="1"/>
+                                            </p>
+                                            <p>
+                                                <h4 style="text-align:center;">
+                                                    <strong t-field="o.name"></strong>
+                                                </h4>
+                                            </p>
+                                        </td>
+                                        <td width="60%">
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <th>
+                                                        <p style="text-align:right;">
+                                                            <strong>Address. :</strong>
+                                                        </p>
+                                                    </th>
+                                                    <td>
+                                                        <p style="text-align:left;" t-field="o.address"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p style="text-align:right;">
+                                                            <strong>Phone :</strong>
+                                                        </p>
+                                                    </th>
+                                                    <td>
+                                                        <p style="text-align:left;" t-field="o.phone"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p style="text-align:right;">
+                                                            <strong>Email :</strong>
+                                                        </p>
+                                                    </th>
+                                                    <td>
+                                                        <p style="text-align:left;" t-field="o.email"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <t t-if="o.student_ids">
+                            <h1>Students List</h1>
+                            <table class="table table-dark" name="students">
+                                <thead>
+                                    <tr>
+                                        <th name="th_name" class="text-left">
+                                            <span>Student Name</span>
+                                        </th>
+                                        <th name="th_enroll" class="text-left">
+                                            <span>Enrollment</span>
+                                        </th>
+                                        <th name="th_department" class="text-left">
+                                            <span>Department</span>
+                                        </th>
+                                        <th name="th_semester" class="text-left">
+                                            <span>Semester</span>
+                                        </th>
+                                        <th name="th_fees" class="text-left">
+                                            <span>Fees</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="o.student_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.enroll"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.department"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.semester"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.student_fees"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

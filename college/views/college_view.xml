@@ -31,7 +31,7 @@
                         <field name="address" />
                     </group>
                     <group>
-                        <field name="college_image" widget="image" />
+                        <field name="image" widget="image" class="oe_avatar"/>
                         <field name="establish_date" />
                         <field name="open_date" />
                         <field name="college_type" widget="radio" options="{'horizontal':true}" />

@@ -25,16 +25,19 @@
                                         <tr>
                                             <td width="40%">
                                                 <p style="text-align:center;padding-top:10px;">
-                                                    <img t-att-src="'data:image/jpeg;base64,%s' % to_text(doc.image)" class="img-rounded" height="120" width="120" border="1"/>
+                                                    <img t-if="not doc.image" t-att-src="'/web/static/src/img/placeholder.png'" height="140" width="120" border="1"/>
+                                                    <img t-if="doc.image" t-att-src="'data:image/jpeg;base64,%s' % to_text(doc.image)" height="140" width="120" border="1"/>
                                                 </p>
                                                 <p style="text-align:center;">
-                                                    <h2><strong t-field="doc.name"></strong></h2>
+                                                    <h2>
+                                                        <strong t-field="doc.name"></strong>
+                                                    </h2>
                                                 </p>
                                             </td>
                                             <td width="60%">
                                                 <table class="table table-condensed" style="border: 3px solid black !important;">
                                                     <tr>
-                                                         <th>
+                                                        <th>
                                                             <p style="text-align:right;">
                                                                 <strong>Enroll No. :</strong>
                                                             </p>
@@ -59,7 +62,7 @@
                                                                 <strong>Semester :</strong>
                                                             </p>
                                                         </th>
-                                                        <td>                                                                
+                                                        <td>
                                                             <p style="text-align:left;" t-field="doc.semester"/>
                                                         </td>
                                                     </tr>
