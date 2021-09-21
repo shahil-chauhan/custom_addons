@@ -5,16 +5,25 @@
             <div class="oe_structure">
                 <div class="container">
                     <table id="partners_list">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
-                                <th>ID</th>
+                                <th>Profile</th>
                                 <th>Name</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr t-foreach="partners" t-as="partner">
-                                <td><t t-esc="partner.id"/></td>
-                                <td><t t-esc="partner.name"/></td>
+                            <tr t-foreach="partners" t-as="pt">
+                                <td>
+                                    <!-- <t t-esc="pt.image_1920" t-options="{'widget':'image'}"/> -->
+                                    <img t-if="pt.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(pt.image_1920)"/>
+                                </td>
+                                <td>
+                                    <t t-esc="pt.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="pt.email"/>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

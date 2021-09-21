@@ -9,6 +9,7 @@
     'data': [
         'views/demo_template.xml',
         'views/assets.xml',
+        'data/menu_demo.xml',
     ],
     'auto_install': False,
     'installable': True,
