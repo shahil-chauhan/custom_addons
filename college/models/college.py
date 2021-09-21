@@ -38,6 +38,17 @@ class CollegeProfile(models.Model):
             else:
                 rec.auto_rank = 0
 
+    # name_create method to create a record with name field.
+    @api.model
+    def name_create(self, name):
+        # rtn = self.create({'name':name})
+        # return rtn.name_get()[0]
+        print("\n\nself--- ", self)
+        print("\n\nname----", name)
+        rtn = super(CollegeProfile, self).name_create(name)
+        print("\n\nname create return-----", rtn)
+        return rtn
+
     # document = fields.Binary(string="Document")
     # document_name = fields.Char(string="Document_name")
 

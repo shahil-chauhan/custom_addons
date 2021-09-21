@@ -34,27 +34,28 @@ class Student(models.Model):
     )
 
     currency_id = fields.Many2one("res.currency", string="Currency")
-    student_fees = fields.Monetary(string="School Fees")
+    student_fees = fields.Monetary(string="School Fees", default=2000.00)
     active = fields.Boolean(string="Active")
 
     # Create method to create new record
-    @api.model 
-    def create(self, values):
-        print("\n\n\nvalues----",values)
-        print("\n\n\nself----",self)
-        values['active'] = True #to set the value of active field while overriding create method.
-        rtn = super(Student, self).create(values)
-        print("\n\n\nreturned----",rtn)
-        return rtn
+        # @api.model
+        # def create(self, values):
+        #     print("\n\n\nvalues----", values)
+        #     print("\n\n\nself----", self)
+        #     # to set the value of active field while overriding create method.
+        #     values['active'] = True
+        #     rtn = super(Student, self).create(values)
+        #     print("\n\n\ncreate returned----", rtn)
+        #     return rtn
 
     # write method to update an exist record
-    # NO Decorator  
+    # NO Decorator
     def write(self, vals):
         print("\n\n\nself----", self)
-        print("\n\nValues-----",vals)
+        print("\n\nValues-----", vals)
         # vals['active'] = True #to update the value of active field while overriding write method.
-        rtn =  super(Student, self).write(vals)
-        print("\n\nReturn-----",rtn)
+        rtn = super(Student, self).write(vals)
+        print("\n\nwrite Return-----", rtn)
         return rtn
 
     # copy method to create new record from existing record
@@ -62,7 +63,7 @@ class Student(models.Model):
         print("\n\n\nself----", self)
         # default['active'] = False # copy with active field false
         rtn = super(Student, self).copy(default=default)
-        print("\n\nReturn-----", rtn)
+        print("\n\ncopy Return-----", rtn)
         return rtn
 
     # unlink method to delete a record
@@ -70,22 +71,31 @@ class Student(models.Model):
         print("\n\n\nself----", self)
         # you can write your condition for unlink
         rtn = super(Student, self).unlink()
-        print("\n\nReturn-----", rtn)
+        print("\n\nunlink Return-----", rtn)
         return rtn
 
-    # name_create method to create a record with name field.
-    def name_create(self, name):
-        # rtn = self.create({'name':name})
-        # return rtn.name_get()[0]
-        print("\n\nself--- ",self)
-        print("\n\n\nself----", name)
-        rtn = super(Student, self).name_create(name)
-        print("\n\nReturn-----", rtn)
+    # default_get method to set default values while creating records
+    def default_get(self, fields_list=[]):
+        print("\n\nself---",self)
+        print("\n\nField list---",fields_list)
+        rtn = super(Student, self).default_get(fields_list)
+        rtn['is_virtual'] = True
+        print("\n\ndefault_get ---", rtn)
         return rtn
-
 
 
 class Hobby(models.Model):
     _name = "hobby"
     _description = "Different hobbies of Students"
     name = fields.Char(string="Hobby")
+
+    # name_create method to create a record with name field.
+    @api.model
+    def name_create(self, name):
+        # rtn = self.create({'name':name})
+        # return rtn.name_get()[0]
+        print("\n\nself--- ", self)
+        print("\n\nname----", name)
+        rtn = super(Hobby, self).name_create(name)
+        print("\n\nname create return-----", rtn)
+        return rtn

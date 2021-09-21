@@ -25,8 +25,9 @@
                                         <tr>
                                             <td width="40%">
                                                 <p style="text-align:center;padding-top:10px;">
-                                                    <img t-if="not doc.image" t-att-src="'/web/static/src/img/placeholder.png'" height="140" width="120" border="1"/>
-                                                    <img t-if="doc.image" t-att-src="'data:image/jpeg;base64,%s' % to_text(doc.image)" height="140" width="120" border="1"/>
+                                                    <t t-esc="doc.image" t-options="{'widget':'image'}"/>
+                                                    <!-- <img t-if="not doc.image" t-att-src="'/web/static/src/img/placeholder.png'" height="140" width="120" border="1"/>
+                                                    <img t-if="doc.image" t-att-src="'data:image/jpeg;base64,%s' % to_text(doc.image)" height="140" width="120" border="1"/> -->
                                                 </p>
                                                 <p style="text-align:center;">
                                                     <h2>

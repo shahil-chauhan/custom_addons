@@ -42,7 +42,8 @@
                     <notebook>
                         <page name="College">
                             <group>
-                                <field name="college_id" options="{'no_create':True}"/>
+                                <field name="college_id"/>
+                                <!-- <field name="college_id" options="{'no_create':True}"/> -->
                                 <field name="hobby_list" widget="many2many_tags" />
                             </group>
                         </page>
