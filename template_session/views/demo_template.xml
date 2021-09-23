@@ -15,8 +15,8 @@
                         <tbody>
                             <tr t-foreach="partners" t-as="pt">
                                 <td>
-                                    <!-- <t t-esc="pt.image_1920" t-options="{'widget':'image'}"/> -->
-                                    <img t-if="pt.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(pt.image_1920)"/>
+                                    <span t-field="pt.image_1920" t-options="{'widget':'image'}"/>
+                                    <!-- <img t-if="pt.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(pt.image_1920)"/> -->
                                 </td>
                                 <td>
                                     <t t-esc="pt.name"/>
