@@ -1,1 +1,1 @@
-from . import college, sales_inherited, student
+from . import college, sales_inherited

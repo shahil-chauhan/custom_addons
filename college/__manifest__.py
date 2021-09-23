@@ -5,13 +5,12 @@
     "sequence": 1,
     "description": "This is a college management system.",
     "category": "Education/College",
-    "author": "Shahil",
+    "author": "Shahil Chauhan",
     "website": "https://www.google.com/",
     "depends": ["sale"],
     "data": [
         "security/ir.model.access.csv",
         "views/college_view.xml",
-        "views/student_view.xml",
         "views/sales_inherited.xml",
         "report/student_report.xml",
         "report/college_details_report.xml",
@@ -19,5 +18,5 @@
     ],
     "application": True,
     "installable": True,
-    "auto_install": True,
+    "auto_install": False,
 }
