@@ -1,5 +1,5 @@
 from lxml import etree
-
+import  random
 from odoo import api, fields, models
 
 
@@ -28,6 +28,7 @@ class CollegeProfile(models.Model):
         compute="auto_rank_result", string="Auto Rank", store=True
     )
 
+    # compute method to calculate 
     @api.depends("college_type")
     def auto_rank_result(self):
         for rec in self:
@@ -58,6 +59,20 @@ class CollegeProfile(models.Model):
                 name += " ({})".format(college.college_type)
             college_list.append((college.id, name))
         return college_list
+
+    # name_search method to return list of pairs based on filters
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        args = args or []
+        print("\n\nName=", name)
+        print("\n\nArgs=", args)
+        print("\n\noperator=", operator)
+        print("\n\nLimit=", limit)
+        if name:
+            rec = self.search(['|',('name',operator,name),('college_type',operator,name)])
+            return rec.name_get()
+        return self.search([('name', operator,name)]+args, limit=limit).name_get()
+
 
     # document = fields.Binary(string="Document")
     # document_name = fields.Char(string="Document_name")
@@ -97,6 +112,10 @@ class Student(models.Model):
     currency_id = fields.Many2one("res.currency", string="Currency")
     student_fees = fields.Monetary(string="School Fees", default=2000.00)
     active = fields.Boolean(string="Active")
+
+    def custom_button_method(self):
+        print("Hello I am a custom button method")
+        self.student_fees = random.randint(1,1000)
 
     # # Create method to create new record
     # @api.model
@@ -145,9 +164,7 @@ class Student(models.Model):
     #     return rtn
 
     # fields_view_get() method to return specific viewtype in dict format
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def fields_view_get(self, view_id=None, view_type="form", toolbar=False, submenu=False):
         # print("\n\nView_id--", view_id)
         # print("\n\nView_type--", view_type)
         # print("\n\nToolbar--", toolbar)

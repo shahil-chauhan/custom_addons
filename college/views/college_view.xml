@@ -70,6 +70,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <button name="custom_button_method" string="Click Me" type="object"/>   
                     <group>
                         <group>
                             <field name="image" widget="image" class="oe_avatar float-left" nolabel="1"/>
