@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "documentation",
+    "name": "Documentation",
     "summary": """Documentation module""",
     "description": """Documentation module""",
-    "author": "shahil chauhan",
+    "author": "Shahil Chauhan",
     "website": "https://www.aktivsoftware.com/",
     "category": "Documentation",
     "version": "14.0.1.0.0",
@@ -16,6 +16,6 @@
     ],
     "application": True,
     "installable": True,
-    "auto_install": True,
+    "auto_install": False,
     "sequence": 1,
 }

@@ -4,7 +4,7 @@
     "summary": "Hospital Management System",
     "description": "This is a hospital management system.",
     "category": "Health/Hospital",
-    "author": "Shahil",
+    "author": "Shahil Chauhan",
     "website": "https://www.google.com/",
     "depends": ["mail"],
     "data": ["security/ir.model.access.csv", "views/hospital_view.xml"],

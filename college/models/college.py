@@ -2,7 +2,7 @@ from lxml import etree
 import  random
 from odoo import api, fields, models
 
-
+  
 class CollegeProfile(models.Model):
     _name = "college.profile"
     _description = "College Management for students"
@@ -114,6 +114,21 @@ class Student(models.Model):
     active = fields.Boolean(string="Active")
 
     def custom_button_method(self):
+
+        # to add fields data through raw sql commands
+        self.env.cr.execute("insert into school_profile(name, active) values('From button click', True)")
+        self.env.cr.commit()
+
+        # different methods releted to the environment
+        print("\nEnvi------", self.env) 
+        print("\nuser id------", self.env.uid) 
+        print("\nCurrent user------", self.env.user) 
+        print("\nSuper------", self.env.su) 
+        print("\nCompany------", self.env.company)
+        print("\nComapnies------", self.env.companies)
+        print("\nLang------", self.env.lang)
+        print("\nCursor------", self.env.cr)
+
         print("Hello I am a custom button method")
         self.student_fees = random.randint(1,1000)
 
