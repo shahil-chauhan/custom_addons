@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+    <!-- COLLEGE TREE VIEW -->
     <record id="college_tree_view" model="ir.ui.view">
         <field name="name">college tree</field>
         <field name="model">college.profile</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
-                <field name="email" />
-                <field name="phone" />
-                <field name="is_virtual_class" />
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="is_virtual_class"/>
             </tree>
         </field>
     </record>
 
+    <!-- COLLEGE FORM VIEW -->
     <record id="college_form_view" model="ir.ui.view">
         <field name="name">college form</field>
         <field name="model">college.profile</field>
@@ -21,68 +23,129 @@
             <form>
                 <group>
                     <group>
-                        <field name="name" />
-                        <field name="email" placeholder="abc@gmail.com" />
-                        <field name="phone" />
-                        <field name="is_virtual_class" />
-                        <field name="college_rank" />
-                        <field name="auto_rank" />
-                        <field name="result" />
-                        <field name="address" />
+                        <field name="name"/>
+                        <field name="email" placeholder="abc@gmail.com"/>
+                        <field name="phone"/>
+                        <field name="is_virtual_class"/>
+                        <field name="college_rank"/>
+                        <field name="auto_rank"/>
+                        <field name="result"/>
+                        <field name="address"/>
                     </group>
                     <group>
                         <field name="image" widget="image" class="oe_avatar"/>
-                        <field name="establish_date" />
-                        <field name="open_date" />
-                        <field name="college_type" widget="radio" options="{'horizontal':true}" />
+                        <field name="establish_date"/>
+                        <field name="open_date"/>
+                        <field name="college_type" widget="radio" options="{'horizontal':true}"/>
                     </group>
                     <group>
-                        <field name="student_ids" />
+                        <field name="student_ids"/>
                     </group>
                 </group>
             </form>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="student_list">
+    <!-- STUDENTS KANBAN VIEW -->
+    <record id="student_kanban" model="ir.ui.view">
+        <field name="name">student kanban</field>
+        <field name="model">student.profile</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="enroll"/>
+                <field name="department"/>
+                <field name="semester"/>
+                <field name="image"/>
+                <field name="phone"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('student.profile','image',record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div>
+                                    <strong>Name:
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div>Enroll No.:
+                                    <field name="enroll"/>
+                                </div>
+                                <div>Semester:
+                                    <field name="semester"/>
+                                </div>
+                                <div>Department:
+                                    <field name="department"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- STUDENTS TREE VIEW -->
+    <record id="student_list" model="ir.ui.view">
         <field name="name">student tree</field>
         <field name="model">student.profile</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
-                <field name="enroll" />
-                <field name="department" />
-                <field name="semester" />
-                <field name="is_virtual" />
-                <field name="dob" />
-                <field name="phone" />
+                <field name="name"/>
+                <field name="enroll"/>
+                <field name="department"/>
+                <field name="semester"/>
+                <field name="is_virtual"/>
+                <field name="dob"/>
+                <field name="phone"/>
                 <field name="currency_id" widget="selection" invisible="1"/>
-                <field name="student_fees" />
+                <field name="student_fees"/>
                 <field name="college_id"/>
                 <!-- <field name="college_id" domain="[('is_virtual_class', '=', True)]"/> -->
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="student_form">
+    <!-- STUDENTS FORM VIEW -->
+    <record id="student_form" model="ir.ui.view">
         <field name="name">student form</field>
         <field name="model">student.profile</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" type="object" class="btn-primary"
+                            confirm="Are you sure you need to confirm?" states="draft"/>
+                    <button id="button_done" name="action_done" string="Mark Done" type="object" class="btn-primary"
+                            states="confirm"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" type="object"
+                            confirm="Are you sure you need to cancel?" states="draft,confirm,done"/>
+                    <button id="button_draft" name="action_draft" string="Draft" type="object" class="btn-primary"
+                            states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"/>
+                </header>
                 <sheet>
-                    <button name="custom_button_method" string="Click Me" type="object"/>   
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <button name="custom_button_method" string="Click Me" type="object"/>
                     <group>
                         <group>
                             <field name="image" widget="image" class="oe_avatar float-left" nolabel="1"/>
-                            <field name="name" />
-                            <field name="enroll" />
-                            <field name="department" />
-                            <field name="semester" placeholder="Select Semester" />
-                            <field name="dob" />
-                            <field name="is_virtual" />
+                            <field name="name"/>
+                            <field name="enroll"/>
+                            <field name="department"/>
+                            <field name="semester" placeholder="Select Semester"/>
+                            <field name="dob"/>
+                            <field name="is_virtual"/>
                             <field name="currency_id" widget="selection"/>
-                            <field name="student_fees" />
-                            <field name="active" />
+                            <field name="student_fees"/>
+                            <field name="active"/>
                         </group>
                     </group>
                     <notebook>
@@ -90,7 +153,7 @@
                             <group>
                                 <field name="college_id"/>
                                 <!-- <field name="college_id" options="{'no_create':True}"/> -->
-                                <field name="hobby_list" widget="many2many_tags" />
+                                <field name="hobby_list" widget="many2many_tags"/>
                             </group>
                         </page>
                     </notebook>
@@ -99,31 +162,33 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="hobby_list">
+    <!-- HOBBY TREE VIEW -->
+    <record id="hobby_list" model="ir.ui.view">
         <field name="name">hobby tree</field>
         <field name="model">hobby</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
+                <field name="name"/>
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="hobby_form">
+    <!-- HOBBY FORM VIEW -->
+    <record id="hobby_form" model="ir.ui.view">
         <field name="name">hobby form</field>
         <field name="model">hobby</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
-                        <field name="name" />
+                        <field name="name"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- actions opening views on models -->
+    <!-- ACTIONS OPENING VIEWS ON MODELS-->
     <record id="action_college_window" model="ir.actions.act_window">
         <field name="name">College</field>
         <field name="res_model">college.profile</field>
@@ -133,7 +198,7 @@
     <record id="action_student_window" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="res_model">student.profile</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
     <record id="action_hobby_window" model="ir.actions.act_window">
@@ -142,10 +207,11 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="college_root_menu" name="College" />
-    <menuitem id="college_profile_menu" action="action_college_window" parent="college_root_menu" />
-    <menuitem id="student_root_menu" name="Student" parent="college_root_menu" />
-    <menuitem id="student_menu" name="Student List" action="action_student_window" parent="student_root_menu" />
-    <menuitem id="hobby_menu" name="Hobby List" action="action_hobby_window" parent="student_root_menu" />
+    <!-- MENU TO ACCESS THE VIEWS -->
+    <menuitem id="college_root_menu" name="College"/>
+    <menuitem id="college_profile_menu" action="action_college_window" parent="college_root_menu"/>
+    <menuitem id="student_root_menu" name="Student" parent="college_root_menu"/>
+    <menuitem id="student_menu" name="Student List" action="action_student_window" parent="student_root_menu"/>
+    <menuitem id="hobby_menu" name="Hobby List" action="action_hobby_window" parent="student_root_menu"/>
 
 </odoo>

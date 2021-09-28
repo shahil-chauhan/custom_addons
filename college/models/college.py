@@ -1,8 +1,8 @@
 from lxml import etree
-import  random
-from odoo import api, fields, models
+import random
+from odoo import api, fields, models, _
 
-  
+
 class CollegeProfile(models.Model):
     _name = "college.profile"
     _description = "College Management for students"
@@ -28,7 +28,7 @@ class CollegeProfile(models.Model):
         compute="auto_rank_result", string="Auto Rank", store=True
     )
 
-    # compute method to calculate 
+    # COMPUTE METHOD TO CALCULATE THE RANK
     @api.depends("college_type")
     def auto_rank_result(self):
         for rec in self:
@@ -39,10 +39,10 @@ class CollegeProfile(models.Model):
             else:
                 rec.auto_rank = 0
 
-    # name_create method to create a record with name field.
+    # NAME_CREATE() METHOD TO OVERRIDE THE CREATE IN M2O FIELD RECORD WITH NAME FIELD.
     @api.model
     def name_create(self, name):
-        # rtn = self.create({'name':name})
+        # rtn = self.create({'name':name, 'email':'xyz@gmail.com'})
         # return rtn.name_get()[0]
         print("\n\nself--- ", self)
         print("\n\nname----", name)
@@ -50,7 +50,7 @@ class CollegeProfile(models.Model):
         print("\n\nname create return-----", rtn)
         return rtn
 
-    # name_get() method to return records textual value
+    # NAME_GET() METHOD TO RETURN RECORDS TEXTUAL VALUE TO BE DISPLAYED
     def name_get(self):
         college_list = []
         for college in self:
@@ -60,7 +60,7 @@ class CollegeProfile(models.Model):
             college_list.append((college.id, name))
         return college_list
 
-    # name_search method to return list of pairs based on filters
+    # NAME_SEARCH() METHOD TO RETURN LIST OF PAIRS OF FIELDS BASED ON FILTERS
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         args = args or []
@@ -69,10 +69,10 @@ class CollegeProfile(models.Model):
         print("\n\noperator=", operator)
         print("\n\nLimit=", limit)
         if name:
-            rec = self.search(['|',('name',operator,name),('college_type',operator,name)])
+            rec = self.search(['|', ('name', operator, name),
+                               ('college_type', operator, name)])
             return rec.name_get()
-        return self.search([('name', operator,name)]+args, limit=limit).name_get()
-
+        return self.search([('name', operator, name)] + args, limit=limit).name_get()
 
     # document = fields.Binary(string="Document")
     # document_name = fields.Char(string="Document_name")
@@ -84,6 +84,10 @@ class Student(models.Model):
     _description = "Student Management"
 
     name = fields.Char(string="Student Name", required=True)
+    # FOR THE SEQUENCE
+    ref = fields.Char(string='Student Reference', required=True,
+                      copy=False, readonly=True, default=lambda self: _('New'))
+
     enroll = fields.Char("Enrollment No.", required=True)
     department = fields.Char(string="Department")
     semester = fields.Selection(
@@ -113,77 +117,109 @@ class Student(models.Model):
     student_fees = fields.Monetary(string="School Fees", default=2000.00)
     active = fields.Boolean(string="Active")
 
+    # TO ADD THE STATUS FOR THE STATE OF PROCESS
+    state = fields.Selection(
+        [
+            ("draft", "Draft"),
+            ("confirm", "Confirmed"),
+            ("done", "Done"),
+            ("cancel", "Cancelled"),
+        ],
+        string="Status", default="draft"
+    )
+
+    def action_confirm(self):
+        self.state = "confirm"
+
+    def action_done(self):
+        self.state = "done"
+
+    def action_cancel(self):
+        self.state = "cancel"
+
+    def action_draft(self):
+        self.state = "draft"
+
+    # ADD A CUSTOM BUTTON TO PERFORM A METHOD
+
     def custom_button_method(self):
-
         # to add fields data through raw sql commands
-        self.env.cr.execute("insert into school_profile(name, active) values('From button click', True)")
-        self.env.cr.commit()
+        # self.env.cr.execute(
+        #     "insert into student_profile(name, active) values('From button click', True)")
+        # self.env.cr.commit()
 
-        # different methods releted to the environment
-        print("\nEnvi------", self.env) 
-        print("\nuser id------", self.env.uid) 
-        print("\nCurrent user------", self.env.user) 
-        print("\nSuper------", self.env.su) 
+        # DIFFERENT METHODS RELATED TO THE ENVIRONMENT
+        print("\nEnvi------", self.env)
+        print("\nuser id------", self.env.uid)
+        print("\nCurrent user------", self.env.user)
+        print("\nSuper------", self.env.su)
         print("\nCompany------", self.env.company)
-        print("\nComapnies------", self.env.companies)
+        print("\nCompanies------", self.env.companies)
         print("\nLang------", self.env.lang)
         print("\nCursor------", self.env.cr)
 
-        print("Hello I am a custom button method")
-        self.student_fees = random.randint(1,1000)
+        print("\nHello I am a custom button method")
+        self.student_fees = random.randint(1, 1000)
 
-    # # Create method to create new record
+    # OVERRIDE CREATE() METHOD TO CREATE A NEW RECORD
     # @api.model
     # def create(self, values):
-    #     print("\n\n\nvalues----", values)
-    #     print("\n\n\nself----", self)
+    #     print("\n\n\n values----", values)
+    #     print("\n\n\n self----", self)
     #     # to set the value of active field while overriding create method.
     #     values['active'] = True
+    #     # ----TO PRINT THE SEQUENCE VALUE-----
+    #     if values.get('ref', _('New')) == _('New'):
+    #         values['ref'] = self.env['ir.sequence'].next_by_code(
+    #             'student.profile') or _('New')
+
     #     rtn = super(Student, self).create(values)
-    #     print("\n\n\ncreate returned----", rtn)
+    #     print("\n\n\n create returned----", rtn)
     #     return rtn
 
-    # # write method to update an exist record
-    # # NO Decorator
+    # OVERRIDE WRITE() METHOD TO UPDATE THE EXISTING RECORD
+    # NO Decorator
     # def write(self, vals):
-    #     print("\n\n\nself----", self)
+    #     print("\n\n\n self----", self)
     #     print("\n\nValues-----", vals)
     #     # vals['active'] = True #to update the value of active field while overriding write method.
     #     rtn = super(Student, self).write(vals)
-    #     print("\n\nwrite Return-----", rtn)
+    #     print("\n\n write Return-----", rtn)
     #     return rtn
 
-    # # copy method to create new record from existing record
+    # COPY METHOD() TO COPY FROM AN EXISTING RECORD
     # def copy(self, default=None):
-    #     print("\n\n\nself----", self)
+    #     print("\n\n\n self----", self)
     #     # default['active'] = False # copy with active field false
     #     rtn = super(Student, self).copy(default=default)
-    #     print("\n\ncopy Return-----", rtn)
+    #     print("\n\nc opy Return-----", rtn)
     #     return rtn
 
-    # # unlink method to delete a record
+    # UNLINK METHOD() TO DELETE A RECORD
+
     # def unlink(self):
-    #     print("\n\n\nself----", self)
+    #     print("\n\n\n self----", self)
     #     # you can write your condition for unlink
     #     rtn = super(Student, self).unlink()
-    #     print("\n\nunlink Return-----", rtn)
+    #     print("\n\n unlink Return-----", rtn)
     #     return rtn
 
-    # # default_get method to set default values while creating records
+    # DEFAULT_GET() METHOD TO SET DEFAULT VALUES DURING RECORD CREATION
+
     # def default_get(self, fields_list=[]):
-    #     print("\n\nself---", self)
+    #     print("\n\n self---", self)
     #     print("\n\nField list---", fields_list)
     #     rtn = super(Student, self).default_get(fields_list)
     #     rtn['is_virtual'] = True
-    #     print("\n\ndefault_get ---", rtn)
+    #     print("\n\n default_get ---", rtn)
     #     return rtn
 
-    # fields_view_get() method to return specific viewtype in dict format
+    # FIELDS_VIEW_GET() METHOD TO RETURN SPECIFIC VIEW TYPE IN DICT FORMAT
     def fields_view_get(self, view_id=None, view_type="form", toolbar=False, submenu=False):
         # print("\n\nView_id--", view_id)
         # print("\n\nView_type--", view_type)
         # print("\n\nToolbar--", toolbar)
-        # print("\n\nsubmneu--", submenu)
+        # print("\n\n submenu--", submenu)
         rtn = super(Student, self).fields_view_get(
             view_id=view_id, view_type=view_type, submenu=submenu, toolbar=toolbar
         )
@@ -193,7 +229,8 @@ class Student(models.Model):
             if name_field:
                 # added one label in form view
                 name_field[0].addnext(
-                    etree.Element("label", {"string": "hello fields_view_get method"})
+                    etree.Element(
+                        "label", {"string": "hello fields_view_get method"})
                 )
                 rtn["arch"] = etree.tostring(doc, encoding="unicode")
 
@@ -205,14 +242,3 @@ class Hobby(models.Model):
     _name = "hobby"
     _description = "Different hobbies of Students"
     name = fields.Char(string="Hobby")
-
-    # name_create method to create a record with name field.
-    @api.model
-    def name_create(self, name):
-        # rtn = self.create({'name':name})
-        # return rtn.name_get()[0]
-        print("\n\nself--- ", self)
-        print("\n\nname----", name)
-        rtn = super(Hobby, self).name_create(name)
-        print("\n\nname create return-----", rtn)
-        return rtn
