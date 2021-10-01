@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_docu_item,access_docu_item,model_docu_item,base.group_user,1,1,1,1
 access_docu_version,access_docu_version,model_docu_version,base.group_user,1,1,1,1
 access_docu_tags,access_docu_tags,model_docu_tags,base.group_user,1,1,1,1
+access_docu_item_view,access_docu_item_view,model_docu_item_view,,1,0,0,0
+access_ir_module_module_group_base_user,ir_module_module group_base_user,base.model_ir_module_module,base.group_user,1,0,0,0

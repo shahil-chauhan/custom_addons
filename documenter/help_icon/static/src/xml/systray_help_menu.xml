@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="help_icon.systray.HelpMenu.Previews">
+        <t t-set="activetab" t-value="widget.activeTabId"/>
+        <div>
+            <div class="o_MessagingMenu_dropdownMenuHeader">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item all" data-id="all">
+                        <a data-toggle="tab"
+                           t-attf-class="nav-link {{ activetab === 'all' ? 'active' : ''}}"
+                           href="#allTopTen" role="tab"
+                           aria-controls="allTopTen">All</a>
+                    </li>
+                    <li class="nav-item forus" data-id="forus">
+                        <a data-toggle="tab"
+                           t-attf-class="nav-link {{ activetab === 'forus' ? 'active' : ''}}"
+                           href="#ForUs" role="tab"
+                           aria-controls="ForUs">For us</a>
+                    </li>
+                    <li class="nav-item general" data-id="general">
+                        <a data-toggle="tab"
+                           t-attf-class="nav-link {{ activetab === 'general' ? 'active' : ''}}"
+                           href="#general" role="tab"
+                           aria-controls="general">General</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div role="tabpanel" t-attf-class="tab-pane {{ activetab === 'all' ? 'active' : ''}}" id="allTopTen">
+                <t t-if="_.isEmpty(widget._items)">
+                    <div class="dropdown-item-text text-center o_no_item">
+                        No data available.
+                    </div>
+                </t>
+                <t t-foreach="widget._items" t-as="item">
+                    <div class="o_mail_preview docu_item_preview m-2">
+                        <div class="o_mail_preview_image o_mail_preview_app">
+                            <img src="/help_icon/static/description/icon.png"/>
+                        </div>
+                        <div class="o_preview_info">
+                            <div class="o_preview_title" t-att-data-id="item.id">
+                                <b t-att-data-id="item.id"><t t-esc="item.name"/></b>
+                            </div>
+                            <div t-att-data-id="item.id">
+                                <span class="mr16" t-att-data-id="item.id"><t t-esc="item.description_short or ''"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <div role="tabpanel" t-attf-class="tab-pane {{ activetab === 'forus' ? 'active' : ''}}" id="ForUs">
+                <t t-if="_.isEmpty(widget._items)">
+                    <div class="dropdown-item-text text-center o_no_item">
+                        No data available.
+                    </div>
+                </t>
+                <t t-foreach="widget._items" t-as="item">
+                    <div class="o_mail_preview docu_item_preview m-2">
+                        <div class="o_mail_preview_image o_mail_preview_app">
+                            <img src="/help_icon/static/description/icon.png"/>
+                        </div>
+                        <div class="o_preview_info">
+                            <div class="o_preview_title" t-att-data-id="item.id">
+                                <b t-att-data-id="item.id"><t t-esc="item.name"/></b>
+                            </div>
+                            <div t-att-data-id="item.id">
+                                <span class="mr16" t-att-data-id="item.id"><t t-esc="item.description_short or ''"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <div role="tabpanel" t-attf-class="tab-pane {{ activetab === 'general' ? 'active' : ''}}" id="general">
+                <t t-if="_.isEmpty(widget._items)">
+                    <div class="dropdown-item-text text-center o_no_item">
+                        No data available.
+                    </div>
+                </t>
+                <t t-foreach="widget._items" t-as="item">
+                    <div class="o_mail_preview docu_item_preview m-2">
+                        <div class="o_mail_preview_image o_mail_preview_app">
+                            <img src="/help_icon/static/description/icon.png"/>
+                        </div>
+                        <div class="o_preview_info m-2">
+                            <div class="o_preview_title" t-att-data-id="item.id">
+                                <b t-att-data-id="item.id"><t t-esc="item.name"/></b>
+                            </div>
+                            <div t-att-data-id="item.id">
+                                <span class="mr16" t-att-data-id="item.id"><t t-esc="item.description_short or ''"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+        <div class="dropdown-item-text text-center" t-if="total_items > 0">
+            <button type="button" class="btn btn-link o_see_all_items">SEE ALL</button>
+        </div>
+    </t>
+
+    <t t-name="help_icon.HelpMenu">
+        <li class="o_mail_systray_item">
+            <a class="dropdown-toggle o-no-caret" data-toggle="dropdown" data-display="static" aria-expanded="false" title="Items" href="#" role="button">
+                <i class="fa fa-question-circle" role="img" aria-label="Items"/>
+            </a>
+            <div class="o_mail_systray_dropdown dropdown-menu dropdown-menu-right" role="menu">
+                <div class="o_help_dropdown_items"/>
+            </div>
+        </li>
+    </t>
+</templates>

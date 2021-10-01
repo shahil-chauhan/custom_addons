@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tree_view" model="docu.item.view">
+        <field name="name">Tree</field>
+        <field name="view_type">list</field>
+    </record>
+
+    <record id="form_view" model="docu.item.view">
+        <field name="name">Form</field>
+        <field name="view_type">form</field>
+    </record>
+    
+    <record id="graph_view" model="docu.item.view">
+        <field name="name">Graph</field>
+        <field name="view_type">graph</field>
+    </record>
+
+    <record id="pivot_view" model="docu.item.view">
+        <field name="name">Pivot</field>
+        <field name="view_type">pivot</field>
+    </record>
+
+    <record id="calendar_view" model="docu.item.view">
+        <field name="name">Calendar</field>
+        <field name="view_type">calendar</field>
+    </record>
+
+    <record id="gantt_view" model="docu.item.view">
+        <field name="name">Gantt</field>
+        <field name="view_type">gantt</field>
+    </record>
+
+    <record id="kanban_view" model="docu.item.view">
+        <field name="name">Kanban</field>
+        <field name="view_type">kanban</field>
+    </record>
+
+    <record id="search_view" model="docu.item.view">
+        <field name="name">Search</field>
+        <field name="view_type">search</field>
+    </record>
+
+    <record id="grid_view" model="docu.item.view">
+        <field name="name">Grid</field>
+        <field name="view_type">grid</field>
+    </record>
+
+    <record id="activity_view" model="docu.item.view">
+        <field name="name">Activity</field>
+        <field name="view_type">activity</field>
+    </record>
+
+    <record id="map_view" model="docu.item.view">
+        <field name="name">Map</field>
+        <field name="view_type">map</field>
+    </record>
+
+    <record id="dashboard_view" model="docu.item.view">
+        <field name="name">Dashboard</field>
+        <field name="view_type">dashboard</field>
+    </record>
+</odoo>

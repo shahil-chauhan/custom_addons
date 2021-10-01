@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="product_kanban" model="docu.item">
+            <field name="name">Product Kanban</field>
+            <field name="item_type">configuration</field>
+            <field name="version_id" eval="ref('documentation.version_14')"/>
+            <field name="description_short">product's grid view</field>
+            <field name="models" eval="[(4, ref('product.model_product_template')), (4, ref('product.model_product_product'))]"/>
+            <field name="views" eval="[(4, ref('documentation.kanban_view'))]"/>
+            <field name="partner_id" eval="ref('base.partner_admin')"/>
+            <field name="video_url">https://www.youtube.com/watch?v=ZaIeQI1rP8w</field>
+        </record>
+        <record id="sale_customers" model="docu.item">
+            <field name="name">Customers</field>
+            <field name="item_type">customer</field>
+            <field name="version_id" eval="ref('documentation.version_14')"/>
+            <field name="description_short">res.partner from Sales/CRM</field>
+            <field name="models" eval="[(4, ref('base.model_res_partner'))]"/>
+            <field name="partner_id" eval="ref('base.main_partner')"/>
+            <field name="apps" eval="[(4, ref('base.module_sale_management')), (4, ref('base.module_crm'))]"/>
+        </record>
+        <record id="sale_product_tree" model="docu.item">
+            <field name="name">Sale Product List</field>
+            <field name="item_type">configuration</field>
+            <field name="version_id" eval="ref('documentation.version_14')"/>
+            <field name="description_short">sale products in list view</field>
+            <field name="models" eval="[(4, ref('product.model_product_template')), (4, ref('product.model_product_product'))]"/>
+            <field name="partner_id" eval="ref('base.partner_admin')"/>
+            <field name="views" eval="[(4, ref('documentation.tree_view'))]"/>
+            <field name="apps" eval="[(4, ref('base.module_sale_management'))]"/>
+        </record>
+        <record id="sale_orders" model="docu.item">
+            <field name="name">Orders</field>
+            <field name="item_type">customer</field>
+            <field name="version_id" eval="ref('documentation.version_14')"/>
+            <field name="models" eval="[(4, ref('sale.model_sale_order'))]"/>
+            <field name="partner_id" eval="ref('base.main_partner')"/>
+            <field name="views" eval="[(4, ref('documentation.form_view')), (4, ref('documentation.tree_view'))]"/>
+            <field name="description_short">Quotations/Sale Orders</field>
+            <field name="apps" eval="[(4, ref('base.module_crm')), (4, ref('base.module_sale_management'))]"/>
+        </record>
+        <record id="sales_teams" model="docu.item">
+            <field name="name">Sales Teams</field>
+            <field name="item_type">automation</field>
+            <field name="version_id" eval="ref('documentation.version_14')"/>
+            <field name="models" eval="[(4, ref('crm.model_crm_team'))]"/>
+            <field name="partner_id" eval="ref('base.main_partner')"/>
+            <field name="apps" eval="[(4, ref('base.module_crm'))]"/>
+        </record>
+    </data>
+</odoo>

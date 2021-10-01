@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="documenter assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/help_icon/static/src/js/systray/systray_help_menu.js"/>
+        </xpath>
+    </template>
+</odoo>
