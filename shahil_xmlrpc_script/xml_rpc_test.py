@@ -1,7 +1,7 @@
-import xmlrpc.client
-import os
-from datetime import datetime
 import csv
+import os
+import xmlrpc.client
+from datetime import datetime
 
 url = 'http://127.0.0.1:9999'
 db = 'mydb'
