@@ -1,0 +1,49 @@
+<odoo>
+    <template id="contacts_list" name="Contacts list">
+        <t t-call="website.layout">
+            <t t-set="title">Contacts List</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="contacts_list_wrapper">
+                        <table class="contact_list_tbl">
+                            <thead>
+                                <tr>
+                                    <th class="contact_image_col display_web"></th>
+                                    <th class="contact_name_col display_web">Name</th>
+                                    <th class="contact_email_col display_web">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="contacts" t-as="contact">
+                                    <tr>
+                                        <td class="contact_image_col">
+                                            <div class="contact_image_main_wrapper">
+                                                <div class="contact_image_wrapper">
+                                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact.id" class="contact_image"/>
+                                                </div>
+                                                <div class="display_mobile contact_mobile_details_wrapper">
+                                                    <div>
+                                                        <t t-esc="contact.name"/>
+                                                    </div>
+                                                    <div>
+                                                        <t t-esc="contact.email"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="contact_name_col display_web">
+                                                <t t-esc="contact.name"/>
+                                        </td>
+                                        <td class="contact_email_col display_web">
+                                            <t t-esc="contact.email"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

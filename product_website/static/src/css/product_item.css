@@ -1,0 +1,7 @@
+.flex-container {
+  display: flex;
+  margin: 5px;
+  background-color: royalblue;
+  border-radius: 5px;
+  border: ridge;
+}

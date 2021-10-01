@@ -1,0 +1,26 @@
+<odoo>
+    <template id="product_item_template" name="Product Item">
+        <t t-call="website.layout">
+            <t t-set="title">Product item</t>
+            <div class="oe_structure">
+                <t t-foreach="product_item" t-as="product">
+                    <div class="flex-container">
+                        <div>
+                            <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id"/>
+                        </div>
+                        <div>
+                            <div >
+                                Product:
+                                    <t t-esc="product.name"/>
+                            </div>
+                            <div>
+                                Qty:
+                                    <t t-esc="product.qty_available"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
