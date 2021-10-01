@@ -1,4 +1,1 @@
-from . import docu_item
-from . import docu_tags
-from . import docu_version
-from . import ir_model
+from . import docu_item, docu_tags, docu_version, ir_model

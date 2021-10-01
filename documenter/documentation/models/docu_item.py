@@ -1,5 +1,4 @@
 import re
-
 from urllib.parse import urlparse
 
 from odoo import api, fields, models

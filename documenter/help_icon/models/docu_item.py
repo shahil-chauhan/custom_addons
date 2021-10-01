@@ -169,11 +169,14 @@ class DocumenterItem(models.Model):
                         )
                     ]
             if channel == "general":
-                return self.search_read(
-                    domain
-                    + [("id", "not in", [item.id for item in ordered_item_list])],
-                    ["name", "description_short", "item_type"],
-                )[:10], self.search_count([])
+                return (
+                    self.search_read(
+                        domain
+                        + [("id", "not in", [item.id for item in ordered_item_list])],
+                        ["name", "description_short", "item_type"],
+                    )[:10],
+                    self.search_count([]),
+                )
             return [
                 {
                     "id": item.id,
