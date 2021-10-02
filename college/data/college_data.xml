@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <!--    COLLEGE DATA-->
+    <record id="college_data_1" model="college.profile">
+        <field name="name">kite</field>
+        <field name="email">k@gmail.com</field>
+        <field name="phone">012365479</field>
+        <field name="result">100.0</field>
+        <field name="is_virtual_class" eval="True"/>
+        <field name="college_type">private</field>
+        <field name="image" type="base64" file="/home/odoo/workspace/odoo14c/odoo/custom_addons/college/static/img/college.jpeg"/>
+    </record>
+
+    <record id="college_data_2" model="college.profile">
+        <field name="name">Spec</field>
+        <field name="email">k@gmail.com</field>
+        <field name="phone">0362514789</field>
+        <field name="result">150</field>
+        <field name="is_virtual_class" eval="False"/>
+        <field name="college_type">public</field>
+        <!-- <field name="image" type="base64" file="/college/static/description/icon.png"/> -->
+    </record>
+
+    <record id="college_data_3" model="college.profile">
+        <field name="name">LD</field>
+        <field name="email">l@gmail.com</field>
+        <field name="phone">1236547890</field>
+        <field name="result">80</field>
+        <field name="is_virtual_class" eval="False"/>
+        <field name="college_type">public</field>
+        <!-- <field name="image" type="base64" file="/college/static/description/icon.png"/> -->
+    </record>
+
+    <record id="college_data_4" model="college.profile">
+        <field name="name">GH</field>
+        <field name="email">g@gmail.com</field>
+        <field name="phone">0326514798</field>
+        <field name="result">50</field>
+        <field name="is_virtual_class" eval="True"/>
+        <field name="college_type">private</field>
+        <!-- <field name="image" type="base64" file="/college/static/description/icon.png"/> -->
+    </record>
+
+    <record id="college_data_5" model="college.profile">
+        <field name="name">Adit</field>
+        <field name="email">ad@gmail.com</field>
+        <field name="phone">0159847326</field>
+        <field name="result">10</field>
+        <field name="is_virtual_class" eval="True"/>
+        <field name="college_type">public</field>
+        <!-- <field name="image" type="base64" file="/college/static/description/icon.png"/> -->
+    </record>
+
+    <!--    <record id="student_data_1" model="student.profile">-->
+    <!--        <field name="name">zzxzzzxz</field>-->
+    <!--        <field name="student_email">cxxzxczczakash@gmail.com</field>-->
+    <!--        <field name="student_phone">013254697854</field>-->
+    <!--        <field name="student_result">98</field>-->
+    <!--         <field name="sc_select_id" eval="[(6, 0, [ref('college_data_1'),ref('college_data_2')])]" />-->
+    <!--    </record> -->
+
+   </odoo>

@@ -11,6 +11,7 @@
     "data": [
         "security/ir.model.access.csv",
         "data/seq_data.xml",
+        "data/college_data.xml",
         "views/college_view.xml",
         "views/sales_inherited.xml",
         "report/student_report.xml",

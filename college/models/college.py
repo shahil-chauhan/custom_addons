@@ -1,6 +1,8 @@
-from lxml import etree
 import random
-from odoo import api, fields, models, _
+
+from lxml import etree
+
+from odoo import _, api, fields, models
 
 
 class CollegeProfile(models.Model):
@@ -62,17 +64,18 @@ class CollegeProfile(models.Model):
 
     # NAME_SEARCH() METHOD TO RETURN LIST OF PAIRS OF FIELDS BASED ON FILTERS
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         args = args or []
         print("\n\nName=", name)
         print("\n\nArgs=", args)
         print("\n\noperator=", operator)
         print("\n\nLimit=", limit)
         if name:
-            rec = self.search(['|', ('name', operator, name),
-                               ('college_type', operator, name)])
+            rec = self.search(
+                ["|", ("name", operator, name), ("college_type", operator, name)]
+            )
             return rec.name_get()
-        return self.search([('name', operator, name)] + args, limit=limit).name_get()
+        return self.search([("name", operator, name)] + args, limit=limit).name_get()
 
     # document = fields.Binary(string="Document")
     # document_name = fields.Char(string="Document_name")
@@ -85,8 +88,13 @@ class Student(models.Model):
 
     name = fields.Char(string="Student Name", required=True)
     # FOR THE SEQUENCE
-    ref = fields.Char(string='Student Reference', required=True,
-                      copy=False, readonly=True, default=lambda self: _('New'))
+    ref = fields.Char(
+        string="Student Reference",
+        required=True,
+        copy=False,
+        readonly=True,
+        default=lambda self: _("New"),
+    )
 
     enroll = fields.Char("Enrollment No.", required=True)
     department = fields.Char(string="Department")
@@ -125,7 +133,8 @@ class Student(models.Model):
             ("done", "Done"),
             ("cancel", "Cancelled"),
         ],
-        string="Status", default="draft"
+        string="Status",
+        default="draft",
     )
 
     def action_confirm(self):
@@ -215,7 +224,9 @@ class Student(models.Model):
     #     return rtn
 
     # FIELDS_VIEW_GET() METHOD TO RETURN SPECIFIC VIEW TYPE IN DICT FORMAT
-    def fields_view_get(self, view_id=None, view_type="form", toolbar=False, submenu=False):
+    def fields_view_get(
+        self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
         # print("\n\nView_id--", view_id)
         # print("\n\nView_type--", view_type)
         # print("\n\nToolbar--", toolbar)
@@ -229,8 +240,7 @@ class Student(models.Model):
             if name_field:
                 # added one label in form view
                 name_field[0].addnext(
-                    etree.Element(
-                        "label", {"string": "hello fields_view_get method"})
+                    etree.Element("label", {"string": "hello fields_view_get method"})
                 )
                 rtn["arch"] = etree.tostring(doc, encoding="unicode")
 
