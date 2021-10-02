@@ -1,7 +1,18 @@
 .flex-container {
   display: flex;
   margin: 5px;
-  background-color: royalblue;
+  background-color: white;
   border-radius: 5px;
   border: ridge;
+  flex-wrap: wrap; 
+} 
+
+.image_position {
+  padding: 25px;
+
+}
+
+.product_diplapy {
+  padding: 10px 50px;
+  background-color: #7c7b85;
 }

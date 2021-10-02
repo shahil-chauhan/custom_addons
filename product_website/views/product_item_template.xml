@@ -2,10 +2,10 @@
     <template id="product_item_template" name="Product Item">
         <t t-call="website.layout">
             <t t-set="title">Product item</t>
-            <div class="oe_structure">
+            <div class="oe_structure product_diplapy">
                 <t t-foreach="product_item" t-as="product">
                     <div class="flex-container">
-                        <div>
+                        <div class="image_position">
                             <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id"/>
                         </div>
                         <div>
@@ -15,7 +15,7 @@
                             </div>
                             <div>
                                 Qty:
-                                    <t t-esc="product.qty_available"/>
+                                    <span t-esc="product.qty_available"/>
                             </div>
                         </div>
                     </div>

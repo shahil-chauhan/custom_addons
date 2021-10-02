@@ -5,7 +5,7 @@
         Demo module for CSS""",
     "author": "Shahil Chauhan",
     "version": "14.0.1.0.0",
-    "depends": ["website", "product"],
+    "depends": ["website", "product", "stock"],
     "data": [
         "data/product_menu.xml",
         "views/product_website_template.xml",

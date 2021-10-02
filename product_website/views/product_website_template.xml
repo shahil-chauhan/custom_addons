@@ -4,24 +4,24 @@
             <t t-set="title">Product</t>
             <div class="oe_structure flex-container-list">
                 <t t-foreach="product" t-as="product">
-                    <div class="flex-container-item col-md-3">
-                        <div class="product_image_wrapper" style="flex-shrink: 1">
-                            <a t-attf-href="/product/#{product.id}">
+                    <a t-attf-href="/product/#{product.id}" class="flex-container-item col-sm-5 col-md-3">
+                        <div class="product_image_wrapper">
+                            <!-- <a t-attf-href="/product/#{product.id}"> -->
                                 <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id" class="product_image"/>
-                            </a>
+                            <!-- </a> -->
                         </div>
-                        <div class="wrap">
+                        <div class="wrap_text">
                             <div >
-                                <a t-attf-href="/product/#{product.id}">
+                                <!-- <a t-attf-href="/product/#{product.id}"> -->
                                     <t t-esc="product.name"/>
-                                </a>
+                                <!-- </a> -->
                             </div>
                             <div>
                                 Qty:
-                                <t t-esc="product.qty_available"/>
+                                <span t-esc="product.qty_available"/>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </t>
             </div>
         </t>
