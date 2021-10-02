@@ -36,33 +36,22 @@
                                 </ul>
                             </h4> -->
                             <div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <strong name="heading">Varients:</strong>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <span t-foreach="product.attribute_line_ids" t-as="line" name="varient">
-                                                <th>
-                                                    <t t-esc="line.attribute_id.name"/>
-                                                    <span t-foreach="line.value_ids" t-as="values">
-                                                        <tr>
-                                                            <td>
-                                                                <t t-esc="values.name"/>
-                                                            </td>
-                                                        </tr>
-                                                    </span>
-                                                </th>
+                                <div>
+                                    <strong>Varients:</strong>
+                                </div>
+                                <span t-foreach="product.attribute_line_ids" t-as="line" name="varient">
+                                    <div>
+                                        <t t-esc="line.attribute_id.name"/>
+                                        <div>
+                                            <span t-foreach="line.value_ids" t-as="values">
+                                                &#160;<input type="radio" name="varient"/>&#160;&#160;
+                                                <t t-esc="values.name"/>
                                             </span>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                </span>
                             </div>
-
                         </div>
                     </div>
                 </t>
