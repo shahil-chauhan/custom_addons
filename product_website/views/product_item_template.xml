@@ -4,19 +4,65 @@
             <t t-set="title">Product item</t>
             <div class="oe_structure product_diplapy">
                 <t t-foreach="product_item" t-as="product">
-                    <div class="flex-container">
-                        <div class="image_position">
-                            <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id"/>
+                    <div class="row">
+                        <div class="image_position col-md-6 col-xl-8">
+                            <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id" class=" product_image_show"/>
                         </div>
-                        <div>
-                            <div >
-                                Product:
+                        <div class="col-md-6 col-xl-4">
+                            <h1 >
+                                <strong>
                                     <t t-esc="product.name"/>
-                            </div>
+                                </strong>
+                            </h1>
+                            <h4 style="color:red;">
+                                <span t-esc="product.list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                            </h4>
+                            <!-- <h4>
+                                <ul>
+                                    <li >
+                                        <strong name="heading">Varients:</strong>
+                                        <ul>
+                                            <t t-foreach="product.attribute_line_ids" t-as="line" name="varient">
+                                                <t t-esc="line.attribute_id.name"/>
+                                                <li t-foreach="line.value_ids" t-as="values">
+                                                    <ul>
+                                                        <t t-esc="values.name"/>
+
+                                                    </ul>
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </h4> -->
                             <div>
-                                Qty:
-                                    <span t-esc="product.qty_available"/>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <strong name="heading">Varients:</strong>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <span t-foreach="product.attribute_line_ids" t-as="line" name="varient">
+                                                <th>
+                                                    <t t-esc="line.attribute_id.name"/>
+                                                    <span t-foreach="line.value_ids" t-as="values">
+                                                        <tr>
+                                                            <td>
+                                                                <t t-esc="values.name"/>
+                                                            </td>
+                                                        </tr>
+                                                    </span>
+                                                </th>
+                                            </span>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
                     </div>
                 </t>
