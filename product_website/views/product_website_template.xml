@@ -17,7 +17,7 @@
                                 <!-- </a> -->
                             </div>
                             <div>
-                                Qty:
+                                On Hand:
                                 <span t-esc="product.qty_available"/>
                             </div>
                         </div>

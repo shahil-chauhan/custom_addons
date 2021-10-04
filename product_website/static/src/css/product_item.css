@@ -4,17 +4,27 @@
 
 .product_diplapy {
   padding: 15px 35px;
-    border: 2px solid;
-    border-radius: 20px;
-    margin: 1%;}
+  border: 2px solid;
+  border-radius: 20px;
+  margin: 1%;
+}
 
 .product_image_show {
   width: 100%;
   height: 400px;
   object-fit: scale-down;
 }
-/* h4 > ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-} */
+.radio_item {
+  display: none !important;
+}
+
+.radio_item:checked + label {
+  opacity: 1;
+  border: 2px solid blue;
+}
+
+.varient_place{
+  width: 35px;
+  height: 35px;
+  border: 1px solid;
+}
