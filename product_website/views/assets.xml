@@ -4,7 +4,6 @@
         <xpath expr="." position="inside">
             <link rel="stylesheet" type="text/css" href="/product_website/static/src/css/product.css"/>
             <link rel="stylesheet" type="text/css" href="/product_website/static/src/css/product_item.css"/>
-
         </xpath>
     </template>
 </odoo>

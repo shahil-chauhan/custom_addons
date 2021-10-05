@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <record id="menu_demo" model="website.menu">
-        <field name="name">Partner</field>
-        <field name="url">/partner</field>
+   <record id="contact_menu" model="website.menu">
+        <field name="name">Contact</field>
+        <field name="url">/contact</field>
         <field name="parent_id" ref="website.main_menu"/>
         <field name="sequence" type="int">20</field>
     </record>

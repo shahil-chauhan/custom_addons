@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Template Session",
+    "name": "Contact Session",
     "summary": """
-        Demo module for template session""",
+         Module for Contact display session""",
     "author": "Shahil Chauhan",
     "version": "14.0.1.0.0",
     "depends": ["website"],
     "data": [
-        "views/demo_template.xml",
+        "data/contact_menu.xml",
         "views/assets.xml",
-        "data/menu_demo.xml",
+        "views/contacts_list.xml",
+        "views/contact_detail.xml",
     ],
     "auto_install": False,
     "installable": True,

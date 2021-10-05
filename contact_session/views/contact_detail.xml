@@ -1,0 +1,68 @@
+<odoo>
+    <template id="contact_detail" name="Contact Detail">
+        <t t-call="website.layout">
+            <t t-set="title">Contact Detail</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="contact_display">
+                        <div style="width:80%;">
+                            <h1>
+                                <t t-esc="contact_detail.name"/>
+                            </h1>
+                            <br/>
+                            <div>
+                                <t t-esc="contact_detail.contact_address"/>
+                            </div>
+                            <br/>
+
+                            <div>
+                                <t t-esc="contact_detail.phone"/>
+                            </div>
+                            <br/>
+
+                            <div>
+                                <t t-esc="contact_detail.email"/>
+                            </div>
+                        </div>
+                        <div style="width:20%;">
+                            <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id" style="width: 100%;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+
+<!-- <div class="contacts_list_wrapper">
+    <div class="table contact_list_tbl">
+        <t t-foreach="contacts" t-as="contact">
+            <a class="table-row contact_image_col" t-attf-href="/contact/#{contact.id}">
+                <div class="table-cell">
+                    <div class="contact_image_main_wrapper">
+                        <div class="contact_image_wrapper">
+                            <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact.id" class="contact_image"/>
+                        </div>
+                        <div class="display_mobile contact_mobile_details_wrapper">
+                            <div>
+                                <t t-esc="contact.name"/>
+                            </div>
+                            <div>
+                                <t t-esc="contact.email"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell contact_name_col display_web">
+                    <t t-esc="contact.name"/>
+
+                </div>
+                <div class="table-cell contact_name_col display_web">
+                    <t t-esc="contact.email"/>
+
+                </div>
+            </a>
+        </t>
+    </div>
+</div> -->

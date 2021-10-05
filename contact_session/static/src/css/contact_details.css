@@ -1,0 +1,6 @@
+.contact_display {
+  display: flex;
+  border: double;
+  margin: 10px 0px;
+  padding: 1%;
+}
