@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="contact_form_inherit" model="ir.ui.view">
+        <field name="name">contact form inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="team_lead"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='internal_notes']" position="after">
+                <page string="Team Member" name="team member" attrs="{'invisible': [('team_lead','==',False)]}">
+                    <field name="team_lead_ids">
+                        <tree>
+                            <field name="contact_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

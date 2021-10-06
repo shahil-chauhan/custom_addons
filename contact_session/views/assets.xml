@@ -4,6 +4,8 @@
         <xpath expr="." position="inside">
             <link rel="stylesheet" type="text/css" href="/contact_session/static/src/css/contact_details.css"/>
             <link rel="stylesheet" type="text/css" href="/contact_session/static/src/css/contacts_list.css"/>
+
+            <script type="text/javascript" src="/contact_session/static/src/js/contact.js"></script>
         </xpath>
     </template>
 </odoo>

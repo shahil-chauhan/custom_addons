@@ -28,6 +28,16 @@
                             <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id" style="width: 100%;"/>
                         </div>
                     </div>
+
+                    <div class="" style="margin: 100px 0px;">
+                        <form enctype="multipart/form-data" method="post" action="/partner_update">
+                            <input type="hidden" name="id" t-att-value="contact_detail.id"/>
+                            <input type="text" name="name" t-att-value="contact_detail.name"/>
+
+                            <input type="submit" value="Submit"/>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </t>

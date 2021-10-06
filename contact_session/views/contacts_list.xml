@@ -11,37 +11,37 @@
                                     <th class="contact_image_col display_web"></th>
                                     <th class="contact_name_col display_web">Name</th>
                                     <th class="contact_email_col display_web">Email</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="contacts" t-as="contact">
-                                    <tr>
+                                    <tr class="contact_row" t-attf-data-href="/contact/#{contact.id}">
                                         <td class="contact_image_col">
                                             <div class="contact_image_main_wrapper">
-                                                <a t-attf-href="/contact/#{contact.id}">
-                                                    <div class="contact_image_wrapper">
-                                                        <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact.id" class="contact_image"/>
-                                                    </div>
-                                                </a>
+                                                <div class="contact_image_wrapper">
+                                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact.id"
+                                                         class="contact_image"/>
+                                                </div>
                                                 <div class="display_mobile contact_mobile_details_wrapper">
-                                                    <a t-attf-href="/contact/#{contact.id}">
-                                                        <t t-esc="contact.name"/>
-                                                    </a>
-                                                    <a t-attf-href="/contact/#{contact.id}">
-                                                        <t t-esc="contact.email"/>
-                                                    </a>
+                                                    <t t-esc="contact.name"/>
+                                                    <t t-esc="contact.email"/>
+                                                    <t t-if="contact.team_lead == True">
+                                                        <b>TL</b>
+                                                    </t>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="contact_name_col display_web">
-                                            <a t-attf-href="/contact/#{contact.id}">
-                                                <t t-esc="contact.name"/>
-                                            </a>
+                                            <t t-esc="contact.name"/>
                                         </td>
                                         <td class="contact_email_col display_web">
-                                            <a t-attf-href="/contact/#{contact.id}">
-                                                <t t-esc="contact.email"/>
-                                            </a>
+                                            <t t-esc="contact.email"/>
+                                        </td>
+                                        <td class="contact_name_col display_web">
+                                            <t t-if="contact.team_lead == True">
+                                                <b>TL</b>
+                                            </t>
                                         </td>
                                     </tr>
                                 </t>
@@ -55,40 +55,37 @@
 </odoo>
 
 
-
-
-
-<!-- <odoo>
-    <template id="contact" name="Contact">
-        <t t-call="website.layout">
-            <t t-set="title">Contact</t>
-            <div class="oe_structure">
-                <div class="container">
-                    <table id="contact_list">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr t-foreach="contacts" t-as="contact">
-                                <td>
-                                    <span t-field="contact.image_1920" t-options="{'widget':'image'}"/>
-                                    <img t-if="contact.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(contact.image_1920)"/>
-                                </td>
-                                <td>
-                                    <t t-esc="contact.name"/>
-                                </td>
-                                <td>
-                                    <t t-esc="contact.email"/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </t>
-    </template>
-</odoo> -->
+        <!-- <odoo>
+            <template id="contact" name="Contact">
+                <t t-call="website.layout">
+                    <t t-set="title">Contact</t>
+                    <div class="oe_structure">
+                        <div class="container">
+                            <table id="contact_list">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="contacts" t-as="contact">
+                                        <td>
+                                            <span t-field="contact.image_1920" t-options="{'widget':'image'}"/>
+                                            <img t-if="contact.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(contact.image_1920)"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="contact.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="contact.email"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </template>
+        </odoo> -->
