@@ -6,7 +6,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     custom_partner_ids = fields.Many2many(
-        "res.partner", "custom_partner_rel", "parnter_id", "custom_id", string=_("Custom Partner Ids")
+        "res.partner",
+        "custom_partner_rel",
+        "parnter_id",
+        "custom_id",
+        string=_("Custom Partner Ids"),
     )
 
     def update_m2m_button(self):
@@ -15,7 +19,7 @@ class SaleOrder(models.Model):
         """ (0,0,{}) -->  CREATE NEW RECORD IN DATABASE"""
         range_list = []
         for i in range(0, 2):
-            cust_dict = {'name': i}
+            cust_dict = {"name": i}
             range_list.append(cust_dict)
         for val in range_list:
             self.custom_partner_ids = [(0, 0, val)]

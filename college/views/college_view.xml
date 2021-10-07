@@ -38,9 +38,9 @@
                         <field name="open_date"/>
                         <field name="college_type" widget="radio" options="{'horizontal':true}"/>
                     </group>
-                    <group>
-                        <field name="student_ids"/>
-                    </group>
+                </group>
+                <group>
+                    <field name="student_ids"/>
                 </group>
             </form>
         </field>

@@ -1,4 +1,4 @@
-from odoo import fields, models, api, _
+from odoo import _, api, fields, models
 
 
 class HospitalPatient(models.Model):
@@ -7,10 +7,14 @@ class HospitalPatient(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _rec_name = "patient_name"
 
-    patient_name = fields.Char(
-        string="Patient Name", required=True, tracking=True)
-    ref = fields.Char(string='Patient Reference', required=True,
-                      copy=False, readonly=True, default=lambda self: _('New'))
+    patient_name = fields.Char(string="Patient Name", required=True, tracking=True)
+    ref = fields.Char(
+        string="Patient Reference",
+        required=True,
+        copy=False,
+        readonly=True,
+        default=lambda self: _("New"),
+    )
     patient_age = fields.Integer(string="Patient Age", tracking=True)
     gender = fields.Selection(
         [("male", "Male"), ("female", "Female"), ("other", "Other")],
@@ -29,7 +33,8 @@ class HospitalPatient(models.Model):
             ("done", "Done"),
             ("cancel", "Cancelled"),
         ],
-        string="Status", default="draft"
+        string="Status",
+        default="draft",
     )
 
     def action_confirm(self):
@@ -46,15 +51,18 @@ class HospitalPatient(models.Model):
 
     @api.model
     def create(self, values):
-        if not values.get('note'):
-            values['note'] = 'New Patient'
+        if not values.get("note"):
+            values["note"] = "New Patient"
 
         # ----TO PRINT THE SEQUENCE VALUE-----
-        if values.get('ref', _('New')) == _('New'):
-            values['ref'] = self.env['ir.sequence'].next_by_code(
-                'hospital.patient') or _('New')
+        if values.get("ref", _("New")) == _("New"):
+            values["ref"] = self.env["ir.sequence"].next_by_code(
+                "hospital.patient"
+            ) or _("New")
 
-        print("\n\n\n Create Override----",)
+        print(
+            "\n\n\n Create Override----",
+        )
         rtn = super(HospitalPatient, self).create(values)
         print("\n\n\n values---", values)
         print("\n\n\n Return---", rtn)
