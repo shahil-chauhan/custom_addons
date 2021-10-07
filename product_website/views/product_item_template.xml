@@ -1,69 +1,252 @@
+<!--<odoo>-->
+<!--    <template id="product_item_template" name="Product Item">-->
+<!--        <t t-call="website.layout">-->
+<!--            <t t-set="title">Product item</t>-->
+<!--            <div class="oe_structure product_display">-->
+<!--                <t t-foreach="product_item" t-as="product">-->
+<!--                    <div class="row">-->
+<!--                        <div class="image_position col-md-6 col-xl-8">-->
+<!--                            <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id" class=" product_image_show"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 col-xl-4">-->
+<!--                            <h1 >-->
+<!--                                <strong>-->
+<!--                                    <t t-esc="product.name"/>-->
+<!--                                </strong>-->
+<!--                            </h1>-->
+<!--                            <h4 style="color:red;">-->
+<!--                                <span t-esc="product.list_price" t-options="{'widget': 'monetary', 'display_currency': request.env.user.company_id.currency_id}"/>-->
+<!--                            </h4>-->
+<!--                            <div>-->
+<!--                                <div>-->
+<!--                                    <strong>Variants:</strong>-->
+<!--                                </div>-->
+<!--                                <span t-foreach="product.attribute_line_ids" t-as="line">-->
+<!--                                    <div>-->
+<!--                                        <t t-esc="line.attribute_id.name"/>-->
+<!--                                        <div>-->
+<!--                                            <t t-if="line.attribute_id.name == 'Legs'">-->
+<!--                                                <span t-foreach="line.value_ids" t-as="values">-->
+<!--                                                    <t t-if="values.name == 'Steel'">-->
+<!--                                                        <input type="radio" name="Legs" id="steel" class="radio_item"/>-->
+<!--                                                        <label for="steel">-->
+<!--                                                            <img src="/product_website/static/src/variants/steel.jpeg" class="variant_place"/>-->
+<!--                                                        </label>-->
+<!--                                                    </t>-->
+<!--                                                    <t t-if="values.name == 'Aluminium'">-->
+<!--                                                        <input type="radio" name="Legs" id="aluminium" class="radio_item"/>-->
+<!--                                                        <label for="aluminium">-->
+<!--                                                            <img src="/product_website/static/src/variants/aluminium.jpeg" class="variant_place"/>-->
+<!--                                                        </label>-->
+<!--                                                    </t>-->
+<!--                                                </span>-->
+<!--                                            </t>-->
+<!--                                            <t t-if="line.attribute_id.name == 'Color'">-->
+<!--                                                <span t-foreach="line.value_ids" t-as="values">-->
+<!--                                                    <t t-if="values.name == 'Black'">-->
+<!--                                                        <input type="radio" name="Color" id="black" class="radio_item"/>-->
+<!--                                                        <label for="black">-->
+<!--                                                            <img src="/product_website/static/src/variants/Black.png" class="variant_place"/>-->
+<!--                                                        </label>-->
+<!--                                                    </t>-->
+<!--                                                    <t t-if="values.name == 'White'">-->
+<!--                                                        <input type="radio" name="Color" id="white" class="radio_item"/>-->
+<!--                                                        <label for="white">-->
+<!--                                                            <img src="/product_website/static/src/variants/White.png" class="variant_place"/>-->
+<!--                                                        </label>-->
+<!--                                                    </t>-->
+<!--                                                </span>-->
+<!--                                            </t>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
+<!--</odoo>-->
+
+
 <odoo>
     <template id="product_item_template" name="Product Item">
         <t t-call="website.layout">
             <t t-set="title">Product item</t>
-            <div class="oe_structure product_diplapy">
-                <t t-foreach="product_item" t-as="product">
-                    <div class="row">
-                        <div class="image_position col-md-6 col-xl-8">
-                            <img t-att-src="'/web/image/product.template/%s/image_1920' % product.id" class=" product_image_show"/>
-                        </div>
-                        <div class="col-md-6 col-xl-4">
-                            <h1 >
-                                <strong>
-                                    <t t-esc="product.name"/>
-                                </strong>
-                            </h1>
-                            <h4 style="color:red;">
-                                <span t-esc="product.list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                            </h4>
-                            <div>
-                                <div>
-                                    <strong>Varients:</strong>
+            <div class="oe_structure">
+                <div class="product_main_wrapper">
+                    <div class="product_inner_wrapper">
+                        <div class="row product_row">
+                            <div class="col-xs-12 col-md-5 product_left_block">
+                                <div class="product_img_wrapper">
+                                    <img t-att-src="'/web/image/product.template/%s/image_1920' % product_item.id"
+                                         class="product_item_image"/>
                                 </div>
-                                <span t-foreach="product.attribute_line_ids" t-as="line">
-                                    <div>
-                                        <t t-esc="line.attribute_id.name"/>
-                                        <div>
-                                            <t t-if="line.attribute_id.name == 'Legs'">
-                                                <span t-foreach="line.value_ids" t-as="values">
-                                                    <t t-if="values.name == 'Steel'">
-                                                        <input type="radio" name="Legs" id="steel" class="radio_item"/>
-                                                        <label for="steel">
-                                                            <img src="/product_website/static/src/varient/steel.jpeg" class="varient_place"/>
-                                                        </label>
-                                                    </t>
-                                                    <t t-if="values.name == 'Aluminium'">
-                                                        <input type="radio" name="Legs" id="aluminium" class="radio_item"/>
-                                                        <label for="aluminium">
-                                                            <img src="/product_website/static/src/varient/aluminium.jpeg" class="varient_place"/>
-                                                        </label>
-                                                    </t>
-                                                </span>
-                                            </t>
-                                            <t t-if="line.attribute_id.name == 'Color'">
-                                                <span t-foreach="line.value_ids" t-as="values">
-                                                    <t t-if="values.name == 'Black'">
-                                                        <input type="radio" name="Color" id="black" class="radio_item"/>
-                                                        <label for="black">
-                                                            <img src="/product_website/static/src/varient/Black.png" class="varient_place"/>
-                                                        </label>
-                                                    </t>
-                                                    <t t-if="values.name == 'White'">
-                                                        <input type="radio" name="Color" id="white" class="radio_item"/>
-                                                        <label for="white">
-                                                            <img src="/product_website/static/src/varient/White.png" class="varient_place"/>
-                                                        </label>
-                                                    </t>
-                                                </span>
-                                            </t>
+                            </div>
+                            <div class="col-xs-12 col-md-7 product_right_block">
+                                <div class="product_smart_btn_wrapper">
+                                    <div class="product_sale_ribbon">
+                                        <i class="fa fa-tag"/>&#160;&#160;Sale
+                                    </div>
+                                    <div class="product_smart_buttons">
+                                        <i role="button" class="fa fa-heart product_smart_btn"/>
+                                        <i role="button" class="fa fa-repeat product_smart_btn"/>
+                                    </div>
+                                </div>
+
+                                <h1 class="product_title">
+                                    <t t-esc="product_item.name"/>
+                                </h1>
+
+                                <div class="product_ratings_wrapper">
+                                    <div class="star_ratings">
+                                        <i class="fa fa-star active review_star"/>
+                                        <i class="fa fa-star active review_star"/>
+                                        <i class="fa fa-star active review_star"/>
+                                        <i class="fa fa-star active review_star"/>
+                                        <i class="fa fa-star review_star"/>
+                                    </div>
+                                    <div class="review_count">
+                                        3 Reviews
+                                    </div>
+                                    <div class="add_review">
+                                        Create a new review
+                                    </div>
+                                </div>
+
+                                <div class="product_price_wrapper">
+                                    <span class="product_discounted_price">
+                                        <t t-esc="product_item.list_price"
+                                           t-options="{'widget': 'monetary', 'display_currency': request.env.user.company_id.currency_id}"/>
+                                    </span>
+                                    <span class="product_original_price">
+                                        <t t-esc="product_item.list_price"
+                                           t-options="{'widget': 'monetary', 'display_currency': request.env.user.company_id.currency_id}"/>
+                                    </span>
+                                    <span class="product_discount">
+                                        (10% off)
+                                    </span>
+                                </div>
+
+                                <div class="product_countdown_wrapper">
+                                    <div class="offer_countdown">
+                                        Offer ends in !!
+                                    </div>
+                                    <div class="product_countdown_block_wrapper">
+                                        <div class="product_countdown_block">
+                                            <div class="product_countdown_block_details">
+                                                <div class="countdown_amount">
+                                                    147
+                                                </div>
+                                                <div class="countdown_str">
+                                                    Days
+                                                </div>
+                                            </div>
+                                            <div class="product_countdown_block_separator">
+                                                :
+                                            </div>
+                                        </div>
+
+                                        <div class="product_countdown_block">
+                                            <div class="product_countdown_block_details">
+                                                <div class="countdown_amount">
+                                                    18
+                                                </div>
+                                                <div class="countdown_str">
+                                                    Hours
+                                                </div>
+                                            </div>
+                                            <div class="product_countdown_block_separator">
+                                                :
+                                            </div>
+                                        </div>
+
+                                        <div class="product_countdown_block">
+                                            <div class="product_countdown_block_details">
+                                                <div class="countdown_amount">
+                                                    01
+                                                </div>
+                                                <div class="countdown_str">
+                                                    Mins
+                                                </div>
+                                            </div>
+                                            <div class="product_countdown_block_separator">
+                                                :
+                                            </div>
+                                        </div>
+
+                                        <div class="product_countdown_block">
+                                            <div class="product_countdown_block_details">
+                                                <div class="countdown_amount">
+                                                    54
+                                                </div>
+                                                <div class="countdown_str">
+                                                    Secs
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </span>
+                                </div>
+
+                                <div class="customize_title">
+                                    Customize
+                                </div>
+                                <div class="customization_options_wrapper">
+                                    <div class="customization_option_wrapper">
+                                        <div class="customization_option_title">
+                                            Material
+                                        </div>
+
+                                        <div class="customization_option_block">
+                                            <div class="color_customization_option active">
+                                                <div class="color_customization_option_inner color_1">
+                                                </div>
+                                            </div>
+
+                                            <div class="color_customization_option">
+                                                <div class="color_customization_option_inner color_2">
+                                                </div>
+                                            </div>
+
+                                            <div class="color_customization_option">
+                                                <div class="color_customization_option_inner color_3">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="customization_option_wrapper">
+                                        <div class="customization_option_title">
+                                            Seats
+                                        </div>
+
+                                        <div class="customization_option_block">
+                                            <div class="img_customization_option active">
+                                                <div class="img_customization_option_inner">
+                                                    <img src="/product_website/static/src/variant/fb.png"
+                                                         class="img_customization_option_image"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="img_customization_option">
+                                                <div class="img_customization_option_inner">
+                                                    <img src="/product_website/static/src/variant/insta.png"
+                                                         class="img_customization_option_image"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </t>
+                </div>
             </div>
         </t>
     </template>
