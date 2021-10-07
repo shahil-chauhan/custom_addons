@@ -6,12 +6,12 @@
                 <div class="container">
                     <div class="contacts_list_wrapper">
                         <table class="contact_list_tbl">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th class="contact_image_col display_web"></th>
                                     <th class="contact_name_col display_web">Name</th>
                                     <th class="contact_email_col display_web">Email</th>
-                                    <th></th>
+                                    <th class="contact_name_col display_web"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,9 +39,7 @@
                                             <t t-esc="contact.email"/>
                                         </td>
                                         <td class="contact_name_col display_web">
-                                            <t t-if="contact.team_lead == True">
-                                                <b>TL</b>
-                                            </t>
+                                            <input type="checkbox" disabled="true" t-att-checked="(contact.team_lead) and 'checked'"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -53,39 +51,3 @@
         </t>
     </template>
 </odoo>
-
-
-        <!-- <odoo>
-            <template id="contact" name="Contact">
-                <t t-call="website.layout">
-                    <t t-set="title">Contact</t>
-                    <div class="oe_structure">
-                        <div class="container">
-                            <table id="contact_list">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr t-foreach="contacts" t-as="contact">
-                                        <td>
-                                            <span t-field="contact.image_1920" t-options="{'widget':'image'}"/>
-                                            <img t-if="contact.image_1920" t-att-src="'data:image/jpeg;base64,%s' % to_text(contact.image_1920)"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="contact.name"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="contact.email"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </t>
-            </template>
-        </odoo> -->

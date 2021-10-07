@@ -1,6 +1,35 @@
-.contact_display {
+.contact_main_wrapper {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.contact_details_wrapper {
   display: flex;
-  border: double;
-  margin: 10px 0px;
-  padding: 1%;
+}
+.contact_details_data_wrapper {
+  width: 80%;
+}
+.contact_name {
+  font-size: xxx-large;
+  text-decoration: underline;
+}
+.contact_address_wrapper {
+  display: flex;
+}
+.contact_address_details {
+  margin-left: 20px;
+}
+.contact_details_img_wrapper {
+  width: 20%;
+}
+
+.contact_img_wrapper {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.contact_img {
+  width: 90%;
 }

@@ -11,10 +11,20 @@
             </xpath>
             <xpath expr="//notebook/page[@name='internal_notes']" position="after">
                 <page string="Team Member" name="team member" attrs="{'invisible': [('team_lead','==',False)]}">
-                    <field name="team_lead_ids">
-                        <tree>
-                            <field name="contact_id"/>
-                        </tree>
+                    <field name="team_lead_ids" mode="tree">
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="member_id" string="Name" options="{'no_open': True}"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                </group>
+                                <group>
+                                    <field name="address" readonly="1"/>
+                                </group>
+                            </group>
+
+                        </form>
                     </field>
                 </page>
             </xpath>

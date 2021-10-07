@@ -18,12 +18,10 @@ class Contact(http.Controller):
 
         return request.render("contact_session.contact_detail", {"contact_detail": contact, "contact": contacts})
 
-    @http.route("/partner_update", type="http", website=True, auth="public", csrf=False)
-    def partner_update(self, **kw):
-        partner = request.env["res.partner"].sudo().browse(int(kw.get('id')))
-
-        partner.write({
-            'name': kw.get('name')
-        })
-
-        return request.redirect("/contact/%s" % partner.id)
+    # @http.route("/partner_update", type="http", website=True, auth="public", csrf=False)
+    # def partner_update(self, **kw):
+    #     partner = request.env["res.partner"].sudo().browse(int(kw.get('id')))
+    #     partner.write({
+    #         'name': kw.get('name')
+    #     })
+    #     return request.redirect("/contact/%s" % partner.id)
