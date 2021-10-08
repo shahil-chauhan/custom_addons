@@ -7,9 +7,6 @@ odoo.define("contacts", function (require) {
             window.location.href = href;
         });
 
-
-
-
-
     });
+
 });

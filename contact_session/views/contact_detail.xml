@@ -6,71 +6,79 @@
                 <div class="container">
                     <div class="contact_main_wrapper">
                         <div class="contact_details_wrapper">
-                            <div class="contact_details_data_wrapper">
+                            <div class="contact_details_data_wrapper_outer">
                                 <div class="contact_name">
                                     <t t-esc="contact_detail.name"/>
                                 </div>
-                                <div class="contact_detail_wrapper">
-                                    <div class="contact_email">
-                                        <label>Email:&#160;&#160;</label>
-                                        <t t-esc="contact_detail.email"/>
+                                <div class="contact_details_data_wrapper_inner">
+                                    <div class="contact_email_phone_wrapper">
+                                        <div class="contact_email">
+                                            <label>Email:&#160;&#160;</label>
+                                            <t t-esc="contact_detail.email"/>
+                                        </div>
+                                        <div class="contact_phone">
+                                            <label>Phone:&#160;&#160;</label>
+                                            <t t-esc="contact_detail.phone"/>
+                                        </div>
                                     </div>
-                                    <div class="contact_phone">
-                                        <label>Phone:&#160;&#160;</label>
-                                        <t t-esc="contact_detail.phone"/>
+                                    <div class="contact_address_wrapper">
+                                        <label>Address:&#160;&#160;</label>
+                                        <div class="contact_address_details">
+                                            <t t-esc="contact_detail.street"/>
+                                            ,
+                                            <t t-esc="contact_detail.city"/>
+                                            ,
+                                            <br/>
+                                            <t t-esc="contact_detail.state_id.name"/>
+                                            ,
+                                            <t t-esc="contact_detail.zip"/>
+                                            ,
+                                            <br/>
+                                            <t t-esc="contact_detail.country_id.name"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="contact_address_wrapper">
-                                    <label>Address:&#160;&#160;</label>
-                                    <div class="contact_address_details">
-                                        <t t-esc="contact_detail.street"/>,
-                                        <br/>
-                                        <t t-esc="contact_detail.city"/>,
-                                        <br/>
-                                        <t t-esc="contact_detail.state_id.name"/>,
-                                        <t t-esc="contact_detail.zip"/>,
-                                        <br/>
-                                        <t t-esc="contact_detail.country_id.name"/>
-                                    </div>
-                                </div>
-                                <div class="contact_member_tbl">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="contact_detail.team_lead_ids" t-as="members">
-                                                <tr>
-                                                    <td>
-                                                        <t t-esc="members.id"/>
-                                                    </td>
-                                                    <td>
-                                                        <t t-esc="members.name"/>
-                                                    </td>
-                                                    <td>
-                                                        <t t-esc="members.email"/>
-                                                    </td>
-                                                    <td>
-                                                        <t t-esc="members.phone"/>
-                                                    </td>
-                                                </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
+
                                 </div>
                             </div>
                             <div class="contact_details_img_wrapper">
                                 <div class="contact_img_wrapper">
-                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id"
-                                         class="contact_img"/>
+                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id" class="contact_img"/>
                                 </div>
                             </div>
                         </div>
+                        <t t-if="contact_detail.team_lead">
+                            <div class="contact_member_tbl">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="contact_detail.team_lead_ids" t-as="members">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="members.id"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="members.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="members.phone"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="members.email"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
                     </div>
                 </div>
             </div>
@@ -79,11 +87,11 @@
 </odoo>
 
 
-        <!--<div class="" style="margin: 100px 0px;">-->
-        <!--<form enctype="multipart/form-data" method="post" action="/partner_update">-->
-        <!--    <input type="hidden" name="id" t-att-value="contact_detail.id"/>-->
-        <!--    <input type="text" name="name" t-att-value="contact_detail.name"/>-->
+<!--<div class="" style="margin: 100px 0px;">-->
+<!--<form enctype="multipart/form-data" method="post" action="/partner_update">-->
+<!--    <input type="hidden" name="id" t-att-value="contact_detail.id"/>-->
+<!--    <input type="text" name="name" t-att-value="contact_detail.name"/>-->
 
-        <!--    <input type="submit" value="Submit"/>-->
-        <!--</form>-->
-        <!--</div>-->
+<!--    <input type="submit" value="Submit"/>-->
+<!--</form>-->
+<!--</div>-->

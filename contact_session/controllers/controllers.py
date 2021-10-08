@@ -8,7 +8,9 @@ from odoo.http import request, route
 class Contact(http.Controller):
     @http.route("/contact", type="http", website=True, auth="public")
     def demo_page(self):
+        # contact = request.env["res.partner"].sudo().search([], order="name asc")
         contact = request.env["res.partner"].sudo().search([])
+
         return request.render("contact_session.contacts_list", {"contacts": contact})
 
     @http.route("/contact/<model('res.partner'):contact>", type="http", website=True, auth="public")

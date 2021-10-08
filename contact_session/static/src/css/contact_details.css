@@ -1,29 +1,53 @@
 .contact_main_wrapper {
-  width: 80%;
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: groove;
 }
 .contact_details_wrapper {
   display: flex;
+  padding: 10px;
 }
-.contact_details_data_wrapper {
+.contact_details_data_wrapper_outer {
   width: 80%;
 }
 .contact_name {
   font-size: xxx-large;
   text-decoration: underline;
 }
+.contact_details_data_wrapper_inner {
+  padding: 5px;
+}
+.contact_email_phone_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.contact_email {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-right: 30px;
+}
+.contact_phone {
+  display: flex;
+  flex-flow: wrap;
+}
 .contact_address_wrapper {
   display: flex;
 }
 .contact_address_details {
-  margin-left: 20px;
+  width: 100%;
+}
+.contact_member_tbl {
+  padding: 10px;
+  overflow: scroll;
+}
+.contact_member_tbl thead tr th,
+.contact_member_tbl tbody tr td {
+  padding: 2px 2px;
+  border-bottom: 1px solid #dcdcdc;
 }
 .contact_details_img_wrapper {
   width: 20%;
 }
-
 .contact_img_wrapper {
   width: 100%;
   height: auto;
@@ -31,5 +55,10 @@
   max-height: 100%;
 }
 .contact_img {
-  width: 90%;
+  width: 100%;
+  padding: 2px;
+  border: groove;
+}
+label {
+  font-weight: 700;
 }
