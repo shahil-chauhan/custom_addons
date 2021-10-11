@@ -1,40 +1,47 @@
 <odoo>
-    <template id="contact_detail" name="Contact Detail">
+    <template id="contact_details" name="Contact Detail">
         <t t-call="website.layout">
             <t t-set="title">Contact Detail</t>
             <div class="oe_structure">
+                <header>
+                    <a t-attf-href="/contact_form">
+                        <button class="btn btn-primary">Form
+                            Contact
+                        </button>
+                    </a>
+                </header>
                 <div class="container">
                     <div class="contact_main_wrapper">
                         <div class="contact_details_wrapper">
                             <div class="contact_details_data_wrapper_outer">
                                 <div class="contact_name">
-                                    <t t-esc="contact_detail.name"/>
+                                    <t t-esc="contact_details.name"/>
                                 </div>
                                 <div class="contact_details_data_wrapper_inner">
                                     <div class="contact_email_phone_wrapper">
                                         <div class="contact_email">
                                             <label>Email:&#160;&#160;</label>
-                                            <t t-esc="contact_detail.email"/>
+                                            <t t-esc="contact_details.email"/>
                                         </div>
                                         <div class="contact_phone">
                                             <label>Phone:&#160;&#160;</label>
-                                            <t t-esc="contact_detail.phone"/>
+                                            <t t-esc="contact_details.phone"/>
                                         </div>
                                     </div>
                                     <div class="contact_address_wrapper">
                                         <label>Address:&#160;&#160;</label>
                                         <div class="contact_address_details">
-                                            <t t-esc="contact_detail.street"/>
+                                            <t t-esc="contact_details.street"/>
                                             ,
-                                            <t t-esc="contact_detail.city"/>
-                                            ,
-                                            <br/>
-                                            <t t-esc="contact_detail.state_id.name"/>
-                                            ,
-                                            <t t-esc="contact_detail.zip"/>
+                                            <t t-esc="contact_details.city"/>
                                             ,
                                             <br/>
-                                            <t t-esc="contact_detail.country_id.name"/>
+                                            <t t-esc="contact_details.state_id.name"/>
+                                            ,
+                                            <t t-esc="contact_details.zip"/>
+                                            ,
+                                            <br/>
+                                            <t t-esc="contact_details.country_id.name"/>
                                         </div>
                                     </div>
 
@@ -42,12 +49,14 @@
                             </div>
                             <div class="contact_details_img_wrapper">
                                 <div class="contact_img_wrapper">
-                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_detail.id" class="contact_img"/>
+                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_details.id"
+                                         class="contact_img"/>
                                 </div>
                             </div>
                         </div>
-                        <t t-if="contact_detail.team_lead">
+                        <t t-if="contact_details.team_lead">
                             <div class="contact_member_tbl">
+                                <label>Team Members:</label>
                                 <table class="table">
                                     <thead class="thead-dark">
                                         <tr>
@@ -58,7 +67,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <t t-foreach="contact_detail.team_lead_ids" t-as="members">
+                                        <t t-foreach="contact_details.team_lead_ids" t-as="members">
                                             <tr>
                                                 <td>
                                                     <t t-esc="members.id"/>
@@ -87,11 +96,3 @@
 </odoo>
 
 
-<!--<div class="" style="margin: 100px 0px;">-->
-<!--<form enctype="multipart/form-data" method="post" action="/partner_update">-->
-<!--    <input type="hidden" name="id" t-att-value="contact_detail.id"/>-->
-<!--    <input type="text" name="name" t-att-value="contact_detail.name"/>-->
-
-<!--    <input type="submit" value="Submit"/>-->
-<!--</form>-->
-<!--</div>-->

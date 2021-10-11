@@ -9,16 +9,24 @@ class Contact(http.Controller):
     @http.route("/contact", type="http", website=True, auth="public")
     def demo_page(self):
         # contact = request.env["res.partner"].sudo().search([], order="name asc")
-        contact = request.env["res.partner"].sudo().search([])
-
-        return request.render("contact_session.contacts_list", {"contacts": contact})
+        contacts = request.env["res.partner"].sudo().search([])
+        return request.render("contact_session.contacts_list", {"contacts": contacts})
 
     @http.route("/contact/<model('res.partner'):contact>", type="http", website=True, auth="public")
-    def contact_details(
-            self, contact, **kw):
-        contacts = request.env["res.partner"].sudo().browse([])
+    def contact_details(self, contact, **kw):
+        return request.render("contact_session.contact_details", {"contact_details": contact})
 
-        return request.render("contact_session.contact_detail", {"contact_detail": contact, "contact": contacts})
+    @http.route("/contact_form", type="http", website=True, auth="public", csrf=True)
+    def create_new_contact(self):
+        return request.render("contact_session.contact_form_template")
+
+
+
+
+
+
+
+
 
     # @http.route("/partner_update", type="http", website=True, auth="public", csrf=False)
     # def partner_update(self, **kw):

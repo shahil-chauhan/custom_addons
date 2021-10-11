@@ -23,7 +23,6 @@
                                     <field name="address" readonly="1"/>
                                 </group>
                             </group>
-
                         </form>
                     </field>
                 </page>

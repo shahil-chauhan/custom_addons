@@ -4,6 +4,14 @@
             <t t-set="title">Contacts List</t>
             <div class="oe_structure">
                 <div class="container">
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand">Contacts</a>
+                        <form class="form-inline" action="/contact_form">
+                            <button class="btn btn-outline-success my-2 my-sm-0"><i
+                                    class="fa fa-address-book-o"/>Contact Form
+                            </button>
+                        </form>
+                    </nav>
                     <div class="contacts_list_wrapper">
                         <table class="contact_list_tbl">
                             <thead class="thead-dark">
@@ -17,7 +25,7 @@
                             </thead>
                             <tbody>
                                 <t t-foreach="contacts" t-as="contact">
-                                    <tr class="contact_row" t-attf-data-href="/contact/#{contact.id}" >
+                                    <tr class="contact_row" t-attf-data-href="/contact/#{contact.id}">
                                         <td>
                                             <t t-esc="contact.id"/>
                                         </td>
