@@ -74,13 +74,6 @@ a {
 a:hover {
   text-decoration: none;
 }
-/* #contact_list{
-    width: 100%;
-}
-#contact_list th, #contact_list td{
-    padding: 10px 15px;
-    border: 1px solid #000;
-} */
 .contact_row:hover{
     cursor: pointer;
     background: #dcdcdc;

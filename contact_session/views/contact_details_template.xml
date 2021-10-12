@@ -3,13 +3,13 @@
         <t t-call="website.layout">
             <t t-set="title">Contact Detail</t>
             <div class="oe_structure">
-                <header>
-                    <a t-attf-href="/contact_form">
-                        <button class="btn btn-primary">Form
-                            Contact
-                        </button>
-                    </a>
-                </header>
+                <!--                <header>-->
+                <!--                    <a t-attf-href="/contact_form">-->
+                <!--                        <button class="btn btn-primary">Form-->
+                <!--                            Contact-->
+                <!--                        </button>-->
+                <!--                    </a>-->
+                <!--                </header>-->
                 <div class="container">
                     <div class="contact_main_wrapper">
                         <div class="contact_details_wrapper">
@@ -90,9 +90,51 @@
                         </t>
                     </div>
                 </div>
+                <div class="container">
+                    <div class="contact_main_wrapper">
+                        <div class="form-group center">
+                            <div>
+                                <h3>Update Contact</h3>
+                            </div>
+                            <div class="clearfix">
+                                <form class="col-form-label" role="form" action="/contact_update" type="post">
+                                    <div class="form">
+                                        <div class="form-group col-xl-3">
+                                            <input type="hidden" name="id" t-att-value="contact_details.id"/>
+                                            <label class="col-form-label" for="name">Name:</label>
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                   t-att-value="contact_details.name"/>
+                                        </div>
+                                        <div class="form-group col-xl-3">
+                                            <label class="col-form-label" for="email">Email:</label>
+                                            <input type="email" id="email" name="email" class="form-control"
+                                                   t-att-value="contact_details.email" placeholder="abc@gmail.com"/>
+                                        </div>
+                                        <div class="form-group col-xl-3">
+                                            <label class="col-form-label" for="phone">Phone:</label>
+                                            <input type="tel" id="phone" name="phone" class="form-control"
+                                                   t-att-value="contact_details.phone"/>
+                                        </div>
+                                        <div class="oe_login_buttons">
+                                            <button type="submit" class="btn btn-success">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </t>
     </template>
 </odoo>
 
 
+        <!-- <div class="" style="margin: 100px 0px;"> -->
+        <!-- <form enctype="multipart/form-data" method="post" action="/partner_update"> -->
+        <!--     <input type="hidden" name="id" t-att-value="contact_detail.id"/> -->
+        <!--     <input type="text" name="name" t-att-value="contact_detail.name"/> -->
+        <!--     <input type="submit" value="Submit"/> -->
+        <!-- </form> -->
+        <!-- </div> -->
