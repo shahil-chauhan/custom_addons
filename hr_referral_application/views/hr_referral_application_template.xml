@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="referral_program_template" name="Referral Program">
+        <t t-call="website.layout">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <h1 class="text-center">Referral Registration</h1>
+            <div class="form-group">
+                <div class="clearfix" style="padding-left: 70px">
+                    <form class="col-form-label" role="form" action="/submit_referral_program" type="post" >
+                        <div class="form">
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name"/>
+                            </div>
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control"
+                                       placeholder="abc@gmail.com"/>
+                            </div>
+
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="reference_id">Refferal Name</label>
+                                <br></br>
+                                <select name="reference_id" class="form-select form-select-sm mb-3">
+                                    <t t-foreach="reference_id" t-as="refferal">
+                                        <option t-esc="refferal.name" t-att-value="refferal.id"/>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="degree_id">Degree</label>
+                                <br></br>
+                                <select name="degree_id" class="form-select form-select-sm mb-3">
+                                    <t t-foreach="degree_id" t-as="degree">
+                                        <option t-esc="degree.name" t-att-value="degree.id"/>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="department_id">Department</label>
+                                <br></br>
+                                <select name='department_id' class="form-select form-select-lg mb-3">
+                                    <t t-foreach="department_id" t-as="department">
+                                        <option t-esc="department.name" t-att-value="department.id"></option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="ex_salary">Expected Salary</label>
+                                <input type="text" id="ex_salary" name="ex_salary" class="form-control"/>
+                            </div>
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="joining_date">Expected Salary</label>
+                                <input type="date" id="joining_date" name="joining_date" class="form-control"/>
+                            </div>
+
+                            <div class="form-group col-xl-3">
+                                <label class="col-form-label" for="summary">Summary</label>
+                                <textarea class="form-control" name="summary" id="summary" placeholder="type here..."/>
+                            </div>
+
+
+                            <div class="oe_login_buttons" style="margin-left: 18px">
+                                <button type="submit" name="csrf_token" t-att-value="request.csrf_token()"
+                                        class="btn btn-success">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="thank_you_template" name="Thank you">
+        <t t-call="website.layout">
+             <div class="clearfix">
+                <div class="container">
+                    <div class="alert alert-success text-center" role="status">
+                        Thank You
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

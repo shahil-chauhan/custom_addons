@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_tree_view" model="ir.ui.view">
+      <field name="name">hr.tree.view</field>
+      <field name="model">hr.referral.application</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="email"/>
+          <field name="currency_id"/>
+          <field name="ex_salary"/>
+          <field name="state" decoration-danger="state =='cancel'" decoration-success="state == 'approved'"
+                decoration-info="state == 'draft'" widget="badge"/>
+        </tree>
+      </field>
+    </record>
+
+    <record  id="hr_form_view" model="ir.ui.view">
+      <field name="name">hr.form.view</field>
+      <field name="model">hr.referral.application</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+                  <button name="action_approved" string="Approved" class="oe_highlight" 
+                       type="object" states="draft"/>
+                  <button string="Create Application" class="oe_highlight" states="approved"/>
+                  <button id="button_done" name="action_draft" string="Draft" class="border border-primary"  type="object"/>
+                  <button id="button_cancel" name="action_cancel" string="Cancel" states="approved," type="object"/>
+                  <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,approved,cancel"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                  <field name="name"/>
+                  <field name="email"/>
+                  <field name="currency_id"/>
+                  <field name="reference_id"/>
+                  <field name="degree_id"/>
+              </group>
+              <group>
+                  <field name="department_id"/>
+                  <field name="ex_salary"/>
+                  <field name="summary"/>
+                  <field name="joining_date"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="hr_referral_application" model="ir.ui.view">
+      <field name="model">hr.referral.application</field>
+      <field name="arch" type="xml">
+        <search string="name">
+          <field name="name"/>
+          <field name="degree_id"/>
+          <field name="reference_id"/>
+            <filter string="Approved" name="action_approved" domain="[('state','=', 'approved')]"/>
+            <filter string="Draft" name="action_draft" domain="[('state','=', 'draft')]"/>
+            <filter string="Cancel" name="action_cancel" domain="[('state','=', 'cancel')]"/>
+            <group expand="1" string="Group By">
+              <filter name="joining_date" string="joining_date" context="{'group_by':'joining_date'}"/>
+            </group>
+        </search>
+      </field>
+    </record>
+
+
+    <record id="hr_referral_application_action" model="ir.actions.act_window">
+        <field name="name">hr referral application</field>
+        <field name="res_model">hr.referral.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hr_referral_application_root_menu" name="Hr Referral"/>
+    <menuitem name="Hr Ref application" id="hr_ref_app_menu" action="hr_referral_application_action"
+              parent="hr_referral_application_root_menu"/>
+
+              
+</odoo>
