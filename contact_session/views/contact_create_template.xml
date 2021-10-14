@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="contact_form_template" name="Contact Form">
+    <template id="new_contact_form_template" name="Contact Form">
         <t t-call="website.layout">
             <div class="form-group center">
                 <div>

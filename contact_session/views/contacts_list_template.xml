@@ -8,10 +8,13 @@
                         <a class="navbar-brand">Contacts</a>
                         <form class="form-inline" action="/contact_form">
                             <button class="btn btn-outline-success my-2 my-sm-0"><i
-                                    class="fa fa-address-book-o"/>Contact Form
+                                    class="fa fa-address-book-o"/>&#160;Contact Form
                             </button>
                         </form>
                     </nav>
+
+                    <input type="text" name="search" id="filter_table" class="form-control" placeholder="Search"/>
+
                     <div class="contacts_list_wrapper">
                         <table class="contact_list_tbl">
                             <thead class="thead-dark">

@@ -1,140 +1,106 @@
 <odoo>
-    <template id="contact_details" name="Contact Detail">
+    <template id="contact_form_template" name="Contact Detail">
         <t t-call="website.layout">
-            <t t-set="title">Contact Detail</t>
+            <t t-set="title">
+                <t t-esc="(partner) and partner.name or 'Create Contact'"/>
+            </t>
             <div class="oe_structure">
-                <!--                <header>-->
-                <!--                    <a t-attf-href="/contact_form">-->
-                <!--                        <button class="btn btn-primary">Form-->
-                <!--                            Contact-->
-                <!--                        </button>-->
-                <!--                    </a>-->
-                <!--                </header>-->
                 <div class="container">
-                    <div class="contact_main_wrapper">
-                        <div class="contact_details_wrapper">
-                            <div class="contact_details_data_wrapper_outer">
-                                <div class="contact_name">
-                                    <t t-esc="contact_details.name"/>
-                                </div>
-                                <div class="contact_details_data_wrapper_inner">
-                                    <div class="contact_email_phone_wrapper">
-                                        <div class="contact_email">
-                                            <label>Email:&#160;&#160;</label>
-                                            <t t-esc="contact_details.email"/>
+                    <form class="contact_form" action="/contact_update"  method="post" enctype="multipart/form-data">
+                        <div class="contact_form_main_wrapper">
+                            <div class="partner_basic_details_wrapper">
+                                <div class="row">
+                                    <div class="col-md-9 partner_details_wrapper">
+                                        <input type="hidden" name="partner_id" id="partner_id" t-att-value="(partner) and partner.id"/>
+                                        <h3>Profile</h3>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="name" id="name" placeholder="Name" class="form-control" t-att-value="(partner) and partner.name"/>
+                                            </div>
                                         </div>
-                                        <div class="contact_phone">
-                                            <label>Phone:&#160;&#160;</label>
-                                            <t t-esc="contact_details.phone"/>
-                                        </div>
-                                    </div>
-                                    <div class="contact_address_wrapper">
-                                        <label>Address:&#160;&#160;</label>
-                                        <div class="contact_address_details">
-                                            <t t-esc="contact_details.street"/>
-                                            ,
-                                            <t t-esc="contact_details.city"/>
-                                            ,
-                                            <br/>
-                                            <t t-esc="contact_details.state_id.name"/>
-                                            ,
-                                            <t t-esc="contact_details.zip"/>
-                                            ,
-                                            <br/>
-                                            <t t-esc="contact_details.country_id.name"/>
-                                        </div>
-                                    </div>
 
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-8">
+                                                <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" t-att-value="(partner) and partner.email"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="tel" name="phone" id="phone" placeholder="Phone" class="form-control" t-att-value="(partner) and partner.phone"/>
+                                            </div>
+                                        </div>
+
+                                        <h3>Address</h3>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="street" id="street" placeholder="Address line 1" class="form-control" t-att-value="(partner) and partner.street"/>
+                                            </div>
+                                        </div>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="street2" id="street2" placeholder="Additional Address" class="form-control" t-att-value="(partner) and partner.street2"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-4">
+                                                <input type="text" name="city" id="city" placeholder="City" class="form-control" t-att-value="(partner) and partner.city"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <select name="state_id" id="state_id" class="form-control">
+                                                    <option value="">Select State</option>
+                                                    <t t-foreach="states" t-as="state">
+                                                        <option t-att-value="state.id" t-att-selected="(partner and partner.state_id and partner.state_id.id == state.id) and 'selected'">
+                                                            <t t-esc="state.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input type="text" name="zip" id="zip" placeholder="Zip" class="form-control" t-att-value="(partner) and partner.zip"/>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-9">
+                                                <select name="country_id" id="country_id" class="form-control">
+                                                    <option value="">Select Country</option>
+                                                    <t t-foreach="countries" t-as="country">
+                                                        <option t-att-value="country.id" t-att-selected="(partner and partner.country_id and partner.country_id.id == country.id) and 'selected'">
+                                                            <t t-esc="country.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="checkbox" name="team_lead" id="team_lead" class="" t-att-checked="(partner and partner.team_lead) and 'checked'"/>
+                                                <label for="team_lead">Team Lead?</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 partner_image_wrapper">
+                                        <div class="partner_image_block">
+                                            <img id="partner_image" t-att-src="(partner) and '/web/image/res.partner/%s/image_1920' % partner.id or '/contact_session/static/src/img/placeholder.png'"></img>
+                                            <div class="image_buttons_wrapper">
+                                                <label for="partner_image_input"><i class="fa fa-pencil-square-o select_image image_option_btn"/></label>
+                                            </div>
+                                        </div>
+                                        <input type="file" class="d-none" name="image_1920" id="partner_image_input" accept="image/*"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="contact_details_img_wrapper">
-                                <div class="contact_img_wrapper">
-                                    <img t-att-src="'/web/image/res.partner/%s/image_1920' % contact_details.id"
-                                         class="contact_img"/>
-                                </div>
+                            <div t-attf-class="partner_team_details_wrapper #{(not partner or partner and not partner.team_lead) and 'd-none'}">
+                                <h1>Hello</h1>
                             </div>
                         </div>
-                        <t t-if="contact_details.team_lead">
-                            <div class="contact_member_tbl">
-                                <label>Team Members:</label>
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="contact_details.team_lead_ids" t-as="members">
-                                            <tr>
-                                                <td>
-                                                    <t t-esc="members.id"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="members.name"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="members.phone"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="members.email"/>
-                                                </td>
-
-                                            </tr>
-                                        </t>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </t>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="contact_main_wrapper">
-                        <div class="form-group center">
-                            <div>
-                                <h3>Update Contact</h3>
-                            </div>
-                            <div class="clearfix">
-                                <form class="col-form-label" role="form" action="/contact_update" type="post">
-                                    <div class="form">
-                                        <div class="form-group col-xl-3">
-                                            <input type="hidden" name="id" t-att-value="contact_details.id"/>
-                                            <label class="col-form-label" for="name">Name:</label>
-                                            <input type="text" id="name" name="name" class="form-control"
-                                                   t-att-value="contact_details.name"/>
-                                        </div>
-                                        <div class="form-group col-xl-3">
-                                            <label class="col-form-label" for="email">Email:</label>
-                                            <input type="email" id="email" name="email" class="form-control"
-                                                   t-att-value="contact_details.email" placeholder="abc@gmail.com"/>
-                                        </div>
-                                        <div class="form-group col-xl-3">
-                                            <label class="col-form-label" for="phone">Phone:</label>
-                                            <input type="tel" id="phone" name="phone" class="form-control"
-                                                   t-att-value="contact_details.phone"/>
-                                        </div>
-                                        <div class="oe_login_buttons">
-                                            <button type="submit" class="btn btn-success">Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="">
+                            <button type="submit">Save</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </t>
     </template>
 </odoo>
-
-
-        <!-- <div class="" style="margin: 100px 0px;"> -->
-        <!-- <form enctype="multipart/form-data" method="post" action="/partner_update"> -->
-        <!--     <input type="hidden" name="id" t-att-value="contact_detail.id"/> -->
-        <!--     <input type="text" name="name" t-att-value="contact_detail.name"/> -->
-        <!--     <input type="submit" value="Submit"/> -->
-        <!-- </form> -->
-        <!-- </div> -->
