@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Wizard form view-->
+    <record id="hr_employee_wizard_view" model="ir.ui.view">
+        <field name="name">hr employee wizard view</field>
+        <field name="model">hr.employee.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group style="width:50%;">
+                    <field name="phone"/>
+                </group>
+                <footer>
+                    <button string="Confirm" name="hr_employee_wizard" type="object" class="oe_highlight"/>
+                    <button string="Close Window" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--action-->
+    <record id="hr_employee_wizard_action" model="ir.actions.act_window">
+        <field name="name">Employee Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
