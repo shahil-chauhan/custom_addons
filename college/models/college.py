@@ -171,20 +171,21 @@ class Student(models.Model):
         self.student_fees = random.randint(1, 1000)
 
     # OVERRIDE CREATE() METHOD TO CREATE A NEW RECORD
-    # @api.model
-    # def create(self, values):
-    #     print("\n\n\n values----", values)
-    #     print("\n\n\n self----", self)
-    #     # to set the value of active field while overriding create method.
-    #     values['active'] = True
-    #     # ----TO PRINT THE SEQUENCE VALUE-----
-    #     if values.get('ref', _('New')) == _('New'):
-    #         values['ref'] = self.env['ir.sequence'].next_by_code(
-    #             'student.profile') or _('New')
+    @api.model
+    def create(self, values):
+        print("\n\n\n values----", values)
+        print("\n\n\n self----", self)
+        # to set the value of active field while overriding create method.
+        values["active"] = True
+        # ----TO PRINT THE SEQUENCE VALUE-----
+        if values.get("ref", _("New")) == _("New"):
+            values["ref"] = self.env["ir.sequence"].next_by_code(
+                "student.profile"
+            ) or _("New")
 
-    #     rtn = super(Student, self).create(values)
-    #     print("\n\n\n create returned----", rtn)
-    #     return rtn
+        rtn = super(Student, self).create(values)
+        print("\n\n\n create returned----", rtn)
+        return rtn
 
     # OVERRIDE WRITE() METHOD TO UPDATE THE EXISTING RECORD
     # NO Decorator
