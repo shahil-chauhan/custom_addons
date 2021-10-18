@@ -21,12 +21,16 @@ odoo.define("contacts", function (require) {
             }
         });
 
+
 //      FOR CHANGING IMAGE WHEN THE INPUT IS GIVEN
         $("#partner_image_input").on('change', function(e){
+            console.log("this------", this)
+            console.log("$(this)------", $(this))
             var partner_img = $('#partner_image');
             var default_image = "/contact_session/static/src/img/placeholder.png";
             var input = this
             if (input.files && input.files[0]) {
+                $("#delete_image").val("False");
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     partner_img.attr("src", e.target.result)
@@ -35,15 +39,25 @@ odoo.define("contacts", function (require) {
             }
             else
             {
-                var partner_id = $("#partner_id").val()
-                if (partner_id)
+                if ($("#delete_image").val() == "False")
                 {
-                    default_image = "/web/image/res.partner/"+partner_id+"/image_1920"
+                    console.log("hello")
+                    var partner_id = $("#partner_id").val()
+                    if (partner_id)
+                    {
+                        default_image = "/web/image/res.partner/" + partner_id + "/image_1920";
+                    }
                 }
-
                 partner_img.attr("src", default_image)
             }
         });
+
+        $(".delete_image").on('click', function(e){
+            $("#partner_image_input").val("");
+            $("#delete_image").val("True");
+            $("#partner_image_input").trigger("change");
+        });
+
 
 //      FOR SEARCHING IN THE CONTACT LIST
         $("#filter_table").on("keypress", function(e) {

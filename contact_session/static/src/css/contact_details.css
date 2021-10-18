@@ -29,8 +29,12 @@
     font-size: 20px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 .image_option_btn:hover{
     cursor: pointer;
     color: #fff;
+}
+.image_option_btn_label{
+    margin: 0px;
 }

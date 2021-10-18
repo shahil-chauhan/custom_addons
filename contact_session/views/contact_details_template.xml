@@ -6,7 +6,7 @@
             </t>
             <div class="oe_structure">
                 <div class="container">
-                    <form class="contact_form" action="/contact_update"  method="post" enctype="multipart/form-data">
+                    <form class="contact_form" action="/contact_update" method="post" enctype="multipart/form-data">
                         <div class="contact_form_main_wrapper">
                             <div class="partner_basic_details_wrapper">
                                 <div class="row">
@@ -84,10 +84,14 @@
                                         <div class="partner_image_block">
                                             <img id="partner_image" t-att-src="(partner) and '/web/image/res.partner/%s/image_1920' % partner.id or '/contact_session/static/src/img/placeholder.png'"></img>
                                             <div class="image_buttons_wrapper">
-                                                <label for="partner_image_input"><i class="fa fa-pencil-square-o select_image image_option_btn"/></label>
+                                                <label for="partner_image_input" class="image_option_btn_label">
+                                                    <i class="fa fa-pencil-square-o select_image image_option_btn"/>
+                                                </label>
+                                                <i class="fa fa-trash-o delete_image image_option_btn"/>
                                             </div>
                                         </div>
                                         <input type="file" class="d-none" name="image_1920" id="partner_image_input" accept="image/*"/>
+                                        <input type="hidden" name="delete_image" id="delete_image" t-att-value="False"/>
                                     </div>
                                 </div>
                             </div>

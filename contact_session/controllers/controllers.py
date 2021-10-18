@@ -3,6 +3,7 @@ import json
 
 from odoo import http
 from odoo.http import request, route
+import base64
 
 
 class Contact(http.Controller):
@@ -43,7 +44,9 @@ class Contact(http.Controller):
 
     @http.route("/contact_update", type="http", website=True, auth="public", csrf=False)
     def contact_update(self, **kw):
+        print("\n\n\n\nkw-----------------", kw)
         partner_id = kw.get("partner_id", False)
+        del kw["partner_id"]
         partner_obj = request.env["res.partner"].sudo()
         partner = False
         if "state_id" in kw and kw.get("state_id"):
@@ -58,9 +61,15 @@ class Contact(http.Controller):
         if "team_lead" not in kw:
             kw["team_lead"] = False
 
+        if "delete_image" in kw and kw.get("delete_image") == "True":
+            kw["image_1920"] = False
+        else:
+            if "image_1920" in kw and kw.get("image_1920"):
+                kw["image_1920"] = base64.b64encode(kw["image_1920"].read())
+        del kw["delete_image"]
+
         if partner_id:
             partner = partner_obj.browse(int(partner_id))
-            del kw["partner_id"]
             partner.write(kw)
         else:
             partner = partner_obj.create(kw)
