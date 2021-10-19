@@ -1,0 +1,59 @@
+<odoo>
+    <record id="construction_site_tree_view" model="ir.ui.view">
+        <field name="name">construction site tree view</field>
+        <field name="model">construction.site</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="responsible_internal_id"/>
+                <field name="responsible_on_site_id"/>
+                <field name="schedule_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="construction_site_form_view" model="ir.ui.view">
+        <field name="name">construction site form view</field>
+        <field name="model">construction.site</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_run" name="action_run" string="Running" type="object" class="btn-primary"/>
+                    <button id="button_stop" name="action_stop" string="Stop" type="object" class="btn-primary"/>
+                    <button id="button_in_close" name="action_in_close" string="In Close" type="object"
+                            class="btn-primary"/>
+                    <button id="button_close" name="action_close" string="Close" type="object" class="btn-primary"/>
+                    <button id="button_draft" name="action_draft" string="Draft" type="object" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="delivery_address"/>
+                            <field name="responsible_internal_id"/>
+                            <field name="responsible_on_site_id"/>
+                        </group>
+                        <group>
+                            <field name="schedule_date"/>
+                            <field name="reference"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_construction_site" model="ir.actions.act_window">
+        <field name="name">Construction Site</field>
+        <field name="res_model">construction.site</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="construction_site_root_menu" name="Construction Site" action="action_construction_site"/>
+</odoo>
