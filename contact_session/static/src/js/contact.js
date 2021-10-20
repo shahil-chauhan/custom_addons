@@ -1,5 +1,7 @@
 odoo.define("contacts", function (require) {
     "use strict";
+    var ajax = require('web.ajax');
+    var rpc = require('web.rpc');
 
     $(document).ready(function(){
 
@@ -69,6 +71,60 @@ odoo.define("contacts", function (require) {
                     $(this).toggle($(this).find(".contact_name_col").text().toLowerCase().indexOf(value) > -1)
                 });
             }
+        });
+
+        $("#country_id").on("change", function(e) {
+            $('#contact_form_submit_btn').attr("disabled", "disabled");
+            let state_ele = $('#state_id');
+            let selected_state = state_ele.val();
+            let element = $(this)
+            let country_id = element.val();
+            ajax.jsonRpc('/get/filtered/states', 'call', {'country_id': country_id}).then(function(data) {
+                console.log(data)
+                if (data['status'])
+                {
+                    let markup = ""
+                    markup += "<option value=''>Select State</option>"
+                    $.each(data['states'], function(){
+                        if (selected_state == this['id'])
+                        {
+                            markup += "<option value='"+this['id']+"' selected='selected'>"+this['name']+"</option>"
+                        }
+                        else
+                        {
+                            markup += "<option value='"+this['id']+"'>"+this['name']+"</option>"
+                        }
+                    });
+
+                    state_ele.empty().append(markup);
+                    $('#contact_form_submit_btn').attr("disabled", false);
+                }
+                else
+                {
+                    $('#contact_form_submit_btn').attr("disabled", false);
+                    ajax.jsonRpc('/get/error/dialog', 'call', {'error': data['error']}).then(function(modal) {
+                        var $modal = $(modal)
+                        $modal.modal('show')
+
+                        $modal.on('hidden.bs.modal', function (e) {
+                            $modal.modal('dispose');
+                        });
+
+                    });
+
+                }
+                
+            });
+        });
+
+        console.log('starting')
+        rpc.query({
+            route: '/get/filtered/states',
+            params: {'country_id': 104},
+
+        }).then(function (data) {
+            console.log("-----------", data)
+            console.log('ends')
         });
 
     });

@@ -19,7 +19,10 @@ class Contact(http.Controller):
         auth="public",
     )
     def contact_details(self, contact):
-        states = request.env["res.country.state"].sudo().search([])
+        domain = []
+        if contact.country_id:
+            domain.append(('country_id', '=', contact.country_id.id))
+        states = request.env["res.country.state"].sudo().search(domain)
         countries = request.env["res.country"].sudo().search([])
         return request.render(
             "contact_session.contact_form_template",
@@ -31,7 +34,7 @@ class Contact(http.Controller):
         )
 
     @http.route("/contact_form", type="http", website=True, auth="public", csrf=True)
-    def create_new_contact(self):
+    def create_new_contact(self, **kw):
         states = request.env["res.country.state"].sudo().search([])
         countries = request.env["res.country"].sudo().search([])
         return request.render(
@@ -41,6 +44,26 @@ class Contact(http.Controller):
                 "states": states,
             },
         )
+
+    @http.route("/get/filtered/states", type="json", auth="public")
+    def get_filtered_states(self, **kw):
+        data = {'status': False, 'error': False, 'states': False}
+        try:
+            domain = []
+            if 'country_id' in kw and kw.get('country_id', False):
+                domain.append(('country_id', '=', int(kw.get('country_id'))))
+            states = request.env["res.country.state"].sudo().search_read(domain, ['id', 'name'])
+            data['states'] = states
+            data['status'] = True
+        except Exception as e:
+            data['error'] = e
+        return data
+
+
+    @http.route("/get/error/dialog", type="json", auth="public")
+    def get_error_dialog(self, **kw):
+        markup = request.env['ir.ui.view'].sudo()._render_template('contact_session.error_dialog_template', kw)
+        return markup
 
     @http.route("/contact_update", type="http", website=True, auth="public", csrf=False)
     def contact_update(self, **kw):

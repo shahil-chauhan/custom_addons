@@ -15,6 +15,7 @@
         "views/contacts_list_template.xml",
         "views/contact_details_template.xml",
         "views/contact_create_template.xml",
+        "views/error_dialog_template.xml",
     ],
     "auto_install": False,
     "installable": True,
