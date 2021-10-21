@@ -20,23 +20,23 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button id="button_run" name="action_run" string="Running" type="object" class="btn-success"
-                            states="draft"/>
-                    <button id="button_stop" name="action_stop" string="Stop" type="object" class="btn-danger"
-                            states="running"/>
-                    <button id="button_in_close" name="action_in_close" string="In Closing" type="object"
-                            class="btn-warning" states="stop"/>
-                    <button id="button_close" name="action_close" string="Close" type="object" class="btn-secondary"
-                            states="in_closing"/>
-                    <button id="button_draft" name="action_draft" string="Draft" type="object" class="btn-primary"
-                            states="close"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,close,running,in_closing,stop"/>
+                    <button id="button_run" name="action_run" string="Start" type="object" class="btn-success" states="draft"/>
+                    <button id="button_stop" name="action_stop" string="Stop" type="object" class="btn-danger" states="running"/>
+                    <button id="button_in_close" name="action_in_close" string="In Close" type="object" class="btn-warning" states="stop"/>
+                    <button id="button_close" name="action_close" string="Close" type="object" class="btn-secondary" states="in_closing"/>
+                    <button id="button_draft" name="action_draft" string="Draft" type="object" class="btn-primary" states="close"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,close,running,in_closing,stop" options="{'clickable': '1'}" />
                 </header>
                 <sheet>
-                    <div class="oe_title">
-                        <h1>
+                    <div class="oe_edit_only">
+                        <h2>
                             <field name="name" placeholder="Name"/>
-                        </h1>
+                        </h2>
+                    </div>
+                    <div class="oe_read_only">
+                        <h2>
+                            <field name="display_name"/>
+                        </h2>
                     </div>
                     <group>
                         <group>
@@ -47,6 +47,14 @@
                         <group>
                             <field name="schedule_date" string="Material Requirement Date"/>
                             <field name="reference" string="Construction Site Code" placeholder="Code"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sale_order_id" string="Sale Order"/>
+                        </group>
+                        <group>
+                            <field name="general_contractor_purchase_order_id" string="General Contractor Purchase"/>
                         </group>
                     </group>
                 </sheet>
