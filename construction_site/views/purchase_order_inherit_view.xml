@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
+    <!--================FORM VIEW INHERIT=============== -->
     <record id="purchase_order_addbutton_form" model="ir.ui.view">
         <field name="name">purchase order form inherit</field>
         <field name="model">purchase.order</field>
@@ -12,4 +14,5 @@
             </xpath>
         </field>
     </record>
+    
 </odoo>

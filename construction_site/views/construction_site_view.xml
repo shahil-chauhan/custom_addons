@@ -1,4 +1,6 @@
 <odoo>
+
+    <!--================TREE VIEW=============== -->
     <record id="construction_site_tree_view" model="ir.ui.view">
         <field name="name">construction site tree view</field>
         <field name="model">construction.site</field>
@@ -14,6 +16,7 @@
         </field>
     </record>
 
+    <!--================FORM VIEW=============== -->
     <record id="construction_site_form_view" model="ir.ui.view">
         <field name="name">construction site form view</field>
         <field name="model">construction.site</field>
@@ -30,7 +33,7 @@
                 <sheet>
                     <div class="oe_edit_only">
                         <h2>
-                            <field name="name" placeholder="Name"/>
+                            <field name="name" placeholder="Construction Site Name"/>
                         </h2>
                     </div>
                     <div class="oe_read_only">
@@ -46,15 +49,15 @@
                         </group>
                         <group>
                             <field name="schedule_date" string="Material Requirement Date"/>
-                            <field name="reference" string="Construction Site Code" placeholder="Code"/>
+                            <field name="reference" string="Construction Site Code" placeholder="Construction Site Code"/>
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="sale_order_id" string="Sale Order"/>
+                            <field name="general_contractor_purchase_order_id" string="General Contractor Purchase"/>
                         </group>
                         <group>
-                            <field name="general_contractor_purchase_order_id" string="General Contractor Purchase"/>
+                            <field name="sale_order_id" string="Sale Order"/>
                         </group>
                     </group>
                 </sheet>
@@ -74,4 +77,5 @@
     </record>
 
     <menuitem id="construction_site_root_menu" name="Construction Site" action="action_construction_site"/>
+
 </odoo>
