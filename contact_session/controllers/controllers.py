@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import base64
 import json
 
 from odoo import http
 from odoo.http import request, route
-import base64
 
 
 class Contact(http.Controller):
@@ -21,7 +21,7 @@ class Contact(http.Controller):
     def contact_details(self, contact):
         domain = []
         if contact.country_id:
-            domain.append(('country_id', '=', contact.country_id.id))
+            domain.append(("country_id", "=", contact.country_id.id))
         states = request.env["res.country.state"].sudo().search(domain)
         countries = request.env["res.country"].sudo().search([])
         return request.render(
@@ -47,22 +47,29 @@ class Contact(http.Controller):
 
     @http.route("/get/filtered/states", type="json", auth="public")
     def get_filtered_states(self, **kw):
-        data = {'status': False, 'error': False, 'states': False}
+        data = {"status": False, "error": False, "states": False}
         try:
             domain = []
-            if 'country_id' in kw and kw.get('country_id', False):
-                domain.append(('country_id', '=', int(kw.get('country_id'))))
-            states = request.env["res.country.state"].sudo().search_read(domain, ['id', 'name'])
-            data['states'] = states
-            data['status'] = True
+            if "country_id" in kw and kw.get("country_id", False):
+                domain.append(("country_id", "=", int(kw.get("country_id"))))
+            states = (
+                request.env["res.country.state"]
+                .sudo()
+                .search_read(domain, ["id", "name"])
+            )
+            data["states"] = states
+            data["status"] = True
         except Exception as e:
-            data['error'] = e
+            data["error"] = e
         return data
-
 
     @http.route("/get/error/dialog", type="json", auth="public")
     def get_error_dialog(self, **kw):
-        markup = request.env['ir.ui.view'].sudo()._render_template('contact_session.error_dialog_template', kw)
+        markup = (
+            request.env["ir.ui.view"]
+            .sudo()
+            ._render_template("contact_session.error_dialog_template", kw)
+        )
         return markup
 
     @http.route("/contact_update", type="http", website=True, auth="public", csrf=False)
