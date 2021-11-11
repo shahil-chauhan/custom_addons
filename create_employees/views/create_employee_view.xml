@@ -1,0 +1,95 @@
+<odoo>
+
+    <record id="create_employees_tree_view" model="ir.ui.view">
+        <field name="name">Employees tree</field>
+        <field name="model">create.employees</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="birth_date"/>
+                <field name="gender"/>
+                <field name="job_position"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="create_employees_form_view" model="ir.ui.view">
+        <field name="name">Employees form</field>
+        <field name="model">create.employees</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name='calculate_yearly' type='object' string='Calculate Yearly' class='btn-primary' attrs="{'invisible' : ['|',('button_hide', '=', False),('button_hide','ilike','month')]}"/>
+                    <button name="calculate_monthly" type="object" string='Calculate Monthly' class="btn-primary" attrs="{'invisible' : ['|',('button_hide', '=', False),('button_hide','ilike','year')]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email" placeholder="abc@gmail.com"/>
+                            <field name="phone"/>
+                            <field name="birth_date"/>
+                            <field name="age" string="Age"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="street"/>
+                            <field name="city"/>
+                            <field name="state"/>
+                            <field name="country"/>
+                            <button name="compute_age" string="Calculate Age" type="object" class="btn-primary"/>
+                            <field name="button_hide" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="job_position"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="experience_info"/>
+                        </group>
+                        <group>
+                            <field name="expected_salary"/>
+                            <field name="affordable_salary"/>
+                            <field name="extra_amount"/>
+                            <field name="yearly_amount"/>
+                            <field name="monthly_amount"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_employees_search_view" model="ir.ui.view">
+        <field name="name">Employees search</field>
+        <field name="model">create.employees</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <group expand="1" string="Group By">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}" />
+                    <filter string="Country" name="country" context="{'group_by':'country'}" />
+                    <filter string="State" name="state" context="{'group_by':'state'}" />
+                    <filter string="Monthly Amount" name="monthly_amount" context="{'group_by':'monthly_amount'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_create_employees_window" model="ir.actions.act_window">
+        <field name="name">Create Employees</field>
+        <field name="res_model">create.employees</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem id="create_employees_root_menu" name="Create Employees"/>
+    <menuitem id="create_employees_menu" action="action_create_employees_window" parent="create_employees_root_menu"/>
+
+</odoo>

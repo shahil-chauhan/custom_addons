@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="create_employees_template" name="Create Employees Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="form-group center">
+                    <div class="mx-5">
+                        <h1>Employee Register</h1>
+                    </div>
+                    <hr/>
+                    <div class="mx-4">
+                        <form action="/employee_data" method="post">
+
+                            <div class="form-group col-md-4">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="birth_date">Birth Date</label>
+                                <input type="date" class="form-control" id="birth_date" name="birth_date"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" name="street"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="state">State</label>
+                                <select name="state" id="state" class="form-control">
+                                    <option value="">Select State</option>
+                                    <t t-foreach="states" t-as="state">
+                                        <option t-att-value="state.id">
+                                            <t t-esc="state.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="country">Country</label>
+                                <select name="country" id="country" class="form-control">
+                                    <option value="">Select Country</option>
+                                    <t t-foreach="countries" t-as="country">
+                                        <option t-att-value="country.id">
+                                            <t t-esc="country.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city"/>
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="ex: myname@example.com"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="phone">Phone</label>
+                                <input type="tel" name="phone" class="form-control" id="phone"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <!--                                <t t-foreach="employee" t-as="emp">-->
+                                    <!--                                    <option>-->
+                                    <!--                                        <t t-esc="emp.gender"/>-->
+                                    <!--                                    </option>-->
+                                    <!--                                </t>-->
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label for="experience_info">Experience Info</label>
+                                <textarea id="experience_info" class="form-control" name="experience_info" rows="4" placeholder="Type here..." cols="50"/>
+                                <!--                            <label for="experience_info">Experience Info</label>-->
+                                <!--                            <input type="text" class="form-control" id="experience_info"/>-->
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="expected_salary">Expected Salary</label>
+                                <input type="number" name="expected_salary" class="form-control" id="expected_salary"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="job_position">Job Position</label>
+                                <select name="job_position" id="job_position" class="form-control">
+                                    <option value="">Select Job Position</option>
+                                    <t t-foreach="job_position" t-as="position">
+                                        <option t-att-value="position.id">
+                                            <t t-esc="position.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <hr/>
+                            <div class="text-center">
+                                <button type="submit" class=" btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

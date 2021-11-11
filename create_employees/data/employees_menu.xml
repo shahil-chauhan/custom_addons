@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <record id="create_employees_menu" model="website.menu">
+        <field name="name">Create Employees</field>
+        <field name="url">/create_employees</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">20</field>
+    </record>
+
+    <record id="employee_details_menu" model="website.menu">
+        <field name="name">Employee Details</field>
+        <field name="url">/employee_details</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">21</field>
+    </record>
+
+</odoo>

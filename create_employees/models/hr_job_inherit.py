@@ -1,0 +1,8 @@
+from odoo import models, fields
+from odoo.tools.translate import _
+
+
+class HrJob(models.Model):
+    _inherit = "hr.job"
+
+    affordable_salary = fields.Integer(string=_("Affordable Salary"))

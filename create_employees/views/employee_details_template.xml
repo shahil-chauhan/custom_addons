@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="employees_details_template" name="Employees Details">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="form-group center">
+                    <div class="mx-4">
+                        <form action="/employee_details" method="post">
+                            <div class="form-group col-md-4">
+                                <label for="job_position">Job Position</label>
+                                <select name="job_position" id="job_position" class="form-control">
+                                    <option value="">Select Job Position</option>
+                                    <t t-foreach="job_position" t-as="job">
+                                        <option t-att-value="job.id" t-att-selected="(jp and jp == job.id) and 'selected'">
+                                            <t t-esc="job.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                                <button type="submit" class=" btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                        <t t-if="submit and filtered_employee">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Street</th>
+                                        <th>City</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Experience Info</th>
+                                        <th>Expected Salary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="filtered_employee" t-as="employee">
+                                        <td>
+                                            <t t-esc="employee.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.street"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.city"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.email"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.phone"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.experience_info"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="employee.expected_salary"/>
+                                        </td>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
