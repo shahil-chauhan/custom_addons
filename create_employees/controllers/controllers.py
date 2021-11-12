@@ -30,7 +30,6 @@ class Controller(http.Controller):
         email = kw.get("email")
         phone = kw.get("phone")
         gender = kw.get("gender")
-        phone = kw.get("phone")
         experience_info = kw.get("experience_info")
         expected_salary = kw.get("expected_salary")
         job_position = kw.get("job_position")
@@ -39,17 +38,18 @@ class Controller(http.Controller):
             employee = request.env["create.employees"].sudo().create(kw)
         return request.redirect("/create_employees")
 
-
     @http.route("/employee_details", type="http", website=True, auth="user", csrf=False)
     def employee_details(self, **kw):
         job_position = request.env["hr.job"].sudo().search([])
-        values = {"job_position": job_position, 'submit': False}
+        values = {"job_position": job_position}
         if kw:
             jp, filtered_employee = False, False
             if kw.get('job_position'):
                 jp = int(kw.get('job_position'))
-                filtered_employee = request.env["create.employees"].sudo().search([('job_position', '=', jp)])
-            values.update({'submit': True, 'filtered_employee': filtered_employee,'jp':jp})
+                filtered_employee = request.env["create.employees"].sudo().search(
+                    [('job_position', '=', jp)])
+            values.update(
+                {'submit': True, 'filtered_employee': filtered_employee, 'jp': jp})
         return request.render("create_employees.employees_details_template", values)
 
     # @http.route("/filter_employee_details",type="http", website=True, auth="user", csrf=False)

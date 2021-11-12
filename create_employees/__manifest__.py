@@ -8,6 +8,7 @@
     "depends": ['base','hr_recruitment', 'website'],
     "data": [
         "security/ir.model.access.csv",
+        "security/create_employee_security.xml",
         "data/employees_menu.xml",
         "views/create_employee_view.xml",
         "views/create_employee_template.xml",
