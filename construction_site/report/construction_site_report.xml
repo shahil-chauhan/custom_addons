@@ -1,0 +1,42 @@
+<odoo>
+
+  <record id="action_construction_site_report" model="ir.actions.report">
+        <field name="name">Construction</field>
+        <field name="model">construction.site</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">construction_site.report_construction_site_template</field>
+        <field name="report_file">construction_site.report_construction_site_template</field>
+        <field name="binding_model_id" ref="model_construction_site"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_construction_site_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:auto">
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p style="text-align:center;">
+                                                    <h2>
+                                                        <strong t-field="doc.name"></strong>
+                                                    </h2>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

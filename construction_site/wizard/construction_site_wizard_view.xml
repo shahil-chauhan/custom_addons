@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Wizard form view-->
+    <record id="construction_site_wizard_view" model="ir.ui.view">
+        <field name="name">Construction Site wizard view</field>
+        <field name="model">construction.site.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group style="width:50%;">
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                </group>
+                <footer>
+                    <button string="Print" name="print_report" type="object" class="oe_highlight"/>
+                    <button string="Close" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--action-->
+    <record id="action_construction_site_wizard" model="ir.actions.act_window">
+        <field name="name">Construction Site Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">construction.site.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="construction_site_report_menu" name="Reporting" action="action_construction_site_wizard" parent="construction_site_root_menu"/>
+
+</odoo>

@@ -76,6 +76,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="construction_site_root_menu" name="Construction Site" action="action_construction_site"/>
+<menuitem id="construction_site_root_menu" name="Construction Site"/>
+<menuitem id="construction_site_menu" name="Construction Site" action="action_construction_site" parent="construction_site_root_menu"/>
 
 </odoo>
