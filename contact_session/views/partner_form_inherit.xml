@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
-    <record id="contact_form_inherit" model="ir.ui.view">
-        <field name="name">contact form inherited</field>
+    <!-- TO CREATE A NEW FIELD TEAMLEAD IN CONTACTS FORM -->
+    <record id="partner_form_inherit" model="ir.ui.view">
+        <field name="name">Partner form inherited</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="team_lead"/>
             </xpath>
+            <!-- TO ADD TEAM MEMBER FIELDS IN TO THE CONTACTS FORM -->
             <xpath expr="//notebook/page[@name='internal_notes']" position="after">
                 <page string="Team Member" name="team member" attrs="{'invisible': [('team_lead','==',False)]}">
                     <field name="team_lead_ids" mode="tree">

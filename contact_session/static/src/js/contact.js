@@ -69,7 +69,7 @@ odoo.define("contacts", function (require) {
                 var value = $(this).val().toLowerCase();
                 $(".contact_list_tbl tbody tr").filter(function() {
                     $(this).toggle($(this).find(".contact_name_col").text().toLowerCase().indexOf(value) > -1)
-                });
+                }); 
             }
         });
 

@@ -1,4 +1,6 @@
 <odoo>
+
+    <!-- TO DISPLAY THE LIST OF CONTACTS IN WEBSITE -->
     <template id="contacts_list" name="Contacts list">
         <t t-call="website.layout">
             <t t-set="title">Contacts List</t>

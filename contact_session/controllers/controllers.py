@@ -7,17 +7,14 @@ from odoo.http import request, route
 
 
 class Contact(http.Controller):
+    # TO DISPLAY THE LIST OF CONTACTS IN THE WEBSITE
     @http.route("/contact", type="http", website=True, auth="public", csrf=False)
     def demo_page(self, **kw):
         contacts = request.env["res.partner"].sudo().search([])
         return request.render("contact_session.contacts_list", {"contacts": contacts})
 
-    @http.route(
-        "/contact/<model('res.partner'):contact>",
-        type="http",
-        website=True,
-        auth="public",
-    )
+    # TO OPEN THE CONTACTS DETAILS FROM THE LIST
+    @http.route("/contact/<model('res.partner'):contact>", type="http", website=True, auth="public")
     def contact_details(self, contact):
         domain = []
         if contact.country_id:
@@ -32,7 +29,8 @@ class Contact(http.Controller):
                 "states": states,
             },
         )
-
+    
+    # TO CREATE A NEW CONTACT FORM
     @http.route("/contact_form", type="http", website=True, auth="public", csrf=True)
     def create_new_contact(self, **kw):
         states = request.env["res.country.state"].sudo().search([])
@@ -45,6 +43,7 @@ class Contact(http.Controller):
             },
         )
 
+    # TO GET THE STATES FILTERED ACCORDING TO THE COUNTRY SELECTED 
     @http.route("/get/filtered/states", type="json", auth="public")
     def get_filtered_states(self, **kw):
         data = {"status": False, "error": False, "states": False}
@@ -63,6 +62,7 @@ class Contact(http.Controller):
             data["error"] = e
         return data
 
+    # TO DISPLAY THE ERROR DIALOG BOX
     @http.route("/get/error/dialog", type="json", auth="public")
     def get_error_dialog(self, **kw):
         markup = (
@@ -72,6 +72,7 @@ class Contact(http.Controller):
         )
         return markup
 
+    # TO UPDATE THE DATA IN BACKEND
     @http.route("/contact_update", type="http", website=True, auth="public", csrf=False)
     def contact_update(self, **kw):
         print("\n\n\n\nkw-----------------", kw)
