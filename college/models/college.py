@@ -81,6 +81,11 @@ class CollegeProfile(models.Model):
     # document_name = fields.Char(string="Document_name")
     # college_description = fields.Html(string="Description")
 
+    def college_send_mail(self):
+        template = self.env.ref('college.college_mail_template_view')
+        print("\n\n\n\n\n\nstudent")
+        template.send_mail(self.id)
+
 
 class Student(models.Model):
     _name = "student.profile"
@@ -247,6 +252,7 @@ class Student(models.Model):
 
         # print("\n\nFields_view_get--", rtn)
         return rtn
+
 
 
 class Hobby(models.Model):

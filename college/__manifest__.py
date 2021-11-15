@@ -12,6 +12,7 @@
         "security/ir.model.access.csv",
         "data/seq_data.xml",
         "data/college_data.xml",
+        "data/college_mail_template_view.xml",
         "views/college_view.xml",
         "views/sales_inherited.xml",
         "report/student_report.xml",
