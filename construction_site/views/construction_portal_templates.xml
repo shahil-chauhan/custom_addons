@@ -1,0 +1,52 @@
+<odoo>
+
+    <template id="portal_my_home_construction" name="Construction Site" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Construction Site</t>
+                <t t-set="url" t-value="'/my/construction_site'"/>
+                <t t-set="placeholder_count" t-value="'sites_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_construction" name="My Construction Sites">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Construction Sites</t>
+            </t>
+            <t t-if="not sites">
+                <p>There are currently no construction sites for your account.</p>
+            </t>
+            <t t-if="sites" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Construction Site #</th>
+                        <th class="text-right">Site Name</th>
+                        <th class="text-right">Construction Site Code</th>
+                        <th class="text-right">Material Requirement Date</th>
+                    </tr>
+                </thead>
+                <t t-foreach="sites" t-as="site">
+                    <tr>
+                        <td>
+                            <t t-esc="site.display_name"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="site.name"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="site.reference"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="site.schedule_date"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

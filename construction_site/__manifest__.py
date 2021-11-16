@@ -14,6 +14,7 @@
         "security/ir.model.access.csv",
         "wizard/construction_site_wizard_view.xml",
         "views/construction_site_view.xml",
+        "views/construction_portal_templates.xml",
         "views/purchase_order_inherit_view.xml",
         "views/sale_order_inherit_view.xml",
         "views/project_task_inherit_view.xml",
