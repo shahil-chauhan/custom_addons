@@ -3,9 +3,9 @@
     "name": "Create Employees",
     "summary": """""",
     "author": "Shahil Chauhan",
-    'category': 'Generic Modules/Tools',
+    "category": "Generic Modules/Tools",
     "version": "14.0.1.0.0",
-    "depends": ['base','hr_recruitment', 'website'],
+    "depends": ["base", "hr_recruitment", "website"],
     "data": [
         "security/ir.model.access.csv",
         "security/create_employee_security.xml",
@@ -15,7 +15,6 @@
         "views/employee_details_template.xml",
         "views/hr_job_inherit.xml",
     ],
-
     "installable": True,
     "application": True,
     "auto_install": False,

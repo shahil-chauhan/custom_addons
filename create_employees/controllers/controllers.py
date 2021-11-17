@@ -4,7 +4,9 @@ from odoo.http import request, route
 
 
 class Controller(http.Controller):
-    @http.route("/create_employees", type="http", website=True, auth="public", csrf=False)
+    @http.route(
+        "/create_employees", type="http", website=True, auth="public", csrf=False
+    )
     def create_employees(self, **kw):
         employees = request.env["create.employees"].sudo().search([])
         states = request.env["res.country.state"].sudo().search([])
@@ -17,7 +19,8 @@ class Controller(http.Controller):
                 "countries": countries,
                 "states": states,
                 "job_position": job_position,
-            })
+            },
+        )
 
     @http.route("/employee_data", type="http", website=True, auth="user", csrf=False)
     def new_employee_create(self, **kw):
@@ -44,12 +47,16 @@ class Controller(http.Controller):
         values = {"job_position": job_position}
         if kw:
             jp, filtered_employee = False, False
-            if kw.get('job_position'):
-                jp = int(kw.get('job_position'))
-                filtered_employee = request.env["create.employees"].sudo().search(
-                    [('job_position', '=', jp)])
+            if kw.get("job_position"):
+                jp = int(kw.get("job_position"))
+                filtered_employee = (
+                    request.env["create.employees"]
+                    .sudo()
+                    .search([("job_position", "=", jp)])
+                )
             values.update(
-                {'submit': True, 'filtered_employee': filtered_employee, 'jp': jp})
+                {"submit": True, "filtered_employee": filtered_employee, "jp": jp}
+            )
         return request.render("create_employees.employees_details_template", values)
 
     # @http.route("/filter_employee_details",type="http", website=True, auth="user", csrf=False)
