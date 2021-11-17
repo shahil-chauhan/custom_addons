@@ -11,7 +11,7 @@
     </template>
 
     <!-- To add the tittle in the bar -->
-    <template id="portal_my_home_menu_construction" name="Portal layout : sales menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+    <template id="portal_my_home_menu_construction" name="Portal layout : construction menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'site'" t-attf-class="breadcrumb-item #{'active ' if not sites else ''}">
                 <a t-if="sites" t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
@@ -20,6 +20,7 @@
         </xpath>
     </template>
 
+<!--    add the table in the page-->
     <template id="portal_my_construction" name="My Construction Sites">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>

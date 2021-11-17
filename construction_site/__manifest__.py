@@ -9,7 +9,15 @@
     "version": "14.0.1.0.0",
     "category": "Construction",
     "website": "https://www.google.com/",
-    "depends": ["sale_management", "account", "hr", "stock", "project", "purchase","website"],
+    "depends": [
+        "sale_management",
+        "account",
+        "hr",
+        "stock",
+        "project",
+        "purchase",
+        "website",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/construction_site_view.xml",
@@ -24,4 +32,3 @@
     "installable": True,
     "application": True,
 }
-

@@ -15,6 +15,8 @@ class ConstructionWizard(models.TransientModel):
                 ("schedule_date", ">=", self.from_date),
                 ("schedule_date", "<=", self.to_date),
             ]
-        docids = self.env['construction.site'].search(domain).ids
+        docids = self.env["construction.site"].search(domain).ids
         print("\n\ndocs\n\n", docids)
-        return self.env.ref('construction_site.action_construction_site_report').report_action(docids)
+        return self.env.ref(
+            "construction_site.action_construction_site_report"
+        ).report_action(docids)
