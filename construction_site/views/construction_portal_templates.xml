@@ -1,5 +1,5 @@
 <odoo>
-
+    <!-- To add the count in the portal menu -->
     <template id="portal_my_home_construction" name="Construction Site" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
@@ -7,6 +7,16 @@
                 <t t-set="url" t-value="'/my/construction_site'"/>
                 <t t-set="placeholder_count" t-value="'sites_count'"/>
             </t>
+        </xpath>
+    </template>
+
+    <!-- To add the tittle in the bar -->
+    <template id="portal_my_home_menu_construction" name="Portal layout : sales menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'site'" t-attf-class="breadcrumb-item #{'active ' if not sites else ''}">
+                <a t-if="sites" t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
+                <t t-else="">Sites</t>
+            </li>
         </xpath>
     </template>
 
@@ -27,6 +37,7 @@
                         <th class="text-right">Site Name</th>
                         <th class="text-right">Construction Site Code</th>
                         <th class="text-right">Material Requirement Date</th>
+                        <th class="text-right">State</th>
                     </tr>
                 </thead>
                 <t t-foreach="sites" t-as="site">
@@ -42,6 +53,9 @@
                         </td>
                         <td class="text-right">
                             <t t-esc="site.schedule_date"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="site.state"/>
                         </td>
                     </tr>
                 </t>
