@@ -5,7 +5,7 @@
          Module for Contact display session""",
     "author": "Shahil Chauhan",
     "version": "14.0.1.0.0",
-    "depends": ["website", "contacts","sale_management"],
+    "depends": ["website", "contacts", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
         "data/contact_menu.xml",

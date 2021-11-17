@@ -14,7 +14,12 @@ class Contact(http.Controller):
         return request.render("contact_session.contacts_list", {"contacts": contacts})
 
     # TO OPEN THE CONTACTS DETAILS FROM THE LIST
-    @http.route("/contact/<model('res.partner'):contact>", type="http", website=True, auth="public")
+    @http.route(
+        "/contact/<model('res.partner'):contact>",
+        type="http",
+        website=True,
+        auth="public",
+    )
     def contact_details(self, contact):
         domain = []
         if contact.country_id:
@@ -29,7 +34,7 @@ class Contact(http.Controller):
                 "states": states,
             },
         )
-    
+
     # TO CREATE A NEW CONTACT FORM
     @http.route("/contact_form", type="http", website=True, auth="public", csrf=True)
     def create_new_contact(self, **kw):
@@ -43,7 +48,7 @@ class Contact(http.Controller):
             },
         )
 
-    # TO GET THE STATES FILTERED ACCORDING TO THE COUNTRY SELECTED 
+    # TO GET THE STATES FILTERED ACCORDING TO THE COUNTRY SELECTED
     @http.route("/get/filtered/states", type="json", auth="public")
     def get_filtered_states(self, **kw):
         data = {"status": False, "error": False, "states": False}
