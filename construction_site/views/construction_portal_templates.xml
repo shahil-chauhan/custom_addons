@@ -1,26 +1,37 @@
 <odoo>
+
+    <!-- To add the tittle in the bar -->
+    <template id="portal_my_home_menu_construction" name="Portal layout : construction menu entries"
+              inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'site'" t-attf-class="breadcrumb-item #{'active ' if not site else ''}">
+                <t t-if="not site">Sites</t>
+                <a t-else="" t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
+            </li>
+            <li t-if="page_name == 'site_info'" t-attf-class="breadcrumb-item #{'active ' if not site else ''}">
+                <a t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
+            </li>
+            <li t-if="page_name == 'site_info'" t-attf-class="breadcrumb-item #{'active ' if not site_info else ''}">
+
+                <t t-esc="sites_info.name"/>
+            </li>
+        </xpath>
+    </template>
+
     <!-- To add the count in the portal menu -->
-    <template id="portal_my_home_construction" name="Construction Site" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+    <template id="portal_my_home_construction" name="Construction Site" customize_show="True"
+              inherit_id="portal.portal_my_home" priority="20">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">Construction Site</t>
                 <t t-set="url" t-value="'/my/construction_site'"/>
                 <t t-set="placeholder_count" t-value="'sites_count'"/>
             </t>
+
         </xpath>
     </template>
 
-    <!-- To add the tittle in the bar -->
-    <template id="portal_my_home_menu_construction" name="Portal layout : construction menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
-        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
-            <li t-if="page_name == 'site'" t-attf-class="breadcrumb-item #{'active ' if not sites else ''}">
-                <a t-if="sites" t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
-                <t t-else="">Sites</t>
-            </li>
-        </xpath>
-    </template>
-
-<!--    add the table in the page-->
+    <!--    add the table in the page-->
     <template id="portal_my_construction" name="My Construction Sites">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
@@ -36,7 +47,7 @@
                     <tr class="active">
                         <th>Construction Site #</th>
                         <th class="text-right">Site Name</th>
-                        <th class="text-right">Construction Site Code</th>
+                        <th class="text-right">Site Code</th>
                         <th class="text-right">Material Requirement Date</th>
                         <th class="text-right">State</th>
                     </tr>
@@ -44,7 +55,9 @@
                 <t t-foreach="sites" t-as="site">
                     <tr>
                         <td>
-                            <t t-esc="site.display_name"/>
+                            <a t-attf-href="/my/construction_site/#{site.id}">
+                                <t t-esc="site.display_name"/>
+                            </a>
                         </td>
                         <td class="text-right">
                             <t t-esc="site.name"/>
@@ -61,6 +74,32 @@
                     </tr>
                 </t>
             </t>
+        </t>
+    </template>
+
+    <template id="construction_portal_template" name="My Construction Site Details">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">
+                    <t t-esc="site"/>
+                </t>
+            </t>
+            <div>
+                <div>
+                    <h3>
+                        Site Details
+                    </h3>
+                </div>
+                <div>
+                    <h3>Address</h3>
+                    <div class="col-md-12">
+                        <input type="text" name="name" id="name" placeholder="Name" class="form-control"
+                               t-att-value="(site_info) and site_info.display_name"/>
+                    </div>
+                </div>
+            </div>
+
         </t>
     </template>
 

@@ -73,3 +73,33 @@ class CustomerPortal(CustomerPortal):
             }
         )
         return request.render("construction_site.portal_my_construction", values)
+
+        # TO OPEN THE CONTACTS DETAILS FROM THE LIST
+
+    @http.route(
+        "/my/construction_site/<model('construction.site'):sites>",
+        type="http",
+        website=True,
+        auth="public",
+    )
+    def construction_site(self, sites, page=1, **kw):
+        values = self._prepare_portal_layout_values()
+        # pager = portal_pager(
+        #     url="/my/construction_site/<model('construction.site'):sites>",
+        #     url_args={},
+        #     total=1,
+        #     page=page,
+        #     step=self._items_per_page,
+        # )
+
+        # search the count to display, according to the pager data
+        # sites = request.env["construction.site"].search([], limit=self._items_per_page, )
+
+        values.update(
+            {
+                "sites_info": sites,
+                "page_name": "site_info",
+                # "pager": pager,
+            }
+        )
+        return request.render("construction_site.construction_portal_template", values)
