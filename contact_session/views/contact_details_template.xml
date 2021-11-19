@@ -11,45 +11,55 @@
                             <div class="partner_basic_details_wrapper">
                                 <div class="row">
                                     <div class="col-md-9 partner_details_wrapper">
-                                        <input type="hidden" name="partner_id" id="partner_id" t-att-value="(partner) and partner.id"/>
+                                        <input type="hidden" name="partner_id" id="partner_id"
+                                               t-att-value="(partner) and partner.id"/>
                                         <h3>Profile</h3>
                                         <div class="row form_input_wrapper">
                                             <div class="col-md-12">
-                                                <input type="text" name="name" id="name" placeholder="Name" class="form-control" t-att-value="(partner) and partner.name"/>
+                                                <input type="text" name="name" id="name" placeholder="Name"
+                                                       class="form-control" t-att-value="(partner) and partner.name"/>
                                             </div>
                                         </div>
 
                                         <div class="row form_input_wrapper">
                                             <div class="col-md-8">
-                                                <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" t-att-value="(partner) and partner.email"/>
+                                                <input type="email" name="email" id="email" placeholder="E-mail"
+                                                       class="form-control" t-att-value="(partner) and partner.email"/>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="tel" name="phone" id="phone" placeholder="Phone" class="form-control" t-att-value="(partner) and partner.phone"/>
+                                                <input type="tel" name="phone" id="phone" placeholder="Phone"
+                                                       class="form-control" t-att-value="(partner) and partner.phone"/>
                                             </div>
                                         </div>
 
                                         <h3>Address</h3>
                                         <div class="row form_input_wrapper">
                                             <div class="col-md-12">
-                                                <input type="text" name="street" id="street" placeholder="Address line 1" class="form-control" t-att-value="(partner) and partner.street"/>
+                                                <input type="text" name="street" id="street"
+                                                       placeholder="Address line 1" class="form-control"
+                                                       t-att-value="(partner) and partner.street"/>
                                             </div>
                                         </div>
                                         <div class="row form_input_wrapper">
                                             <div class="col-md-12">
-                                                <input type="text" name="street2" id="street2" placeholder="Additional Address" class="form-control" t-att-value="(partner) and partner.street2"/>
+                                                <input type="text" name="street2" id="street2"
+                                                       placeholder="Additional Address" class="form-control"
+                                                       t-att-value="(partner) and partner.street2"/>
                                             </div>
                                         </div>
 
                                         <div class="row form_input_wrapper">
                                             <div class="col-md-4">
-                                                <input type="text" name="city" id="city" placeholder="City" class="form-control" t-att-value="(partner) and partner.city"/>
+                                                <input type="text" name="city" id="city" placeholder="City"
+                                                       class="form-control" t-att-value="(partner) and partner.city"/>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <select name="state_id" id="state_id" class="form-control">
                                                     <option value="">Select State</option>
                                                     <t t-foreach="states" t-as="state">
-                                                        <option t-att-value="state.id" t-att-selected="(partner and partner.state_id and partner.state_id.id == state.id) and 'selected'">
+                                                        <option t-att-value="state.id"
+                                                                t-att-selected="(partner and partner.state_id and partner.state_id.id == state.id) and 'selected'">
                                                             <t t-esc="state.name"/>
                                                         </option>
                                                     </t>
@@ -57,7 +67,8 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <input type="text" name="zip" id="zip" placeholder="Zip" class="form-control" t-att-value="(partner) and partner.zip"/>
+                                                <input type="text" name="zip" id="zip" placeholder="Zip"
+                                                       class="form-control" t-att-value="(partner) and partner.zip"/>
                                             </div>
 
                                         </div>
@@ -67,14 +78,16 @@
                                                 <select name="country_id" id="country_id" class="form-control">
                                                     <option value="">Select Country</option>
                                                     <t t-foreach="countries" t-as="country">
-                                                        <option t-att-value="country.id" t-att-selected="(partner and partner.country_id and partner.country_id.id == country.id) and 'selected'">
+                                                        <option t-att-value="country.id"
+                                                                t-att-selected="(partner and partner.country_id and partner.country_id.id == country.id) and 'selected'">
                                                             <t t-esc="country.name"/>
                                                         </option>
                                                     </t>
                                                 </select>
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="checkbox" name="team_lead" id="team_lead" class="" t-att-checked="(partner and partner.team_lead) and 'checked'"/>
+                                                <input type="checkbox" name="team_lead" id="team_lead" class=""
+                                                       t-att-checked="(partner and partner.team_lead) and 'checked'"/>
                                                 <label for="team_lead">Team Lead?</label>
                                             </div>
                                         </div>
@@ -82,7 +95,8 @@
                                     </div>
                                     <div class="col-md-3 partner_image_wrapper">
                                         <div class="partner_image_block">
-                                            <img id="partner_image" t-att-src="(partner) and '/web/image/res.partner/%s/image_1920' % partner.id or '/contact_session/static/src/img/placeholder.png'"></img>
+                                            <img id="partner_image"
+                                                 t-att-src="(partner) and '/web/image/res.partner/%s/image_1920' % partner.id or '/contact_session/static/src/img/placeholder.png'"></img>
                                             <div class="image_buttons_wrapper">
                                                 <label for="partner_image_input" class="image_option_btn_label">
                                                     <i class="fa fa-pencil-square-o select_image image_option_btn"/>
@@ -90,13 +104,40 @@
                                                 <i class="fa fa-trash-o delete_image image_option_btn"/>
                                             </div>
                                         </div>
-                                        <input type="file" class="d-none" name="image_1920" id="partner_image_input" accept="image/*"/>
+                                        <input type="file" class="d-none" name="image_1920" id="partner_image_input"
+                                               accept="image/*"/>
                                         <input type="hidden" name="delete_image" id="delete_image" t-att-value="False"/>
                                     </div>
                                 </div>
                             </div>
                             <div t-attf-class="partner_team_details_wrapper #{(not partner or partner and not partner.team_lead) and 'd-none'}">
-                                <h1>Hello</h1>
+                                <h3>Team Members</h3>
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Member Name #</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="partner.team_lead_ids" t-as="member">
+                                            <td>
+                                                <t t-esc="member.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="member.email"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="member.phone"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="member.address"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="">
