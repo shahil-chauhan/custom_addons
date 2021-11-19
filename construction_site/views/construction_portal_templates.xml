@@ -5,15 +5,15 @@
               inherit_id="portal.portal_breadcrumbs" priority="20">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'site'" t-attf-class="breadcrumb-item #{'active ' if not site else ''}">
-                <t t-if="not site">Sites</t>
-                <a t-else="" t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
+                <t t-if="not site">Construction Sites</t>
+                <a t-else="" t-attf-href="/my/construction_site?{{ keep_query() }}">Construction Sites</a>
             </li>
             <li t-if="page_name == 'site_info'" t-attf-class="breadcrumb-item #{'active ' if not site else ''}">
-                <a t-attf-href="/my/construction_site?{{ keep_query() }}">Sites</a>
+                <a t-attf-href="/my/construction_site?{{ keep_query() }}">Construction Sites</a>
             </li>
             <li t-if="page_name == 'site_info'" t-attf-class="breadcrumb-item #{'active ' if not site_info else ''}">
 
-                <t t-esc="sites_info.name"/>
+                <t t-esc="sites_info.display_name"/>
             </li>
         </xpath>
     </template>
@@ -86,21 +86,88 @@
                 </t>
             </t>
             <div>
-                <div>
-                    <h3>
-                        Site Details
-                    </h3>
+                <div class="row mt16 o_portal_sale_sidebar">
+                    <!-- Sidebar -->
+                    <t t-call="portal.portal_record_sidebar">
+                        <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+                        <t t-set="title">
+                            <h2 class="mb-0">
+                                <b>Site Details
+                                </b>
+                            </h2>
+                        </t>
+                    </t>
+                    <div id="quote_content" class="col-12 col-lg justify-content-end">
+                        <!-- main content -->
+                        <div t-attf-class="card pb-5" id="portal_construction_content">
+                            <div t-call="construction_site.construction_portal_content"/>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h3>Address</h3>
-                    <div class="col-md-12">
-                        <input type="text" name="name" id="name" placeholder="Name" class="form-control"
-                               t-att-value="(site_info) and site_info.display_name"/>
+
+            </div>
+        </t>
+    </template>
+    <template id="construction_portal_content" name="Construction Portal Content">
+        <!-- Intro -->
+        <div id="introduction"
+             t-attf-class="pb-2 pt-3 card-header bg-white">
+            <h2 class="my-0">
+                <t t-esc="sites_info.display_name"/>
+            </h2>
+        </div>
+        <div t-attf-class="card-body">
+            <!-- Informations -->
+            <div id="informations">
+                <div class="row" id="so_date">
+                    <div class="mb-3 col-6">
+                        <strong>Material Requirement Date:</strong>
+                        <span t-field="sites_info.schedule_date" t-options='{"widget": "date"}'/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <strong class="d-block mb-1">Delivery Address:
+                        </strong>
+                        <div class="o_address_format">
+                            <address t-field="sites_info.delivery_address"/>
+                            <span t-field="sites_info.delivery_address.street"/>
+                            <br/>
+                            <span t-field="sites_info.delivery_address.city"/>
+                            <span t-field="sites_info.delivery_address.state_id.code"/>
+                            <span t-field="sites_info.delivery_address.zip"/>
+                            <br/>
+                            <span t-field="sites_info.delivery_address.country_id"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <strong class="d-block mb-1">Internal Responsible:
+                        </strong>
+                        <t t-esc="sites_info.responsible_internal_id.name"/>
+                        <br/>
+                        <strong class="d-block mb-1">"On Site Responsible:
+                        </strong>
+                        <t t-esc="sites_info.responsible_on_site_id.name"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <strong class="d-block mb-1">General Contractor Purchase:
+                        </strong>
+                        <t t-esc="sites_info.general_contractor_purchase_order_id.name"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <strong class="d-block mb-1">Sale Order:
+                        </strong>
+                        <t t-esc="sites_info.sale_order_id.name"/>
                     </div>
                 </div>
             </div>
-
-        </t>
+        </div>
     </template>
 
 </odoo>
