@@ -19,6 +19,7 @@
         "website",
     ],
     "data": [
+        "security/construction_site_security.xml",
         "security/ir.model.access.csv",
         "views/construction_site_view.xml",
         "views/construction_portal_templates.xml",

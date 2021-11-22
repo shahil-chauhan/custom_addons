@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_construction_site,access_construction_site,model_construction_site,base.group_user,1,1,1,1
+access_construction_site_user,access_construction_site,model_construction_site,construction_site.group_construction_user,1,0,0,0
+access_construction_site_manager,access_construction_site,model_construction_site,construction_site.group_construction_manager,1,1,1,0
+access_construction_site_user_admin,access_construction_site,model_construction_site,construction_site.group_construction_admin,1,1,1,1
 access_construction_site_wizard,access_construction_site_wizard,model_construction_site_wizard,base.group_user,1,1,1,1
