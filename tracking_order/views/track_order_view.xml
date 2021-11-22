@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="order_track_tree_view" model="ir.ui.view">
+		<field name="name">order track tree view</field>
+		<field name="model">order.track</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="sales_order_ref"/>
+				<field name="user_name"/>
+			</tree>
+		</field>
+	</record>
+	<record id="order_track_form_view" model="ir.ui.view">
+		<field name="name">order track form view</field>
+		<field name="model">order.track</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<group>
+							<field name="sales_order_ref"/>
+							<field name="user_name"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="action_order_track" model="ir.actions.act_window">
+		<field name="name">order track</field>
+		<field name="res_model">order.track</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<menuitem id="sales_team_order_track"
+			  name="Order Tracking"
+			  parent="sale.menu_sale_config"
+			  action="action_order_track"
+			  sequence="2"/>
+	<!--	<menuitem id="hr_referral_menu" action="action_hr_refferral" parent="hr_referral_sub_menu"/>-->
+</odoo>
