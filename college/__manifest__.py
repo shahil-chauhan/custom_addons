@@ -15,6 +15,7 @@
         "data/college_mail_template_view.xml",
         "views/college_view.xml",
         "views/sales_inherited.xml",
+        "views/settings_view_inherit.xml",
         "report/student_report.xml",
         "report/college_details_report.xml",
         "report/sale_order_inherit_report.xml",
