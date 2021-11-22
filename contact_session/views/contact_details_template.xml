@@ -111,33 +111,35 @@
                                 </div>
                             </div>
                             <div t-attf-class="partner_team_details_wrapper #{(not partner or partner and not partner.team_lead) and 'd-none'}">
-                                <h3>Team Members</h3>
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>Member Name #</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr t-foreach="partner.team_lead_ids" t-as="member">
-                                            <td>
-                                                <t t-esc="member.name"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="member.email"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="member.phone"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="member.address"/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <t t-if="partner">
+                                    <h3>Team Members</h3>
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Member Name #</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="partner.team_lead_ids" t-as="member">
+                                                <td>
+                                                    <t t-esc="member.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="member.email"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="member.phone"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="member.address"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </t>
                             </div>
                         </div>
                         <div class="">
