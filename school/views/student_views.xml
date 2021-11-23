@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+
+    <record id="student_list_view" model="ir.ui.view">
+        <field name="name">student_profile.list.view</field>
+        <field name="model">student.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field class="text-danger" name="name"/>
+                <field name="calculate"/>
+                <field name="student_email"/>
+                <field name="school_select_id"/>
+                <field name="student_phone"/>
+                <field name="student_result"/>
+                <field name="is_parking"/>
+                <field name="state" decoration-info="state == 'draft'" decoration-primary="state == 'confirm'"
+                       decoration-success="state == 'done'" decoration-danger="state == 'cancel'" widget="badge"
+                       optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student.form</field>
+        <field name="model">student.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm"
+                            class="btn btn-primary" type="object" states="draft"/>
+                    <button id="button_done" name="action_done" string="Done" icon="fa-heart"
+                            class="btn btn-primary" type="object" states="confirm"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" icon="fa-heart"
+                            class="btn btn-primary" type="object" states="confirm,done"/>
+                    <button id="button_reset" name="action_reset" string="Reset" icon="fa-heart"
+                            class="btn btn-primary" type="object" states="cancel"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirm,done,cancel"/>
+                </header>
+
+                <sheet>
+
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" string="Home" icon="fa-home" class="oe_stat_button"
+                                name="%(school.action_school_profile)d"/>
+                        <button type="object" string="Reset Form" class="oe_stat_button" icon="fa-warning"
+                                name="clear_record_data"/>
+                    </div>
+
+                    <group>
+                        <group>
+
+                            <h2>
+                                <field name="name" placeholder=" Student Name"/>
+                            </h2>
+                            <field name="student_email" placeholder="school email address"/>
+                            <field name="is_parking" attrs="{'invisible': [('state','=','confirm')]}"/>
+                            <field name="calculate"/>
+                            <field name="student_phone" widget="phone"
+                                   attrs="{'required': [('state','=','confirm')], 'invisible': [('state','=','draft')]}"/>
+                            <field name="student_result"/>
+                            <field name="school_select_id"/>
+                            <field name="user_signature" widget="signature"/>
+                        </group>
+                        <group>
+                            <field name='student_img' filename="upld_schl_img_name" nolabel="1" widget="image"
+                                   placeholder="Upload Your Look"
+                                   style="margin-top: 1rem; margin-left:6rem; width:7rem; background-color:#B2A6C6;"
+                                   class="img img-responsive"/>
+                        </group>
+
+                    </group>
+
+                    <notebook>
+                        <page string="Student Many2many">
+                            <group>
+                                <field name="sc_select_id">
+                                    <tree editable="top">
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                        <field name="phone"/>
+                                        <field name="parking"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_student_profile" model="ir.actions.act_window">
+        <field name="name">Student Profile</field>
+        <field name="res_model">student.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="student_nav" name="Student Prof" action="action_student_profile" parent="school_root_menu"
+              sequence="2"/>
+</odoo>
+
+

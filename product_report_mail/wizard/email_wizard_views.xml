@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_mail_wizard_form_view" model="ir.ui.view">
+        <field name="name">Sale Mail Wizard Form View</field>
+        <field name="model">sale.mail.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_mail_wizard_action" model="ir.actions.act_window">
+        <field name="name">Sale Mail Wizard action</field>
+        <field name="res_model">sale.mail.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

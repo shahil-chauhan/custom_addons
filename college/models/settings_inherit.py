@@ -16,8 +16,8 @@ class Settings(models.TransientModel):
         )
         partners = (
             self.env["sale.order"]
-                .search([("date_order", ">=", first_day), ("date_order", "<=", last_day)])
-                .mapped("partner_id")
+            .search([("date_order", ">=", first_day), ("date_order", "<=", last_day)])
+            .mapped("partner_id")
         )
         return [("id", "in", partners.ids)]
 
@@ -41,10 +41,13 @@ class Settings(models.TransientModel):
         res = super(Settings, self).get_values()
         active = self.env["ir.config_parameter"].get_param("college.active")
         partner_ids = self.env["ir.config_parameter"].get_param("college.partner_ids")
-        res.update(active=active, )
+        res.update(
+            active=active,
+        )
         if partner_ids:
             res.update(
-                active=active, partner_ids=[(6, 0, literal_eval(partner_ids))],
+                active=active,
+                partner_ids=[(6, 0, literal_eval(partner_ids))],
             )
         return res
 

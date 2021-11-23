@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <!--    SCHOOL DATA-->
+    <record id="school_data_1" model="school.profile">
+        <field name="name">kite</field>
+        <field name="email">k@gmail.com</field>
+        <field name="phone">012365479</field>
+        <field name="fees">28000</field>
+        <field name="parking" eval="True"/>
+        <field name="courses">computer</field>
+
+        <field name="image" type="base64" file="school/static/my_img/my_logo.png"/>
+    </record>
+
+<!--    <record id="school_data_2" model="school.profile">-->
+<!--        <field name="name">Spec</field>-->
+<!--        <field name="email">k@gmail.com</field>-->
+<!--        <field name="phone">0362514789</field>-->
+<!--        <field name="fees">29000</field>-->
+<!--        <field name="parking" eval="False"/>-->
+<!--        <field name="courses">civil</field>-->
+
+<!--&lt;!&ndash;        <field name="image" type="base64" file="school/static/my_img/my_logo.png"/>&ndash;&gt;-->
+<!--    </record>-->
+
+    <record id="school_data_3" model="school.profile">
+        <field name="name">LD</field>
+        <field name="email">l@gmail.com</field>
+        <field name="phone">1236547890</field>
+        <field name="fees">30000</field>
+        <field name="parking" eval="False"/>
+        <field name="courses">electrical</field>
+
+        <field name="image" type="base64" file="school/static/my_img/my_logo.png"/>
+    </record>
+
+    <record id="school_data_4" model="school.profile">
+        <field name="name">GH</field>
+        <field name="email">g@gmail.com</field>
+        <field name="phone">0326514798</field>
+        <field name="fees">31000</field>
+        <field name="parking" eval="True"/>
+        <field name="courses">automobile</field>
+        <field name="image" type="base64" file="school/static/my_img/my_logo.png"/>
+    </record>
+
+    <record id="school_data_5" model="school.profile">
+        <field name="name">Adit</field>
+        <field name="email">ad@gmail.com</field>
+        <field name="phone">0159847326</field>
+        <field name="fees">32000</field>
+        <field name="parking" eval="True"/>
+        <field name="courses">mechanical</field>
+        <field name="image" type="base64" file="school/static/my_img/my_logo.png"/>
+    </record>
+
+<!--    <record id="student_data_1" model="student.profile">-->
+<!--        <field name="name">zzxzzzxz</field>-->
+<!--        <field name="student_email">cxxzxczczakash@gmail.com</field>-->
+<!--        <field name="student_phone">013254697854</field>-->
+<!--        <field name="student_result">98</field>-->
+<!--         <field name="sc_select_id" eval="[(6, 0, [ref('school_data_1'),ref('school_data_2')])]" />-->
+<!--    </record>-->
+
+    <record id="student_data_2" model="student.profile">
+        <field name="name">Dhruvish</field>
+        <field name="student_email">dhruvish@gmail.com</field>
+        <field name="student_phone">1325469780</field>
+        <field name="student_result">77</field>
+    </record>
+
+
+
+</odoo>

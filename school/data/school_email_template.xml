@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+        <!--Email template -->
+        <record id="school_mail_template_view" model="mail.template">
+            <field name="name">School Card: Send by email</field>
+            <field name="model_id" ref="school.model_school_profile"/>
+            <field name="email_from">foram.aktivsoftware@gmail.com</field>
+            <field name="subject">School name:${object.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; border:1px solid black;">
+                    <!--                    <p>{ctx['student']}></p>-->
+                    <!--                    <h3>${object.student_data_ids.name}</h3>-->
+                    <!--                    <br/>-->
+                    <!--                    <br/>-->
+                    <!--                    <address>-->
+                    <!--                        ${object.student_data_ids.student_address},-->
+                    <!--                        <br/>-->
+                    <!--                        ${object.student_data_ids.student_city},-->
+                    <!--                        <br/>-->
+                    <!--                        ${object.student_data_ids.student_dist},-->
+                    <!--                        <br/>-->
+                    <!--                        ${object.student_data_ids.student_state},-->
+                    <!--                        <br/>-->
+                    <!--                    </address>-->
+                    <!--                    <br/>-->
+                    <!--                    <br/>-->
+                    <pre>
+                        <!--                        <span>Dear<h5>${object.student_data_ids.name}</h5>,-->
+                        <!--                        </span>-->
+                        <p>First of all,Thank you for selecting our college</p>
+                        Here is your course:<strong>${object.courses}</strong>,
+                        and selected course fee:
+                        <strong>${object.fees}</strong>
+                    </pre>
+                    <hr/>
+                    <div>
+                        <!--                        <pre>-->
+                        <!--                            ${object.student_signature | safe}-->
+                        <!--                            your Signature-->
+                        <!--                        </pre>-->
+                    </div>
+                </div>
+            </field>
+            <!--            <field name="report_template" ref="report_school_detail"/>-->
+            <!--            <field name="report_name">-->
+            <!--                School_${(object.name)}-->
+            <!--            </field>-->
+        </record>
+    </data>
+
+</odoo>

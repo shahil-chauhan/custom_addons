@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="bulk_product_form">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title">Bulk Product</t>
+            <form action="/my/bulk_product/submit" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-10">
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label" for="name">Name <span style="color: red;">*</span></label>
+                                <input type="text" name="name" t-attf-class="form-control" required="true"/>
+                            </div>
+                        </div> 
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label" for="master_product_id">Master Product</label>
+                                <select name="master_product_name" class="form-control">
+                                    <t t-foreach="product_template_data" t-as="ptd">
+                                        <option t-att-value="ptd.id">
+                                            <t t-esc="ptd.name"/>
+                                        </option>
+                                    </t>    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label" for="res_partner_id">Partner Name</label>
+                                <input type="text" name="partner_name" t-attf-class="form-control"/>
+                            </div>
+                        </div> 
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label" for="email">E-mail</label>
+                                <input type="email" name="email" t-attf-class="form-control"/>
+                            </div>
+                        </div>   
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label class="col-form-label" for="phone">Phone Number</label>
+                                <input type="text" name="phone" t-attf-class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-success">
+                                Submit
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+</odoo>

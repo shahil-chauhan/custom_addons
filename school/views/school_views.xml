@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="school_list_view" model="ir.ui.view">
+		<field name="name">school list</field>
+		<field name="model">school.profile</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="seq" widget="handle"/>
+				<field name="name"/>
+				<field name="type"/>
+				<field name="email"/>
+				<!--                <field name="student_data_ids"/>-->
+				<field name="phone"/>
+				<field name="parking"/>
+				<field name="result"/>
+				<field name="open_date"/>
+				<field name="fees"/>
+				<field name="salary"/>
+				<field name="courses"/>
+				<field name="docu_name" invisible="1"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="school_form_view" model="ir.ui.view">
+		<field name="name">school form</field>
+		<field name="model">school.profile</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button type="object" name="wiz_open" string="By Custom Method"/>
+					<button type="object" name="school_send_mail" string="Send Email"/>
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button type="object" name="button_click" class="oe_stat_button" icon="fa-male">
+							<field name="delivery_count" widget="statinfo" icon="fa-home" string="Selected"/>
+						</button>
+					</div>
+
+					<group>
+						<group>
+
+							<h2>
+								<field name="name" placeholder="Name"/>
+							</h2>
+							<field name="type" widget="radio" options="{'horizontal': true}"/>
+							<field name="result" widget="monetary"/>
+							<field name="school_address" widget="text_emojis"/>
+							<field name="establish_date" placeholder="MM/DD/YYYY"/>
+							<field name="open_date"/>
+							<field name="parking"/>
+							<field name="courses" widget="checkbox"/>
+							<field name="fees"/>
+							<field name="salary"/>
+							<field name="documents" filename="docu_name"/>
+							<!--                            <field name="student_data_id"/>-->
+
+						</group>
+
+
+						<group>
+							<field name="docu_name" invisible="1"/>
+							<group>
+								<field name='image' nolabel="1" widget="image" placeholder="Upload Your Look"
+									   style="margin-top: 1rem; margin-left:6rem; width:7rem; background-color:#B2A6C6;"
+									   class="img img-responsive"/>
+							</group>
+						</group>
+						<field name="school_desc"/>
+					</group>
+
+
+					<notebook>
+
+						<!--Page 1-->
+						<page string="Email" name='ema'>
+							<group>
+								<field name="email"/>
+							</group>
+						</page>
+
+						<!--Page 2-->
+						<page string="Phone" name="pho">
+							<group>
+								<field name="phone" placeholder="school contact no"/>
+							</group>
+						</page>
+
+						<!--Page 3-->
+						<page string="Student data" name="stud_data">
+							<group>
+								<field name="student_data_ids"/>
+							</group>
+						</page>
+
+					</notebook>
+				</sheet>
+
+				CHATTER BOX
+				<div class="oe_chatter">
+					<field name="message_follower_ids"/>
+					<field name="message_ids"/>
+					<field name="activity_ids"/>
+				</div>
+
+			</form>
+		</field>
+	</record>
+
+	<record id="search_view_school_profile" model="ir.ui.view">
+		<field name="name">search.view.school.profile</field>
+		<field name="model">school.profile</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" string="School name" filter_domain="[('name' ,'ilike', self)]"/>
+				<field name="email" string="Email" filter_domain="[('email','=',self)]"/>
+				<field name="phone" string="Phone" filter_domain="[('phone','=',self)]"/>
+				<field name="fees" string="Fees" filter_domain="[('fees','>',self)]"/>
+				<filter name="parking" string="Parking" domain="[('parking','=',0)]"/>
+				<group>
+					<filter name="grp_email" string="Email" context="{'group_by':'email'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+
+
+	<record id="action_school_profile" model="ir.actions.act_window">
+		<field name="name">School Profile</field>
+		<field name="res_model">school.profile</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="school_root_menu" name="School"/>
+	<menuitem name="School Prof" id="school_profile_menu" action="action_school_profile" parent="school_root_menu"/>
+
+
+</odoo>
+
+

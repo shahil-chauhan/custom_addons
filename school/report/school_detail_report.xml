@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<template id="report_school_data_detail">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.external_layout">
+					<h1 style="color:Tomato;" t-field="o.name"></h1>
+					<p>
+						<strong>
+							<u>Address:</u>
+						</strong>
+						<br></br>
+						<span t-field="o.school_address"/>
+						<br></br>
+						<strong>
+							<span t-field="o.email"/>
+							<br></br>
+						</strong>
+						<strong>
+							<span t-field="o.phone"/>
+						</strong>
+					</p>
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6">
+								<ul>
+									<li>Parking:
+										<span t-field="o.parking"/>
+									</li>
+									<li>Fees:
+										<span t-field="o.fees"/>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="page position-relative">
+						<div class="oe_structure"/>
+						<div class="row mt32 mb32" id="informations">
+							<div class="col-auto col-3 mw-100 mb-2">
+								<strong>Type</strong>
+								<p class="m-0" t-field="o.type"/>
+							</div>
+							<div class="col-auto col-3 mw-100 mb-2">
+								<strong>Establish date</strong>
+								<p class="m-0" t-field="o.establish_date"/>
+							</div>
+							<div class="col-auto col-3 mw-100 mb-2">
+								<strong>Avg. Salary</strong>
+								<p class="m-0" t-field="o.salary"/>
+							</div>
+							<div class="col-auto col-3 mw-100 mb-2">
+								<strong>Total Student</strong>
+								<p class="m-0" t-field="o.delivery_count"/>
+							</div>
+						</div>
+						<table class="table table-sm o_main_table">
+							<!-- In case we want to repeat the header, remove "display: table-row-group" -->
+							<thead style="display: table-row-group">
+								<tr>
+									<th name="th_description" class="text-left">Student Name</th>
+									<th name="th_quantity" class="text-right">Email</th>
+									<th name="th_priceunit" class="text-right">Phone</th>
+									<th name="th_priceunit" class="text-right">Result</th>
+								</tr>
+							</thead>
+							<tbody class="sale_tbody">
+								<t t-foreach="o.student_data_ids" t-as="line">
+									<tr style="border:1px solid black;">
+										<td name="td_st_name">
+											<span t-field="line.name"/>
+										</td>
+										<td name="td_st_email">
+											<span t-field="line.student_email"/>
+										</td>
+										<td name="td_st_phone">
+											<span t-field="line.student_phone"/>
+										</td>
+										<td name="td_st_result">
+											<span t-field="line.student_result"/>
+										</td>
+									</tr>
+								</t>
+							</tbody>
+						</table>
+						<div class="float-right">
+							<div>
+								School Result
+								<p t-field="o.result"></p>
+								Test
+								<p t-esc="o.temp()"/>
+
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+
+	<record id="report_school_detail" model="ir.actions.report">
+		<field name="name">School detail</field>
+		<field name="model">school.profile</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">school.report_school_data_detail</field>
+		<field name="report_file">school.report_school_data_detail</field>
+		<field name="binding_model_id" ref="model_school_profile"/>
+		<field name="binding_type">report</field>
+	</record>
+</odoo>

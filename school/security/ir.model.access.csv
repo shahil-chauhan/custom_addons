@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_profile,access_school_profile,school.model_school_profile,base.group_user,1,1,1,1
+access_student_profile,access_student_profile,school.model_student_profile,base.group_user,1,1,1,1
+access_create_wizard,access_create_wizard,model_create_wizard,base.group_user,1,1,1,1
+access_report_sale_report_saleorder_document,access_report_sale_report_saleorder_document,model_report_sale_report_saleorder_document,base.group_user,1,1,1,1

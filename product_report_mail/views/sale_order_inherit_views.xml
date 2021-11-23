@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="mail_wizard_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_cancel']" position="after">
+                <button name="mail_wizard_button" string="Send mail by Akash"
+                        class="oe_highlight" type="object"/>
+            </xpath>
+            <field name="name" position="after">
+                <field name="partner_cust_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+</odoo>

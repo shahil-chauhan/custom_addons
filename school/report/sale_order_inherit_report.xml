@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="qty_order_field_add" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-call='web.external_layout']
+		/div[@class='page']
+		/table[@class='table table-sm o_main_table']
+		/thead/tr/th[@name='th_description']" position="after">
+            <th name="th_qty_order" class="text-right">Max qty Order</th>
+        </xpath>
+
+        <!--		<xpath expr="//t[@t-call='web.external_layout']/div[@class='page']-->
+        <!--		/table[@class='table table-sm o_main_table']/tbody[@class='sale_tbody']/t[@t-as='line']-->
+        <!--		/tr/t[@t-if='not line.display_type']/td[@name='td_name']"-->
+        <!--			   position="after">-->
+        <!--			<td name="td_qty_order">-->
+        <!--				<span t-field="line.max_qty_allowed"/>-->
+        <!--			</td>-->
+        <!--		</xpath>-->
+
+        <xpath expr="//div[@class='clearfix']/div/div/table[@class='table table-sm']" position="after">
+
+            <table class="table table-sm">
+                <thead style="display: table-row-group">
+                    <tr>
+                        <th name="th_description" class="text-left">Total Capacity</th>
+                    </tr>
+                </thead>
+                <tbody class="sale_tbody">
+                    <tr>
+                        <td name="td_total_capacity">
+                            <span t-field="doc.total_capacity"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</odoo>

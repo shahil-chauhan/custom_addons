@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--	<record id="sale_order_tree_views_inherit" model="ir.ui.view">-->
+<!--		<field name="name">sale order inherited tree</field>-->
+<!--		<field name="model">sale.order</field>-->
+<!--		<field name="inherit_id" ref="sale.view_order_tree"/>-->
+<!--		<field name="arch" type="xml">-->
+<!--			<xpath expr="//field[@name='user_id']" position="before">-->
+<!--				<field name="total_capacity"/>-->
+<!--			</xpath>-->
+<!--		</field>-->
+<!--	</record>-->
+
+	<record id="sale_order_form_views_inherit" model="ir.ui.view">
+		<field name="name">sale order inherited form</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+
+			<xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="before">
+				<field name="max_qty_allowed"/>
+			</xpath>
+
+			<xpath expr="//field[@name='order_line']" position="after">
+				<group>
+					<group>
+						<field name="total_capacity"/>
+					</group>
+					<group>
+						<button id="total_capacity" name="calculate_total_capacity" string="Calculate the total Capacity"
+								icon="fa-calculator" class="oe_right btn btn-outline-primary" type="object"
+								style="position: relative; left: 2rem; top: 0rem;"/>
+					</group>
+				</group>
+			</xpath>
+		</field>
+	</record>
+</odoo>

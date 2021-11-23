@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<template id="report_student_detail">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.external_layout">
+					<div class="page">
+						<t t-esc="o.test()"></t>
+						<div class="row">
+							<center>
+								<div class="col-xs-8" style="margin:auto">
+									<table class="table table-condensed" style="border: 3px solid black !important;">
+										<tr>
+											<td width="40%">
+												<p>
+													<img t-attf-src="data:image/*;base64,{{o.student_img}}"/>
+													<h2>
+														<span t-field="o.name"/>
+													</h2>
+												</p>
+											</td>
+											<td width="60%">
+												<table style="border: 3px solid black !important;">
+													<tr>
+														<td>
+															<p>
+																<strong>Email:</strong>
+															</p>
+															<p>
+																<strong>Phone:</strong>
+															</p>
+															<p>
+																<strong>Result:</strong>
+															</p>
+														</td>
+														<td>
+															<p style="padding-left:10px;"
+															   t-field="o.student_email"/>
+															<p style="padding-left:10px;"
+															   t-field="o.student_phone"/>
+															<p style="padding-left:10px;"
+															   t-field="o.student_result"/>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</center>
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+
+	<record id="report_student_detail" model="ir.actions.report">
+		<field name="name">Student</field>
+		<field name="model">student.profile</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">school.report_student_detail</field>
+		<field name="report_file">school.report_student_detail</field>
+		<field name="binding_model_id" ref="model_student_profile"/>
+		<field name="binding_type">report</field>
+	</record>
+</odoo>

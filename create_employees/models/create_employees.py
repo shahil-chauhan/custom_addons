@@ -40,7 +40,9 @@ class CreateEmployees(models.Model):
     def compute_age(self):
         for rec in self:
             if rec.birth_date:
-                rec.age = relativedelta.relativedelta(date.today(), rec.birth_date).years
+                rec.age = relativedelta.relativedelta(
+                    date.today(), rec.birth_date
+                ).years
             if rec.age < 18:
                 raise UserError(_("The Employee age cannot be less than 18 years."))
 
@@ -59,7 +61,7 @@ class CreateEmployees(models.Model):
 
     def calculate_monthly(self):
         self.monthly_amount = (
-                self.expected_salary + self.extra_amount + self.extra_amount
+            self.expected_salary + self.extra_amount + self.extra_amount
         )
 
     @api.depends("start_date", "end_date")

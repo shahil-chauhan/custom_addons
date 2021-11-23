@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="qty_order_field_add" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('o_main_table')]
+		/thead/tr/th[@name='th_description']" position="after">
+            <th name="th_qty_order" class="text-center">Tracking</th>
+        </xpath>
+
+        <xpath expr="//t[@t-call='web.external_layout']/div[hasclass('page')]/table/tbody[hasclass('sale_tbody')]
+        /t/tr/t/td[@name='td_name']" position="after">
+            <t t-if="line.product_id.type == 'product'">
+                <td name="td_qty_order" class="text-center">
+                    <span t-field="line.product_id.tracking"/>
+                </td>
+            </t>
+            <t t-else="">
+                <td> </td>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <t t-if="doc.procurement_group_id">
+                <table class="table mt-3">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="delivery_orders_list" t-as="delivery">
+                            <td><t t-esc="delivery.name"/></td>
+                            <td><t t-esc="delivery.state"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

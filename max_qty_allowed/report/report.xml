@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+	<template id="qty_order_field_add" inherit_id="sale.report_saleorder_document">
+		<xpath expr="//t[@t-call='web.external_layout']/div[hasclass('page')]/table[hasclass('o_main_table')]
+		/thead/tr/th[@name='th_description']" position="after">
+			<th name="th_oty_order" class="text-right">Qty Order</th>
+		</xpath>
+
+		<xpath expr="//t[@t-call='web.external_layout']/div[hasclass('page')]/table[hasclass('o_main_table')]
+		/tbody[hasclass('sale_tbody')]/t[@t-as='line']/tr/t[@t-if='not line.display_type']/td[@name='td_name']"
+			   position="after">
+			<td name="td_qty_order">
+				<span t-field="line.max_qty_allowed"/>
+			</td>
+		</xpath>
+
+		<xpath expr="//div[hasclass('clearfix')]/div/div/table[hasclass('table-sm')]" position="after">
+
+			<table class="table table-sm">
+				<thead style="display: table-row-group">
+					<tr>
+						<th name="th_description" class="text-left">Total Capacity</th>
+					</tr>
+				</thead>
+				<tbody class="sale_tbody">
+
+					<td name="td_total_capacity">
+						<span t-field="docs.total_capacity"/>
+					</td>
+				</tbody>
+			</table>
+		</xpath>
+	</template>
+</odoo>
+
+
+		<!--<odoo>-->
+		<!--	<template id="quantity_label_report" inherit_id="sale.report_saleorder_document">-->
+		<!--&lt;!&ndash;		<xpath expr="//table/tbody/tr/td[@name='td_name']" position="after">&ndash;&gt;-->
+		<!--&lt;!&ndash;		<xpath expr="//table[@class='table table-sm o_main_table']" position="before">&ndash;&gt;-->
+		<!--		<xpath expr="//div[@class='page']/table[@class='table']/thead/tr/th[@name='th_description']" position="after">-->
+		<!--			<th class="text-left">Qt Order</th>-->
+		<!--&lt;!&ndash;			<td name="qty_on_order">&ndash;&gt;-->
+		<!--&lt;!&ndash;				<span t-field="line.qty_on_order"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;			</td>&ndash;&gt;-->
+		<!--		</xpath>-->
+		<!--		<xpath expr="//div[@class='page']/table[@class='table']/tbody[@class='sale_tbody']/t[@t-as='line']/tr/t/td[@name='td_name']" position="after">-->
+		<!--&lt;!&ndash;			<td name="qty_on_order">&ndash;&gt;-->
+		<!--&lt;!&ndash;				<span t-field="line.qty_on_order"/>&ndash;&gt;-->
+		<!--&lt;!&ndash;			</td>&ndash;&gt;-->
+		<!--			<td>Yash</td>-->
+		<!--		</xpath>-->
+		<!--	</template>-->
+		<!--</odoo>-->
+
+		<!-- inside xpath-->
+		<!--			<td name="total_capacity">-->
+		<!--				<strong>Total Capacity</strong>-->
+		<!--				<div t-field="docs.total_capacity"/>-->
+		<!--			</td>-->
+		<!--			<table class="table table-sm o_main_table">-->

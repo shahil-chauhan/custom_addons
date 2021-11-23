@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="create_wizard_form_view" model="ir.ui.view">
+		<field name="name">Create Wizard Form View</field>
+		<field name="model">create.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<form>
+						<group>
+							<field name="name"/>
+						</group>
+					</form>
+				</sheet>
+				<footer>
+					<button id="button_wizard" string="Cancel" icon="fa-window-close" name="cancel_object"
+							class="btn btn-outline-danger" type="object"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_create_wizard" model="ir.actions.act_window">
+		<field name="name">Wizard action</field>
+		<field name="res_model">create.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<record id="action_btn_create_wizard" model="ir.actions.act_window">
+		<field name="name">Wizard action</field>
+		<field name="res_model">create.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="school.create_wizard_form_view"/>
+		<field name="target">new</field>
+		<field name="binding_model_id" ref="model_school_profile"/>
+		<field name="binding_view_types">list,form</field>
+	</record>
+
+	<menuitem name="My wizard" id="menu_my_wizard" parent="school_profile_menu" action="school.action_create_wizard"/>
+</odoo>
