@@ -1,0 +1,8 @@
+<odoo>
+
+    <menuitem
+            name="Bulk Products"
+            id="bulk_products"
+            parent="sale.sale_order_menu"
+            action="bulk_products_action_window"/>
+</odoo>

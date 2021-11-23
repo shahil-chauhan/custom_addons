@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="bulk_products_list_view">
+            <field name="name">bulk_products list</field>
+            <field name="model">bulk.products</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="master_product"/>
+                    <field name="user"/>
+                    <field name="email"/>
+                    <field name="bulk_products_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- explicit form view definition -->
+        <record id="bulk_products_form_view" model="ir.ui.view">
+            <field name="name">bulk_products form</field>
+            <field name="model">bulk.products</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="master_product"/>
+                            <field name="user"/>
+                            <field name="email"/>
+                            <field name="bulk_products_ids">
+                                <tree editable="bottom">
+                                    <field name="product_product_id"/>
+                                </tree>
+                            </field>
+
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="bulk_products_action_window">
+            <field name="name">bulk products window</field>
+            <field name="res_model">bulk.products</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
