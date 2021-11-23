@@ -1,0 +1,422 @@
+Odoo Exam - Aktiv Software 
+Each right answer is worth 1 point.
+Each unanswered question is worth 0 points. If you already answered but wish to leave it unanswered you also have an "I don't know" option on each question, which is also worth 0 points, it is considered as an unanswered question.
+You need 70% to pass, there are 40 questions and you have 1 hour to finish.
+Be careful at the end when you click the "submit" at the bottom of this page, you can't go back. 
+Time limit for this Survey: 1 hour
+
+
+1When buying a product, when is the stock move generated
+
+When a PO is validated
+
+When a receipt is validated
+
+i don't know
+
+
+
+2What is the main Purpose of setting Security lead time of sale
+
+Schedule deliveries later to avoid delays
+
+Schedule deliveries earlier to avoid delays
+
+I don't know
+
+
+
+3When should I use “Stockable” as a product type.
+
+When managing stock level is not necessary
+
+When managing stock level is mandatory
+
+When selling service
+
+I don't know
+
+
+4Where is the costing method defined?
+
+On the product
+
+On the product category
+
+On the company (all product have the same costing method)
+
+I don’t know
+
+
+5A RFQ is automatically created every-time
+
+The route on the product is set as “Buy” and SO is validated
+
+The route on the product is set as “Buy” and “Make to Order” and SO is validated
+
+The route on the product is set as “Make to order” and quotation is validated
+
+I don’t know
+
+
+6When should I use Blanket Orders?
+
+When making repetitive purchases from the same supplier within a certain time period.
+
+When making repetitive purchases for the same product to several suppliers within a certain time period.
+
+When ordering many different products in several deliveries to the same vendor within a certain time period.
+
+I don't Know
+
+
+7When a purchase order is validated, is it still possible to add PO lines
+
+Yes, as long as the PO is not “Locked”
+
+No never
+
+I don't know
+
+
+8Suppose I sell a product for which a supplier delivery lead time is less than the delivery lead time promised to the customer. If I do not sell this product often and the cost of the product is very expensive, what is the most suitable procurement method of the product.
+
+This product should be managed as “Make to Stock” and the minimum stock rules should be defined.
+
+This type of product should be set as “service”
+
+The product should be managed as “stock to Order”
+
+I don’t know
+
+
+9Which condition is applied on the filters
+
+
+It’s an “OR” condition search
+
+It’s an “AND” condition search
+
+It’s just a double “Group-by” selection
+
+I don’t know
+
+
+10What does activating the setting “Customer Addresses” in the Sales app configuration allows you to do?
+
+For a company create a contacts with different types of addresses(invoicing, shipping etc)
+
+Separately set invoice and the delivery address on the sale order
+
+You can create different addresses for the same company without creating additional contacts
+
+I don’t know
+
+
+11Is it possible to configure a digressive depreciation of assets
+
+Yes
+
+No
+
+I don't know
+
+
+12Once the MO is validated, can I produce more than initially expected?
+
+Yes
+
+No
+
+I don't know
+
+
+13We have 14 units on hand and forecast qty of a product. Assume a reordering rule is set with min qty 20, max qty 50 and Quantity multiple is 8. How many units will be ordered if reordering rule is triggered
+
+0
+
+40
+
+48
+
+56
+
+I don't know
+
+
+14What does it mean if the forecasted quantity of a stockable product is higher than the quantity on hand?
+Onhand is 96 units and Forecasted is 97 units
+
+Nothing as we don’t know the complete history of each product
+
+New product are planned to arrive in stock
+
+There are probably more outgoing products planned than incoming products
+
+I don’t know
+
+
+15What is Landed Costs?
+Enter your answer
+
+
+16What is P&L report? 
+Enter your answer
+
+
+17What Stock moves will be created when you do an Inventory adjustment from 0 to 5 units.
+
+A move from an internal location to inventory location
+
+A move from an inventory location to internal location
+
+A move between 2 internal location
+
+None of the above
+
+I don't know
+
+
+18Can you use Kit in BOM line?
+
+Yes
+
+No
+
+I don't know
+
+
+19    When I create a purchase agreement and select a vendor, are product prices automatically proposed? 
+
+Yes
+
+No
+
+I don't know
+
+
+20If you confirm a quotation where a stockable product has “Delivered quantities” as invoice policy, which of the following is true?
+
+A draft invoice is automatically created after the delivery order has been processed
+
+A draft invoice can be created from the Sale order, only after delivery order has been processed
+
+A draft invoice can be created from the Sale order, even before a delivery order has been processed
+
+I don’t know
+
+
+21Can Odoo automatically update the currency exchange rate
+
+Yes
+
+No
+
+I don't know
+
+
+22Where do you define the vendor delivery lead time?
+
+On the product
+
+On the Vendor
+
+On the Company
+
+I don't know
+
+
+23If a product has several vendors, which one is proposed on RFQ
+
+The first supplier in the list
+
+The one with the smallest delivery lead time
+
+The one with the smallest price
+
+I don’t know
+
+
+24What does this product configuration imply?
+
+
+If there is a reordering rule set, the product will be manufactured once the rule is triggered
+
+The product will be ordered from a vendor everytime a Sales or Manufacturing order is validated
+
+The product will be manufactured everytime a sales or manufacturing order is validated
+
+I don’t know
+
+
+25Can you define routing without a work center?
+
+Yes
+
+No
+
+I don't know
+
+
+26From where User can generate pending amount of a supplier with aging?
+
+Aged Receivable 
+
+Partner Ledger
+
+Aged Payable 
+
+I don't know
+
+
+27What is the impact of setting the “Control Policy” on the product as “Ordered quantities”
+
+When creating a vendor bill, price comes from the purchase order, and the quantity from the reception
+
+When the PO is confirmed, a vendor bill is automatically created
+
+When creating a vendor bill, quantity, price are automatically filled with the ordered ones
+
+I don’t know
+
+
+28We have 10 units on hand and forecast qty of a product. Assume a reordering rule is set with min qty 60 and max qty 80. How many units will be ordered if reordering rule is triggered
+
+0
+
+60
+
+70
+
+80
+
+I don't know
+
+
+29Can any product be use in the SO?
+
+Yes, you can find all products
+
+No, you can only find products you currently have in stock
+
+No you can only find products for which you have mark as “Can be sold”
+
+I don’t know
+
+
+30Where do you set up stock valuation accounts
+
+Only on the product category level
+
+Only on the product level
+
+Only on the product and product category level
+
+On the stock location level
+
+I don't know
+
+
+31What happens when a procurement needs to create a request for quotation for a product having no vendor define?
+
+A RFQ is created with the vendor field temporarily empty
+
+A warning pop up on the SO asking to set a vendor on the product
+
+A RFQ for quotation is created with the vendor field set to “Unknown Vendor”
+
+I don’t know
+
+
+32How could I prevent a specific product from being use in quotes
+
+By archiving the product
+
+By setting a blocking warning
+
+Both
+
+I don’t know
+
+
+33What is the location type of WH/Stock? 
+
+Vendor Location
+
+Scrap Location 
+
+Internal Location 
+
+I don't know
+
+
+34If the costing method is “Average Price”, will the unit cost of a product change when I deliver some products
+
+Yes
+
+No
+
+I don't know
+
+
+35According to the screenshot, how many variants will be created
+
+
+5
+
+6
+
+2
+
+4
+
+I don't know
+
+
+36Is it possible to set up conversion between 2 units from different categories?
+
+Yes
+
+No
+
+I don't know
+
+
+37Which of the following statements is true regarding this computation?
+
+
+For customers associated with this pricelist, I allow a reduction of exactly 10% on all products
+
+For customer associated with this pricelist, all prices will end in “.90”
+
+For customer associated with this pricelist, all prices will end in “.00”
+
+I don’t know
+
+
+38What is the difference between unit of measure and purchase unit of measure?
+Enter your answer
+
+
+39What is the effect of this pricelist?
+
+
+Discount of 10% on all products
+
+Extra of 10% on the price of all products
+
+Discount of 10% on product “Global”
+
+I don’t know
+
+
+40What if my supplier has provided damaged products, how can I get refund? 
+
+By creating Credit Note
+
+By creating Down payment 
+
+By creating Debit Note
+
+I don't Know
+
