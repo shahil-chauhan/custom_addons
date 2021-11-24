@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
 # from odoo import http
+# from odoo.http import request, route
 
-
-# class CustomScafold(http.Controller):
-#     @http.route('/custom_scafold/custom_scafold/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
-
-#     @http.route('/custom_scafold/custom_scafold/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('custom_scafold.listing', {
-#             'root': '/custom_scafold/custom_scafold',
-#             'objects': http.request.env['custom_scafold.custom_scafold'].search([]),
-#         })
-
-#     @http.route('/custom_scafold/custom_scafold/objects/<model("custom_scafold.custom_scafold"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('custom_scafold.object', {
-#             'object': obj
-#         })
+# class BulkProduct(http.Controller):
+#     @http.route('/bulk_product/', type="http", website=True, auth="public", csrf=False)
+#     def bulk_product(self, **kw):
+#         master_product = request.env['product.template'].sudo().search([])
+#         return request.render("bulk_products.bulk_product_template", {'master_product': master_product})
+#
+#     @http.route('/bulk_product/submit', type="http", website=True, auth="public", csrf=False)
+#     def bulk_product(self, **kw):
+#         if kw:
+#             create_partner = {
+#                 'name': kw.get("partner_name"),
+#             }
+#             request.env["create.employees"].sudo().create(create_partner)
+#         return request.render("bulk_products.")

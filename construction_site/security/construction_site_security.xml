@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
-    <record model="ir.module.category" id="module_category_construction">
+    <record model="ir.module.category" id="module_category_construction_parent">
         <field name="name">Construction</field>
+        <field name="sequence">100</field>
+    </record>
+    <record model="ir.module.category" id="module_category_construction">
         <field name="description">Helps you to configure construction site.</field>
+        <field name="parent_id" eval="module_category_construction_parent"/>
     </record>
 
     <record id="group_construction_user" model="res.groups">
@@ -21,6 +25,7 @@
         <field name="name">Administrator</field>
         <field name="category_id" ref="module_category_construction"/>
         <field name="implied_ids" eval="[(4, ref('group_construction_manager'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 
 </odoo>

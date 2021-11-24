@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    template to create the form-->
+    <template id="" name="">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="form-group center">
+                    <div class="mx-5">
+                        <h1></h1>
+                    </div>
+                    <hr/>
+                    <div class="mx-4">
+                        <form action="" method="post">
+
+                            <div class="form-group col-md-4">
+                                <label for="">
+                                    <span style="color: red;">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="" name="" reqired="true"/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="">Master Product</label>
+                                <select name=" " id="" class="form-control">
+                                    <option value="">Select</option>
+                                    <t t-foreach="" t-as="">
+                                        <option t-att-value=".id">
+                                            <t t-esc=".name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    template to show popup for successful form submission-->
+    <template id="form_submitted" name="Form Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Bulk Product created successfully.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
+
