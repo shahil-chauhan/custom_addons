@@ -17,8 +17,8 @@
     "data": [
         "security/ir.model.access.csv",
         "data/bulk_product_website_menu_views.xml",
-        "views/menu_item_views.xml",
         "views/bulk_product_views.xml",
+        "views/menu_item_views.xml",
         "views/sale_order_bulk_product_views.xml",
         "views/bulk_product_template.xml",
         "views/submit_success_template.xml",
