@@ -7,10 +7,9 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="master_product"/>
-                    <field name="user"/>
+                    <field name="master_product_id"/>
+                    <field name="user_id"/>
                     <field name="email"/>
-                    <field name="bulk_products_ids"/>
                 </tree>
             </field>
         </record>
@@ -24,12 +23,12 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="master_product"/>
-                            <field name="user"/>
+                            <field name="master_product_id"/>
+                            <field name="user_id"/>
                             <field name="email"/>
                             <field name="bulk_products_ids">
                                 <tree editable="bottom">
-                                    <field name="product_product_id"/>
+                                    <field name="product_id"/>
                                 </tree>
                             </field>
 

@@ -2,13 +2,35 @@
 <odoo>
 
     <record id="sales_bulk_product_form" model="ir.ui.view">
-        <field name="name">sale order inherited</field>
+        <field name="name">sale.order.bulk.product.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="bulk_product_template_id"/>
             </xpath>
+        </field>
+    </record>
+    <record id="view_sales_filter" model="ir.ui.view">
+        <field name="name">sale.order.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <filter name="filter_create_date" position="after">
+                <filter string="Bulk Product Template" name="bulk_product_template_id"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sales_groupby" model="ir.ui.view">
+        <field name="name">sale.order.groupby</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="order_month" position="after">
+                <filter string="Bulk Products" name="bulk_product_template_id" domain="[]"
+                        context="{'group_by': 'bulk_product_template_id'}"/>
+            </filter>
         </field>
     </record>
 

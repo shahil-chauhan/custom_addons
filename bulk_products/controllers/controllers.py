@@ -1,21 +1,34 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request, route
 
 
-# class CustomScafold(http.Controller):
-#     @http.route('/custom_scafold/custom_scafold/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class BulkProduct(http.Controller):
+    """ URL for the form opening    """
 
-#     @http.route('/custom_scafold/custom_scafold/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('custom_scafold.listing', {
-#             'root': '/custom_scafold/custom_scafold',
-#             'objects': http.request.env['custom_scafold.custom_scafold'].search([]),
-#         })
+    @http.route("/bulk_product", type="http", website=True, auth="public", csrf=False)
+    def bulk_product(self):
+        master_product = request.env['product.template'].sudo().search([])
+        return request.render("bulk_products.bulk_product_template", {'master_product': master_product})
 
-#     @http.route('/custom_scafold/custom_scafold/objects/<model("custom_scafold.custom_scafold"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('custom_scafold.object', {
-#             'object': obj
-#         })
+    """ URL for the form submission    """
+
+    @http.route('/bulk_product/submit', type="http", website=True, auth="public", csrf=False)
+    def bulk_product(self, **kw):
+        if kw:
+            create_partner = {
+                "name": kw.get("partner_name"),
+                "email": kw.get("email"),
+                "phone": kw.get("phone"),
+            }
+            request.env["res.partner"].sudo().create(create_partner)
+
+            bulk_product_record = {
+                "name": kw.get("name"),
+                "master_product_id": kw.get("master_product_id"),
+                # "user_id": request.env["res.partner"].search([]).ids[-1],
+                "email": kw.get("email"),
+            }
+            request.env["bulk.products"].sudo().create(bulk_product_record)
+
+        return request.render("bulk_products.form_submitted")
