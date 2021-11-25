@@ -6,9 +6,7 @@
     "description": """""",
     "author": "Shahil Chauhan",
     "website": "https://www.google.com/",
-    "depends": [
-        "base"
-    ],
+    "depends": ["base"],
     "data": [
         "security/ir.model.access.csv",
         "views/views.xml",

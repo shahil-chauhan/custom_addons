@@ -2,24 +2,26 @@ from odoo import http
 from odoo.http import request, route
 
 
-class ReferalApplication(http.Controller):
+class ReferralApplication(http.Controller):
     @http.route("/referral_program", type="http", website=True, auth="user")
     def referral_program(self):
         reference_id = request.env["hr.employee"].sudo().search([])
         degree_id = request.env["hr.recruitment.degree"].sudo().search([])
         department_id = request.env["hr.job"].sudo().search([])
-        vals = {
+        values = {
             "reference_id": reference_id,
             "degree_id": degree_id,
             "department_id": department_id,
         }
-        return request.render("hr_referral_application.referral_program_template", vals)
+        return request.render(
+            "hr_referral_application.referral_program_template", values
+        )
 
     @http.route("/submit_referral_program", type="http", website=True, auth="public")
     def submit_referral_program(self, **kw):
         if kw:
-            print("kw==================", kw)
-            vals = {
+            print("\n\nkw==================", kw)
+            values = {
                 "name": kw.get("name"),
                 "email": kw.get("email"),
                 "reference_id": kw.get("reference_id"),
@@ -29,10 +31,8 @@ class ReferalApplication(http.Controller):
                 "joining_date": kw.get("joining_date"),
                 "summary": kw.get("summary"),
             }
-            print("=============vals==============", vals)
-            # request.env["hr.referral.application"].sudo().create(vals)
+            print("\n\n=============values==============", values)
 
-            request.env["hr.referral.application"].sudo().create(vals)
-            # request.env["hr.referral.application"].sudo().create(vals)
+            request.env["hr.referral.application"].sudo().create(values)
 
-        return request.render("hr_referral_application.thank_you_template", vals)
+        return request.render("hr_referral_application.thank_you_template", values)
