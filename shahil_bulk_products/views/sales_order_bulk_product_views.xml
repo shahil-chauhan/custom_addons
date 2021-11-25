@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
+    <!--    to add field in sale order-->
     <record id="sales_bulk_product_form" model="ir.ui.view">
         <field name="name">sale.order.bulk.product.form</field>
         <field name="model">sale.order</field>
@@ -11,6 +11,8 @@
             </xpath>
         </field>
     </record>
+
+    <!--    to add filter in sale order-->
     <record id="view_sales_filter" model="ir.ui.view">
         <field name="name">sale.order.filter</field>
         <field name="model">sale.order</field>
@@ -22,6 +24,7 @@
         </field>
     </record>
 
+    <!--    to add groupby in sale order-->
     <record id="view_sales_groupby" model="ir.ui.view">
         <field name="name">sale.order.groupby</field>
         <field name="model">sale.order</field>
