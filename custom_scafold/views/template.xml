@@ -37,7 +37,7 @@
         </t>
     </template>
 
-    <!--    template to show popup for successful form submission-->
+    <!--    template to show for successful form submission-->
     <template id="form_submitted" name="Form Successfully Submitted">
         <t t-call="website.layout">
             <div id="wrap">

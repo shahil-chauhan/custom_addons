@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saleorder
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-25 11:46+0000\n"
+"PO-Revision-Date: 2021-11-25 11:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saleorder
+#: model:ir.model.fields,field_description:saleorder.field_product_template__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: saleorder
+#: model:ir.model.fields,field_description:saleorder.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: saleorder
+#: model:ir.model.fields,field_description:saleorder.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: saleorder
+#: code:addons/saleorder/models/product_template.py:0
+#: model:ir.model.fields,field_description:saleorder.field_product_product__surcharge
+#: model:ir.model.fields,field_description:saleorder.field_product_template__surcharge
+#, python-format
+msgid "One-time surcharge"
+msgstr "Eimaliger Aufrpreis"
+
+#. module: saleorder
+#: model:ir.model.fields,help:saleorder.field_product_product__list_price
+#: model:ir.model.fields,help:saleorder.field_product_template__list_price
+msgid "Price at which the product is sold to customers."
+msgstr "Preis, zu dem das Produkt an den Kunden verkauft wird."
+
+#. module: saleorder
+#: model:ir.model,name:saleorder.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: saleorder
+#: code:addons/saleorder/models/product_template.py:0
+#: model:ir.model.fields,field_description:saleorder.field_product_product__list_price
+#: model:ir.model.fields,field_description:saleorder.field_product_template__list_price
+#, python-format
+msgid "Subscription Price"
+msgstr "Abu"
+
+

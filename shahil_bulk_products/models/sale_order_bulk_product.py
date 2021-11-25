@@ -11,12 +11,13 @@ class SaleOrderBulkProducts(models.Model):
 
     @api.onchange("bulk_product_template_id")
     def order_line_add(self):
-        self.write({"order_line": [(5, 0, 0)]})
-        for pro in self.bulk_product_template_id.bulk_products_ids:
-            self.sudo().write(
-                {
-                    "order_line": [
-                        (0, 0, {"product_id": pro.product_id, "name": pro.name})
-                    ]
-                }
-            )
+        order_lines = [(5, 0, 0)]
+        for bulk_product in self.bulk_product_template_id.bulk_products_ids:
+            data = {
+                "product_id": bulk_product.product_id.id,
+                "name": bulk_product.product_id.name,
+                "price_unit": bulk_product.product_id.lst_price,
+                'product_uom': bulk_product.product_id.uom_id.id,
+            }
+            order_lines.append((0, 0, data))
+        self.order_line = order_lines

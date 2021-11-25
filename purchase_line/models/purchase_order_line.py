@@ -18,18 +18,3 @@ class PurchaseOrderLine(models.Model):
         )
         return res
 
-
-# class PurchaseOrder(models.Model):
-#     _inherit = 'purchase.order'
-
-# take field in "purchase.order"
-
-# this method is used to transfer data from "purchase.order" to "account.move"
-# def _prepare_invoice(self):
-#     res = super(PurchaseOrder, self)._prepare_invoice()
-#     res.update(
-#             {
-#             "pur_order": self.pur_order
-#             }
-#         )
-#     return res

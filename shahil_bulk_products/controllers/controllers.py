@@ -10,7 +10,7 @@ class BulkProduct(http.Controller):
     def bulk_product_home(self, **kw):
         master_product = request.env["product.template"].sudo().search([])
         return request.render(
-            "bulk_products.bulk_product_template", {"master_product": master_product}
+            "shahil_bulk_products.bulk_product_template", {"master_product": master_product}
         )
 
     """ URL for the form submission"""
@@ -25,14 +25,15 @@ class BulkProduct(http.Controller):
                 "email": kw.get("email"),
                 "phone": kw.get("phone"),
             }
-            request.env["res.partner"].sudo().create(create_partner)
+            new_partner = request.env["res.partner"].sudo().create(create_partner)
 
             bulk_product_record = {
                 "name": kw.get("name"),
                 "master_product_id": kw.get("master_product_id"),
-                "user_id": request.env["res.partner"].search([]).ids[-1],
+                "user_id": new_partner.id,
+                # "user_id": request.env["res.partner"].search([]).ids[-1],
                 "email": kw.get("email"),
             }
             request.env["bulk.products"].sudo().create(bulk_product_record)
 
-        return request.render("bulk_products.form_submitted")
+        return request.render("shahil_bulk_products.form_submitted")
