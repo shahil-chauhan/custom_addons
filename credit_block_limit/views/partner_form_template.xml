@@ -1,0 +1,98 @@
+<odoo>
+    <template id="partner_form_template" name="Partner Info">
+        <t t-call="website.layout">
+            <t t-set="title">
+                <t t-esc="(partner) and partner.name"/>
+            </t>
+            <div class="oe_structure">
+                <div class="container">
+                    <form class="contact_form" action="/partner_update" method="post">
+                        <div class="contact_form_main_wrapper">
+                            <div class="partner_basic_details_wrapper">
+                                <div class="row">
+                                    <div class="col-md-9 partner_details_wrapper">
+                                        <input type="hidden" name="partner_id" id="partner_id"
+                                               t-att-value="(partner) and partner.id"/>
+                                        <h3>Partner Info:</h3>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="name" id="name" placeholder="Name"
+                                                       class="form-control" t-att-value="(partner) and partner.name"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-8">
+                                                <input type="email" name="email" id="email" placeholder="E-mail"
+                                                       class="form-control" t-att-value="(partner) and partner.email"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="tel" name="phone" id="phone" placeholder="Phone"
+                                                       class="form-control" t-att-value="(partner) and partner.phone"/>
+                                            </div>
+                                        </div>
+
+                                        <h3>Address</h3>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="street" id="street"
+                                                       placeholder="Address line 1" class="form-control"
+                                                       t-att-value="(partner) and partner.street"/>
+                                            </div>
+                                        </div>
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-12">
+                                                <input type="text" name="street2" id="street2"
+                                                       placeholder="Additional Address" class="form-control"
+                                                       t-att-value="(partner) and partner.street2"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-4">
+                                                <input type="text" name="city" id="city" placeholder="City"
+                                                       class="form-control" t-att-value="(partner) and partner.city"/>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <select name="state_id" id="state_id" class="form-control">
+                                                    <option value="">Select State</option>
+                                                    <t t-foreach="states" t-as="state">
+                                                        <option t-att-value="state.id"
+                                                                t-att-selected="(partner and partner.state_id and partner.state_id.id == state.id) and 'selected'">
+                                                            <t t-esc="state.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row form_input_wrapper">
+                                            <div class="col-md-9">
+                                                <select name="country_id" id="country_id" class="form-control">
+                                                    <option value="">Select Country</option>
+                                                    <t t-foreach="countries" t-as="country">
+                                                        <option t-att-value="country.id"
+                                                                t-att-selected="(partner and partner.country_id and partner.country_id.id == country.id) and 'selected'">
+                                                            <t t-esc="country.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button class="submit_button center" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

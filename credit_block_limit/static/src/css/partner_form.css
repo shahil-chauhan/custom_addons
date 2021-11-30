@@ -1,0 +1,13 @@
+.contact_form{
+    margin: 20px 0px;
+}
+.form_input_wrapper{
+    margin-bottom: 15px;
+}
+
+.submit_button {
+    border-radius: 21px;
+    background-color: #F44333;
+    padding: 2px 40px;
+    color: white;
+}

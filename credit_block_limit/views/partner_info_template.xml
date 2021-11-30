@@ -1,0 +1,39 @@
+<odoo>
+    <template id="partner_info_template" name="Employees Details">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="form-group center">
+                    <div class="mx-5">
+                        <h1>Partner Details:</h1>
+                    </div>
+                    <hr/>
+                    <div class="mx-4">
+                        <form action="/partner_details" method="post">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group col-auto">
+                                        <label for="partners">Partner
+                                            <span style="color: red;">*</span>
+                                        </label>
+                                        <select name="partners" id="partners" class="form-control" required="true">
+                                            <option value="">Please Select</option>
+                                            <t t-foreach="partners" t-as="partner">
+                                                <option t-att-value="partner.id">
+                                                    <t t-esc="partner.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <button type="submit" class="btn btn-success">Fetch Details</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
