@@ -6,7 +6,7 @@
     "description": """
     """,
     "author": "Shahil Chauhan",
-    "website": "http://www.yourcompany.com",
+    "website": "http://www.aktivsoftware.com",
     "category": "Uncategorized",
     "version": "14.0.1.0.0",
     # any module necessary for this one to work correctly
@@ -14,8 +14,6 @@
     # always loaded
     "data": [
         # 'security/ir.model.access.csv',
-        "views/views.xml",
-        "views/templates.xml",
     ],
     # only loaded in demonstration mode
     "demo": [],

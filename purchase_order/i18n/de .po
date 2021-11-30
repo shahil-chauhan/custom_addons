@@ -55,6 +55,6 @@ msgstr "Produktvorlage"
 #: model:ir.model.fields,field_description:saleorder.field_product_template__list_price
 #, python-format
 msgid "Subscription Price"
-msgstr "Abu"
+msgstr "Abopreis"
 
 

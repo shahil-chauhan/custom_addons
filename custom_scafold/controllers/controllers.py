@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
+# # -*- coding: utf-8 -*-
+#
 # from odoo import http
 # from odoo.http import request, route
-
+#
+#
 # class BulkProduct(http.Controller):
 #     @http.route('/bulk_product/', type="http", website=True, auth="public", csrf=False)
 #     def bulk_product(self, **kw):
@@ -9,7 +11,7 @@
 #         return request.render("bulk_products.bulk_product_template", {'master_product': master_product})
 #
 #     @http.route('/bulk_product/submit', type="http", website=True, auth="public", csrf=False)
-#     def bulk_product(self, **kw):
+#     def bulk_product_info(self, **kw):
 #         if kw:
 #             create_partner = {
 #                 'name': kw.get("partner_name"),

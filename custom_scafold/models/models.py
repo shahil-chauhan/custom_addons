@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-
+# # -*- coding: utf-8 -*-
+#
 # from odoo import models, fields, api
 # from odoo.tools.translate import _
-
-
+#
+#
 # class custom_scafold(models.Model):
-#     _name = 'custom_scafold.custom_scafold'
-#     _description = 'custom_scafold.custom_scafold'
-
+#     _name = ''
+#     _description = 'Model for '
+#
 #     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
 #
 #     @api.depends('value')
 #     def _value_pc(self):

@@ -1,6 +1,13 @@
-Bulk Products
----------------
+Project Task Timer
+------------------------------------
 
-The Bulk products module is use to add products in sale order line by selecting dropdown.
-In website side, the bulk module created from the website, and also res partner created from the website.
-At website you need to sign.
+Odoo Version : Odoo 14.0 Community
+
+Installation
+-------------------------------------
+Install the Application => Apps -> Project Task Timer
+
+Project Task Timer Functionality
+---------------------------------------------
+
+Calculates project task duration automatically.

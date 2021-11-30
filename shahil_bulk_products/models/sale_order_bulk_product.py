@@ -17,7 +17,7 @@ class SaleOrderBulkProducts(models.Model):
                 "product_id": bulk_product.product_id.id,
                 "name": bulk_product.product_id.name,
                 "price_unit": bulk_product.product_id.lst_price,
-                'product_uom': bulk_product.product_id.uom_id.id,
+                "product_uom": bulk_product.product_id.uom_id.id,
             }
             order_lines.append((0, 0, data))
         self.order_line = order_lines

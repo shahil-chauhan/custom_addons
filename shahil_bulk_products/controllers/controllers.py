@@ -10,7 +10,8 @@ class BulkProduct(http.Controller):
     def bulk_product_home(self, **kw):
         master_product = request.env["product.template"].sudo().search([])
         return request.render(
-            "shahil_bulk_products.bulk_product_template", {"master_product": master_product}
+            "shahil_bulk_products.bulk_product_template",
+            {"master_product": master_product},
         )
 
     """ URL for the form submission"""
