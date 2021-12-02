@@ -6,7 +6,6 @@
             <field name="name">Credit/Block limit</field>
             <field name="model_id" ref="credit_block_limit.model_sale_order"/>
             <field name="email_from">${object.user_id.email_formatted | safe}</field>
-            <field name="partner_to">${object.partner_id.id}</field>
             <field name="subject">Credit/Block limit exceeds</field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px; border:1px solid black;">
@@ -15,17 +14,21 @@
                         <br/>
                         <br/>
                         This is to notify you that your credit/block limit
-                        has exceed for the ${object.name}.
+                        has exceeded for the ${object.name}.
                         <br/>
                         <br/>
                         <ul>
                             <li>
-                                <b>Customer Name -</b>
-                                <span>${object.partner_id.gitname}</span>
+                                <strong>Customer Name -</strong>
+                                <span>${object.partner_id.name}</span>
                             </li>
                             <li>
-                                <b>Limit for Customer -</b>
-                                <!--                                <span>${object.credit_limit_score}</span>-->
+                                <strong>Limit for Customer -</strong>
+                                % if object.partner_id.credit_limit :
+                                Credit Limit of ${object.partner_id.credit_limit_score}
+                                <!--                                % elif object.partner_id.blocking_limit :-->
+                                <!--                                Blocking Limit of ${object.partner_id.blocking_limit_score}-->
+                                % endif
                             </li>
                         </ul>
                         <br/>
