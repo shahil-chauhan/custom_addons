@@ -4,31 +4,27 @@
         <!--Email template for Notifying the Customer about the limit-->
         <record id="limit_mail_template" model="mail.template">
             <field name="name">Credit/Block limit</field>
-            <field name="model_id" ref="credit_block_limit.model_sale_order"/>
+            <field name="model_id" ref="credit_block_limit.model_res_partner"/>
             <field name="email_from">${object.user_id.email_formatted | safe}</field>
             <field name="subject">Credit/Block limit exceeds</field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px; border:1px solid black;">
                     <p style="margin: 0px; padding: 0px; font-size: 13px;">
-                        Hello ${object.partner_id.email},
+                        Hello ${object.email},
                         <br/>
                         <br/>
-                        This is to notify you that your credit/block limit
+                        This is to notify you that your <span>${ctx['exceeded_limit']}</span> limit
                         has exceeded for the ${object.name}.
                         <br/>
                         <br/>
                         <ul>
                             <li>
                                 <strong>Customer Name -</strong>
-                                <span>${object.partner_id.name}</span>
+                                <span>${object.name}</span>
                             </li>
                             <li>
                                 <strong>Limit for Customer -</strong>
-                                % if object.partner_id.credit_limit :
-                                Credit Limit of ${object.partner_id.credit_limit_score}
-                                <!--                                % elif object.partner_id.blocking_limit :-->
-                                <!--                                Blocking Limit of ${object.partner_id.blocking_limit_score}-->
-                                % endif
+                                <span>${ctx['exceeding_limit_amount']}</span>
                             </li>
                         </ul>
                         <br/>
