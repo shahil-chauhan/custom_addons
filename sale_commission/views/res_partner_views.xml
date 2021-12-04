@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_form_extended" model="ir.ui.view">
+        <field name="name">res.partner.form.extended</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_sale_order_line"
+                        groups="sales_team.group_sale_salesman" icon="fa-bars">
+                    <field string="Sales Commission History" name="sale_order_line_total" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
